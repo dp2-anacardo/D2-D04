@@ -97,9 +97,15 @@ public class DashboardController extends AbstractController {
         result.addObject("MaxSalaryOffered", maxSalaryOffered);
         result.addObject("StddevSalaryOffered", stddevSalaryOffered);
 
-        result.addObject("BestPositionSalaryOffered", bestPositionSalaryOffered);
+        if(bestPositionSalaryOffered != null)
+            result.addObject("BestPositionSalaryOffered", bestPositionSalaryOffered);
+        else
+            result.addObject("BestPositionSalaryOffered", "");
 
-        result.addObject("WorstPositionSalaryOffered", worstPositionSalaryOffered);
+        if(worstPositionSalaryOffered != null)
+            result.addObject("WorstPositionSalaryOffered", worstPositionSalaryOffered);
+        else
+            result.addObject("WorstPositionSalaryOffered", "");
 
         result.addObject("AvgNumOfCurricula", avgNumOfCurricula);
         result.addObject("MinNumOfCurricula", minNumOfCurricula);

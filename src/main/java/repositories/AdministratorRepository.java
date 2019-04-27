@@ -61,10 +61,10 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
     //@Query("select p,max(p.salary) from Position p where p.isFinal = true and p.isCancelled = false")
     //List<Object> getBestPositionSalaryOffered();
 
-    @Query("select p from Position p where p.isFinal = true and p.isCancelled = false order by max(p.salary)")
+    @Query("select p from Position p where p.isFinal = true and p.isCancelled = false order by p.salary desc")
     List<Position> getBestPositionSalaryOffered();
 
-    @Query("select p from Position p where p.isFinal = true and p.isCancelled = false order by min(p.salary)")
+    @Query("select p from Position p where p.isFinal = true and p.isCancelled = false order by p.salary asc")
     List<Position> getWorstPositionSalaryOffered();
 
     @Query("select avg(h.curricula.size)*1.0 from Rookie h")

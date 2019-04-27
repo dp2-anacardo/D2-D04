@@ -321,7 +321,12 @@ public class AdministratorService {
 
         Position position;
 
-        position = this.administratorRepository.getBestPositionSalaryOffered().get(0);
+        List<Position> res = this.administratorRepository.getBestPositionSalaryOffered();
+
+        if(res.size() > 0)
+            position = res.get(0);
+        else
+            position = null;
 
         return position;
     }
@@ -330,7 +335,12 @@ public class AdministratorService {
 
         Position position;
 
-        position = this.administratorRepository.getWorstPositionSalaryOffered().get(0);
+        List<Position> res = this.administratorRepository.getWorstPositionSalaryOffered();
+
+        if(res.size() > 0)
+            position = res.get(0);
+        else
+            position = null;
 
         return position;
     }
