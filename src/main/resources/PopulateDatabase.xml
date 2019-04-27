@@ -1,0 +1,810 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+ * PopulateDatabase.xml
+ *
+ * Copyright (C) 2018 Universidad de Sevilla
+ * 
+ * The use of this project is hereby constrained to the conditions of the 
+ * TDG Licence, a copy of which you may download from 
+ * http://www.tdg-seville.info/License.html
+ -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	">
+	
+	<!-- User accounts -->
+
+	<bean id="userAccount1" class="security.UserAccount">
+		<property name="username" value="admin1" />
+		<property name="password" value="e00cf25ad42683b3df678c61f42c6bda" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMIN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount2" class="security.UserAccount">
+		<property name="username" value="company1" />
+		<property name="password" value="df655f976f7c9d3263815bd981225cd9" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="COMPANY" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount3" class="security.UserAccount">
+		<property name="username" value="company2" />
+		<property name="password" value="d196a28097115067fefd73d25b0c0be8" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="COMPANY" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount4" class="security.UserAccount">
+		<property name="username" value="rookie1" />
+		<property name="password" value="2ba2a8ac968a7a2b0a7baa7f2fef18d2" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ROOKIE" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userAccount5" class="security.UserAccount">
+		<property name="username" value="rookie2" />
+		<property name="password" value="91af68b69a50a98dbc0800942540342c" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ROOKIE" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Other domain beans come here -->
+	
+	<!-- Administrator -->
+	
+	<bean id="admin1" class="domain.Administrator">
+		<property name="userAccount" ref="userAccount1"/>
+		<property name="name" value="admin1" />
+		<property name="surname" value="admin1"/>
+		<property name="vatNumber" value="21"/>
+		<property name="creditCard" ref="creditCardAdmin1"/>
+		<property name="photo" value="https://github.com/dp2-anacardo/DP2-D01"/>
+		<property name="email" value="emailDePrueba@gmail.com"/>
+		<property name="phoneNumber" value="+34 678123674"/>
+		<property name="address" value="Avenida Reina Mercedes"/>
+		<property name="isSpammer" value="false"/>
+		<property name="isBanned" value="false"/>
+		<property name="socialProfiles">
+			<list>
+				<ref bean="socialProfileAdmin1"/>
+			</list>
+		</property>
+		<property name="messagesReceived">
+			<list>
+				<ref bean="message2"/>
+			</list>
+		</property>
+		<property name="messagesSent">
+			<list>
+				<ref bean="message1"/>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Administrator's SocialProfiles -->	
+	
+	<bean id="socialProfileAdmin1" class="domain.SocialProfile">
+		<property name="nick" value="admin1Nick" />
+		<property name="socialNetworkName" value="twitter" />
+		<property name="profileLink" value="http://www.twitter.com" />
+	</bean>
+	
+	<!-- Administrator's CreditCard -->	
+	
+	<bean id="creditCardAdmin1" class ="datatype.CreditCard">
+		<property name = "holder" value = "Admin1"/>
+		<property name = "brandName" value = "VISA"/>
+		<property name = "number" value = "4885149505523388"/>
+		<property name = "expirationYear" value="01/11/2023"/>
+		<property name = "cvv" value = "891"/>
+	</bean>
+	
+	<!-- Companies -->
+	
+	<bean id="company1" class="domain.Company">
+		<property name="userAccount" ref="userAccount2"/>
+		<property name="name" value="company1" />
+		<property name="surname" value="company1"/>
+		<property name="vatNumber" value="21"/>
+		<property name="creditCard" ref="creditCardCompany1"/>
+		<property name="photo" value=""/>
+		<property name="email" value="emailDePrueba@gmail.com"/>
+		<property name="phoneNumber" value="+34 679123486"/>
+		<property name="address" value="Crrt Carmona"/>
+		<property name="isSpammer" value="false"/>
+		<property name="isBanned" value="false"/>
+		<property name="socialProfiles">
+			<list>
+				<ref bean="socialProfileCompany1"/>
+			</list>
+		</property>
+		<property name="commercialName" value="BBVA"/>
+		<property name="messagesReceived">
+			<list>
+				<ref bean="message1"/>
+			</list>
+		</property>
+		<property name="messagesSent">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="company2" class="domain.Company">
+		<property name="userAccount" ref="userAccount3"/>
+		<property name="name" value="company2" />
+		<property name="surname" value="company2"/>
+		<property name="vatNumber" value="21"/>
+		<property name="creditCard" ref="creditCardCompany2"/>
+		<property name="photo" value=""/>
+		<property name="email" value="emailDePrueba@gmail.com"/>
+		<property name="phoneNumber" value="+34 681538301"/>
+		<property name="address" value="Calle Feria"/>
+		<property name="isSpammer" value="false"/>
+		<property name="isBanned" value="false"/>
+		<property name="socialProfiles">
+			<list>
+			</list>
+		</property>
+		<property name ="commercialName" value="Abengoa"/>
+		<property name="messagesReceived">
+			<list>
+			</list>
+		</property>
+		<property name="messagesSent">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Companies' SocialProfiles -->	
+	
+	<bean id="socialProfileCompany1" class="domain.SocialProfile">
+		<property name="nick" value="company1Nick" />
+		<property name="socialNetworkName" value="twitter" />
+		<property name="profileLink" value="http://www.twitter.com" />
+	</bean>
+	
+	<!-- Companies' CreditCard -->	
+	
+	<bean id="creditCardCompany1" class ="datatype.CreditCard">
+		<property name = "holder" value = "Company1"/>
+		<property name = "brandName" value = "VISA"/>
+		<property name = "number" value = "4255278225668603"/>
+		<property name = "expirationYear" value="01/02/2027"/>
+		<property name = "cvv" value = "485"/>
+	</bean>
+	
+	<bean id="creditCardCompany2" class ="datatype.CreditCard">
+		<property name = "holder" value = "Company2"/>
+		<property name = "brandName" value = "VISA"/>
+		<property name = "number" value = "4493416572903791"/>
+		<property name = "expirationYear" value="01/05/2018"/>
+		<property name = "cvv" value = "486"/>
+	</bean>
+	
+	<!-- Rookies -->
+	
+	<bean id="rookie1" class="domain.Rookie">
+		<property name="userAccount" ref="userAccount4"/>
+		<property name="name" value="rookie1" />
+		<property name="surname" value="rookie1"/>
+		<property name="vatNumber" value="21"/>
+		<property name="creditCard" ref="creditCardRookie1"/>
+		<property name="photo" value=""/>
+		<property name="email" value="emailDePrueba@gmail.com"/>
+		<property name="phoneNumber" value="+34 791235712"/>
+		<property name="address" value="Avenida Pino Montano"/>
+		<property name="isSpammer" value="true"/>
+		<property name="isBanned" value="false"/>
+		<property name="socialProfiles">
+			<list>
+			<ref bean="socialProfileRookie1"/>
+			</list>
+		</property>
+		<property name="curricula">
+			<list>
+			<ref bean="curricula1Rookie1"/>
+			<ref bean="curricula2Rookie1"/>
+			</list>
+		</property>
+		<property name ="finder" ref="finderRookie1"/>
+		<property name="messagesReceived">
+			<list>
+			</list>
+		</property>
+		<property name="messagesSent">
+			<list>
+				<ref bean="message2"/>
+				<ref bean="message3"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="rookie2" class="domain.Rookie">
+		<property name="userAccount" ref="userAccount5"/>
+		<property name="name" value="rookie2" />
+		<property name="surname" value="rookie2"/>
+		<property name="vatNumber" value="21"/>
+		<property name="creditCard" ref="creditCardRookie2"/>
+		<property name="photo" value=""/>
+		<property name="email" value="emailDePrueba@gmail.com"/>
+		<property name="phoneNumber" value="+34 717762391"/>
+		<property name="address" value="Ronda de Capuchinos"/>
+		<property name="isSpammer" value="false"/>
+		<property name="isBanned" value="false"/>
+		<property name="socialProfiles">
+			<list>
+			</list>
+		</property>
+		<property name="curricula">
+			<list>
+			<ref bean="curriculaRookie2"/>
+			</list>
+		</property>
+		<property name ="finder" ref="finderRookie2"/>
+		<property name="messagesReceived">
+			<list>
+				<ref bean="message3"/>
+			</list>
+		</property>
+		<property name="messagesSent">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Rookies' SocialProfiles -->
+	
+	<bean id="socialProfileRookie1" class="domain.SocialProfile">
+		<property name="nick" value="rookie1Nick" />
+		<property name="socialNetworkName" value="instagram" />
+		<property name="profileLink" value="http://www.instagram.com" />
+	</bean>
+	
+	<!-- Rookies' CreditCard -->
+	
+	<bean id="creditCardRookie1" class ="datatype.CreditCard">
+		<property name = "holder" value = "Rookie1"/>
+		<property name = "brandName" value = "MASTERCARD"/>
+		<property name = "number" value = "5330406871249008"/>
+		<property name = "expirationYear" value="05/12/2020"/>
+		<property name = "cvv" value = "488"/>
+	</bean>
+	
+	<bean id="creditCardRookie2" class ="datatype.CreditCard">
+		<property name = "holder" value = "Rookie2"/>
+		<property name = "brandName" value = "MASTERCARD"/>
+		<property name = "number" value = "5038876759300559"/>
+		<property name = "expirationYear" value="06/05/2021"/>
+		<property name = "cvv" value = "666"/>
+	</bean>
+	
+	<!-- Rookies' Finder -->
+	
+	<bean id="finderRookie1" class="domain.Finder">
+		<property name="keyWord" value="Developer" />
+		<property name="deadline" value="05/09/2019" />
+		<property name="minSalary" value="1800" />
+		<property name="positions">
+			<list>
+				<ref bean="position1"/>
+			</list>
+		</property>
+		<property name="lastUpdate" value="15/04/2019"/>
+	</bean>
+	
+	<bean id="finderRookie2" class="domain.Finder">
+		<property name="keyWord" value="" />
+		<property name="minSalary" value="0"/>
+		<property name="positions">
+			<list>
+			</list>
+		</property>
+		<property name="lastUpdate" value="10/04/2019"/>
+	</bean>
+	
+	<!-- Rookies' Curricula -->
+	
+	<bean id="curricula1Rookie1" class ="domain.Curricula">
+		<property name = "educationalData" ref = "educationalDataRookie1"/>
+		<property name = "personalData" ref = "personalData1Rookie1"/>
+		<property name = "miscData" ref = "miscellaneousDataRookie1"/>
+		<property name = "positionData" ref ="positionDataRookie1"/>
+	</bean>
+	
+	<bean id="curricula1Rookie1Copy" class ="domain.Curricula">
+		<property name = "educationalData" ref = "educationalDataRookie1Copy"/>
+		<property name="isCopy" value="true"/>
+		<property name = "personalData" ref = "personalData1Rookie1Copy"/>
+		<property name = "miscData" ref = "miscellaneousDataRookie1Copy"/>
+		<property name = "positionData" ref ="positionDataRookie1Copy"/>
+	</bean>
+	
+	<bean id="curricula2Rookie1" class ="domain.Curricula">
+		<property name = "personalData" ref = "personalData2Rookie1"/>
+	</bean>
+	
+	<bean id="curriculaRookie2" class ="domain.Curricula">
+		<property name = "personalData" ref = "personalDataRookie2"/>
+	</bean>
+	
+	<bean id="curriculaRookie2Copy" class ="domain.Curricula">
+		<property name = "personalData" ref = "personalDataRookie2Copy"/>
+		<property name="isCopy" value="true"/>
+	</bean>
+	
+	<bean id="curriculaRookie2Copy2" class ="domain.Curricula">
+		<property name = "personalData" ref = "personalDataRookie2Copy2"/>
+		<property name="isCopy" value="true"/>
+	</bean>
+	
+	<bean id="curriculaRookie2Copy3" class ="domain.Curricula">
+		<property name = "personalData" ref = "personalDataRookie2Copy3"/>
+		<property name="isCopy" value="true"/>
+	</bean>
+	
+	<!-- Curricula's EducationalData -->
+	
+	<bean id="educationalDataRookie1" class ="domain.EducationalData">
+		<property name = "degree" value = "Software Engineering"/>
+		<property name = "institution" value = "ETSII"/>
+		<property name = "mark" value = "9"/>
+		<property name = "startDate" value ="24/09/2006"/>
+		<property name = "endDate" value ="18/06/2012"/>
+	</bean>
+	
+	<bean id="educationalDataRookie1Copy" class ="domain.EducationalData">
+		<property name = "degree" value = "Software Engineering"/>
+		<property name = "institution" value = "ETSII"/>
+		<property name = "mark" value = "9"/>
+		<property name = "startDate" value ="24/09/2006"/>
+		<property name = "endDate" value ="18/06/2012"/>
+	</bean>
+	
+	<!-- Curricula's PersonalData -->
+	
+	<bean id="personalData1Rookie1" class ="domain.PersonalData">
+		<property name = "fullName" value = "Eduardo García Jiménez"/>
+		<property name = "statement" value = "No se que poner, ¿qué declaración haría un rookie?"/>
+		<property name = "phoneNumber" value = "+34 791235712"/>
+		<property name = "githubProfile" value ="https://github.com/edugj7126"/>
+		<property name = "linkedInProfile" value ="https://linkedIn.com/edugj7126"/>
+	</bean>
+	
+	<bean id="personalData1Rookie1Copy" class ="domain.PersonalData">
+		<property name = "fullName" value = "Eduardo García Jiménez"/>
+		<property name = "statement" value = "No se que poner, ¿qué declaración haría un rookie?"/>
+		<property name = "phoneNumber" value = "+34 791235712"/>
+		<property name = "githubProfile" value ="https://github.com/edugj7126"/>
+		<property name = "linkedInProfile" value ="https://linkedIn.com/edugj7126"/>
+	</bean>
+	
+	<bean id="personalData2Rookie1" class ="domain.PersonalData">
+		<property name = "fullName" value = "Eduardo García Jiménez"/>
+		<property name = "statement" value = "No se que poner, ¿qué declaración haría un rookie?"/>
+		<property name = "phoneNumber" value = "+34 791235712"/>
+		<property name = "githubProfile" value ="https://github.com/prueba"/>
+		<property name = "linkedInProfile" value ="https://linkedIn.com/prueba"/>
+	</bean>
+	
+	<bean id="personalDataRookie2" class ="domain.PersonalData">
+		<property name = "fullName" value = "Francisco Caro de la Barrera"/>
+		<property name = "statement" value = "No se que poner, ¿qué declaración haría un rookie?"/>
+		<property name = "phoneNumber" value = "+34 654928123"/>
+		<property name = "githubProfile" value ="https://github.com/franCb81"/>
+		<property name = "linkedInProfile" value ="https://linkedIn.com/franCb81"/>
+	</bean>
+	
+	<bean id="personalDataRookie2Copy" class ="domain.PersonalData">
+		<property name = "fullName" value = "Francisco Caro de la Barrera"/>
+		<property name = "statement" value = "No se que poner, ¿qué declaración haría un rookie?"/>
+		<property name = "phoneNumber" value = "+34 654928123"/>
+		<property name = "githubProfile" value ="https://github.com/franCb81"/>
+		<property name = "linkedInProfile" value ="https://linkedIn.com/franCb81"/>
+	</bean>
+	
+	<bean id="personalDataRookie2Copy2" class ="domain.PersonalData">
+		<property name = "fullName" value = "Francisco Caro de la Barrera"/>
+		<property name = "statement" value = "No se que poner, ¿qué declaración haría un rookie?"/>
+		<property name = "phoneNumber" value = "+34 654928123"/>
+		<property name = "githubProfile" value ="https://github.com/franCb81"/>
+		<property name = "linkedInProfile" value ="https://linkedIn.com/franCb81"/>
+	</bean>
+	
+	<bean id="personalDataRookie2Copy3" class ="domain.PersonalData">
+		<property name = "fullName" value = "Francisco Caro de la Barrera"/>
+		<property name = "statement" value = "No se que poner, ¿qué declaración haría un rookie?"/>
+		<property name = "phoneNumber" value = "+34 654928123"/>
+		<property name = "githubProfile" value ="https://github.com/franCb81"/>
+		<property name = "linkedInProfile" value ="https://linkedIn.com/franCb81"/>
+	</bean>
+	
+	<!-- Curricula's MiscellaneousData -->
+	
+	<bean id="miscellaneousDataRookie1" class ="domain.MiscData">
+		<property name = "attachment" ref="attachment1"/>
+		<property name = "freeText" value=""/>
+	</bean>
+	
+	<bean id="miscellaneousDataRookie1Copy" class ="domain.MiscData">
+		<property name = "attachment" ref="attachment1"/>
+		<property name = "freeText" value=""/>
+	</bean>
+	
+	<!-- Attachment 1 -->
+	
+	<bean id="attachment1" class="datatype.Url">
+		<property name="link"
+			value="http://www.youtube.com" />
+	</bean>
+	
+	<!-- Curricula's PositionData -->
+	
+	<bean id="positionDataRookie1" class ="domain.PositionData">
+		<property name = "title" value = "Teacher"/>
+		<property name = "description" value = "I am a secondary school teacher"/>
+		<property name = "startDate" value = "14/04/2014"/>
+	</bean>
+	
+	<bean id="positionDataRookie1Copy" class ="domain.PositionData">
+		<property name = "title" value = "Teacher"/>
+		<property name = "description" value = "I am a secondary school teacher"/>
+		<property name = "startDate" value = "14/04/2014"/>
+	</bean>
+	
+	<!-- Messages -->
+	
+	<bean id="message1" class ="domain.Message">
+		<property name = "moment" value = "04/14/2019 16:09"/>
+		<property name = "subject" value = "prueba"/>
+		<property name = "body" value = "message1"/>
+		<property name = "tags">
+			<value>tagDePrueba</value>
+		</property>
+		<property name = "sender" ref = "admin1"/>
+		<property name = "recipient" ref="company1"/>
+	</bean>
+
+	<bean id="message2" class ="domain.Message">
+		<property name = "moment" value = "04/14/2019 16:20"/>
+		<property name = "subject" value = "prueba"/>
+		<property name = "body" value = "sex viagra"/>
+		<property name = "tags">
+			<value>Aviso</value>
+		</property>
+		<property name = "sender" ref = "rookie1"/>
+		<property name = "recipient" ref="admin1"/>
+	</bean>
+
+	<bean id="message3" class ="domain.Message">
+		<property name = "moment" value = "04/14/2019 16:09"/>
+		<property name = "subject" value = "pruebaBorrado"/>
+		<property name = "body" value = "message3"/>
+		<property name = "tags">
+			<value>TEST</value>
+		</property>
+		<property name = "sender" ref = "rookie1"/>
+		<property name = "recipient" ref="rookie2"/>
+	</bean>
+	
+	<!-- Position -->
+	
+	<bean id="position1" class ="domain.Position">
+		<property name = "title" value = "Developer"/>
+		<property name = "description" value = "We need a developer"/>
+		<property name = "deadline" value = "31/12/2021"/>
+		<property name = "profile" value ="Hard-working and leader"/>
+		<property name = "skill">
+			<list>
+		 		<value>Leadership</value>
+		 	</list>
+		</property>
+		<property name = "technology">
+			<list>
+				<value>Java</value>
+			</list>
+		</property>
+		<property name = "salary" value = "2200"/>
+		<property name = "ticker" value = "BBVA-1234"/>
+		<property name = "isFinal" value = "true"/>
+		<property name = "isCancelled" value = "false"/>
+		<property name = "company" ref="company1"/>
+		<property name = "problems">
+			<list>
+				<ref bean = "problem1"/>
+				<ref bean = "problem2"/>
+			</list>
+		</property>
+		<property name = "applications">
+			<list>
+				<ref bean = "application1"/>
+				<ref bean = "application2"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="position2" class ="domain.Position">
+		<property name = "title" value = "Requirement Engineer"/>
+		<property name = "description" value = "We need a requirement engineer"/>
+		<property name = "deadline" value = "31/12/2021"/>
+		<property name = "profile" value ="Hard-working"/>
+		<property name = "skill">
+			<list>
+		 		<value>Good communicator</value>
+		 	</list>
+		</property>
+		<property name = "technology">
+			<list>
+				<value>Java</value>
+			</list>
+		</property>
+		<property name = "salary" value = "1900"/>
+		<property name = "ticker" value = "BBVA-4321"/>
+		<property name = "isFinal" value = "false"/>
+		<property name = "isCancelled" value = "false"/>
+		<property name = "company" ref="company1"/>
+		<property name = "problems">
+			<list>
+				<ref bean = "problem3"/>
+				<ref bean="problem1"/>
+			</list>
+		</property>
+		<property name = "applications">
+			<list>
+				<ref bean ="application3"/>
+				<ref bean="application4"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="position3" class ="domain.Position">
+		<property name = "title" value = "Requirement Engineer"/>
+		<property name = "description" value = "We need a requirement engineer"/>
+		<property name = "deadline" value = "31/12/2021"/>
+		<property name = "profile" value ="Hard-working"/>
+		<property name = "skill">
+			<list>
+		 		<value>Good communicator</value>
+		 	</list>
+		</property>
+		<property name = "technology">
+			<list>
+				<value>Java</value>
+			</list>
+		</property>
+		<property name = "salary" value = "1900"/>
+		<property name = "ticker" value = "Aben-1234"/>
+		<property name = "isFinal" value = "true"/>
+		<property name = "isCancelled" value = "true"/>
+		<property name = "company" ref="company2"/>
+		<property name = "problems">
+			<list>
+				<ref bean = "problem4"/>
+				<ref bean = "problem5"/>
+			</list>
+		</property>
+		<property name = "applications">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Problem -->
+	
+	<bean id="problem1" class ="domain.Problem">
+		<property name = "title" value = "Problem1"/>
+		<property name = "statement" value = "Good luck"/>
+		<property name = "hint" value = "The url is wrong"/>
+		<property name = "attachment">
+			<list>
+				<ref bean = "attachment2"/>
+			</list>
+		</property> 
+		<property name = "isFinal" value ="true"/>
+		<property name = "company" ref="company1"/>
+	</bean>
+	
+	<bean id="problem2" class ="domain.Problem">
+		<property name = "title" value = "Problem2"/>
+		<property name = "statement" value = "Good luck"/>
+		<property name = "hint" value = "The url is wrong"/>
+		<property name = "attachment">
+			<list>
+				<ref bean = "attachment3"/>
+			</list>
+		</property> 
+		<property name = "isFinal" value ="true"/>
+		<property name = "company" ref="company1"/>
+	</bean>
+	
+	<bean id="problem3" class ="domain.Problem">
+		<property name = "title" value = "Problem3"/>
+		<property name = "statement" value = "Good luck"/>
+		<property name = "hint" value = "Look for eficience"/>
+		<property name = "attachment">
+			<list>
+				<ref bean = "attachment4"/>
+			</list>
+		</property> 
+		<property name = "isFinal" value ="true"/>
+		<property name = "company" ref="company1"/>
+	</bean>
+	
+	<bean id="problem4" class ="domain.Problem">
+		<property name = "title" value = "Problem4"/>
+		<property name = "statement" value = "Good luck"/>
+		<property name = "hint" value = "Use a graph"/>
+		<property name = "attachment">
+			<list>
+				<ref bean = "attachment5"/>
+			</list>
+		</property> 
+		<property name = "isFinal" value ="true"/>
+		<property name = "company" ref="company2"/>
+	</bean>
+	
+	<bean id="problem5" class ="domain.Problem">
+		<property name = "title" value = "Problem5"/>
+		<property name = "statement" value = "Good luck"/>
+		<property name = "hint" value = "Use a graph"/>
+		<property name = "attachment">
+			<list>
+				<ref bean = "attachment6"/>
+			</list>
+		</property> 
+		<property name = "isFinal" value ="true"/>
+		<property name = "company" ref="company2"/>
+	</bean>
+	
+	<bean id="problem6" class ="domain.Problem">
+		<property name = "title" value = "Problem1"/>
+		<property name = "statement" value = "Good luck"/>
+		<property name = "hint" value = "The url is wrong"/>
+		<property name = "attachment">
+			<list>
+				<ref bean = "attachment7"/>
+			</list>
+		</property> 
+		<property name = "isFinal" value ="false"/>
+		<property name = "company" ref="company1"/>
+	</bean>
+	
+	<!-- Attachment 2-7 -->
+	
+	<bean id="attachment2" class="datatype.Url">
+		<property name="link"
+			value="http://www.prueba.com" />
+	</bean>
+	
+	<bean id="attachment3" class="datatype.Url">
+		<property name="link"
+			value="http://www.prueba3.com" />
+	</bean>
+	
+	<bean id="attachment4" class="datatype.Url">
+		<property name="link"
+			value="http://www.prueba4.com" />
+	</bean>
+	
+	<bean id="attachment5" class="datatype.Url">
+		<property name="link"
+			value="http://www.prueba5.com" />
+	</bean>
+	
+	<bean id="attachment6" class="datatype.Url">
+		<property name="link"
+			value="http://www.prueba6.com" />
+	</bean>
+	
+	<bean id="attachment7" class="datatype.Url">
+		<property name="link"
+			value="http://www.prueba7.com" />
+	</bean>
+	
+	<!-- Application -->
+	
+	<bean id="application1" class ="domain.Application">
+		<property name = "moment" value = "14/04/2019 13:00"/>
+		<property name = "explanation" value = "I iterated the list"/>
+		<property name = "link" value = "http://www.link.com"/>
+		<property name = "status" value="SUBMITTED"/>
+		<property name = "submitMoment" value ="14/04/2019 14:30"/>
+		<property name = "rejectComment" value=""/>
+		<property name = "rookie" ref="rookie1"/>
+		<property name = "problem" ref ="problem1"/>
+		<property name = "curricula" ref ="curricula1Rookie1Copy"/>
+	</bean>
+	
+	<bean id="application2" class ="domain.Application">
+		<property name = "moment" value = "14/04/2019 13:00"/>
+		<property name = "explanation" value = "I used a switch for all cases"/>
+		<property name = "link" value = "http://www.link.com"/>
+		<property name = "status" value="REJECTED"/>
+		<property name = "submitMoment" value ="14/04/2019 14:30"/>
+		<property name = "rejectComment" value="You did it wrong"/>
+		<property name = "rookie" ref="rookie2"/>
+		<property name = "problem" ref ="problem1"/>
+		<property name = "curricula" ref="curriculaRookie2Copy"/>
+	</bean>
+
+	<bean id="application3" class ="domain.Application">
+		<property name = "moment" value = "14/04/2019 13:00"/>
+		<property name = "explanation" value = "I used a switch for all cases"/>
+		<property name = "link" value = "http://www.link.com"/>
+		<property name = "status" value="ACCEPTED"/>
+		<property name = "submitMoment" value ="14/04/2019 14:30"/>
+		<property name = "rejectComment" value=""/>
+		<property name = "rookie" ref="rookie2"/>
+		<property name = "problem" ref ="problem1"/>
+		<property name = "curricula" ref="curriculaRookie2Copy2"/>
+	</bean>
+
+	<bean id="application4" class ="domain.Application">
+		<property name = "moment" value = "14/04/2019 13:00"/>
+		<property name = "explanation" value = ""/>
+		<property name = "link" value = ""/>
+		<property name = "status" value="PENDING"/>
+		<property name = "rejectComment" value=""/>
+		<property name = "rookie" ref="rookie2"/>
+		<property name = "problem" ref ="problem1"/>
+		<property name = "curricula" ref="curriculaRookie2Copy3"/>
+	</bean>
+	
+	<!-- Configuration -->
+	
+	<bean id="configuration1" class="domain.Configuration">
+		<property name="maxResults" value="10"/>
+		<property name="maxTime" value="1"/>
+		<property name="systemName" value="Acme Rookies"/>
+		<property name="banner" value="https://i.imgur.com/7b8lu4b.png"/>
+		<property name="welcomeMessageEs" value="¡Bienvenidos a Acme Rookies! ¡Somos el mercado de trabajo favorito de los profesionales de las TICs!"/>
+		<property name="welcomeMessageEn" value="Welcome to Acme Rookies! We’re IT rookie’s favourite job marketplace!"/>
+		<property name="countryCode" value="34"/>
+		<property name="spamWords">
+			<list>
+				<value>sex</value>
+				<value>viagra</value>
+				<value>cialis</value>
+				<value>one million</value>
+				<value>you've been selected</value>
+				<value>Nigeria</value>
+				<value>sexo</value>
+				<value>un millon</value>
+				<value>has sido seleccionado</value>
+				<value>has sido seleccionada</value>
+			</list>
+		</property>
+	</bean>
+	
+</beans>

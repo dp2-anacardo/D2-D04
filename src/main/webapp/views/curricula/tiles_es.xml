@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- 
+ * tiles_es.xml
+ *
+ * Copyright (C) 2018 Universidad de Sevilla
+ * 
+ * The use of this project is hereby constrained to the conditions of the 
+ * TDG Licence, a copy of which you may download from 
+ * http://www.tdg-seville.info/License.html
+ -->
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+      
+<tiles-definitions>
+
+	<definition name="curricula/rookie/list" extends="master.page">
+		<put-attribute name="title" value="Curriculas" />
+		<put-attribute name="body" value="/views/curricula/list.jsp" />
+	</definition>
+
+	<definition name="curricula/rookie/display" extends="master.page">
+		<put-attribute name="title" value="Curricula" />
+		<put-attribute name="body" value="/views/curricula/display.jsp" />
+	</definition>
+
+	<definition name="curricula/company/display" extends="master.page">
+		<put-attribute name="title" value="Curricula" />
+		<put-attribute name="body" value="/views/curricula/display.jsp" />
+	</definition>
+
+	<definition name="curricula/rookie/create" extends="master.page">
+		<put-attribute name="title" value="Creación de Curricula" />
+		<put-attribute name="body" value="/views/curricula/create.jsp" />
+	</definition>
+
+	<definition name="personalData/rookie/edit" extends="master.page">
+		<put-attribute name="title" value="Personal Data" />
+		<put-attribute name="body" value="/views/curricula/editPersonalD.jsp" />
+	</definition>
+
+	<definition name="educationalData/rookie/edit" extends="master.page">
+		<put-attribute name="title" value="Información sobre Estudios" />
+		<put-attribute name="body" value="/views/curricula/editEducationalD.jsp" />
+	</definition>
+
+	<definition name="positionData/rookie/edit" extends="master.page">
+		<put-attribute name="title" value="Información sobre posiciones" />
+		<put-attribute name="body" value="/views/curricula/editPositionD.jsp" />
+	</definition>
+
+	<definition name="miscData/rookie/edit" extends="master.page">
+		<put-attribute name="title" value="Información Miscelánea" />
+		<put-attribute name="body" value="/views/curricula/editMiscD.jsp" />
+	</definition>
+	
+</tiles-definitions>

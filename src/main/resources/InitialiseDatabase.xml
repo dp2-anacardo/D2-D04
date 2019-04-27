@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+ * PopulateDatabase.xml
+ *
+ * Copyright (C) 2019 Universidad de Sevilla
+ * 
+ * The use of this project is hereby constrained to the conditions of the 
+ * TDG Licence, a copy of which you may download from 
+ * http://www.tdg-seville.info/License.html
+ -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	">
+	
+	<!-- User accounts -->
+
+	<bean id="userAccount1" class="security.UserAccount">
+		<property name="username" value="admin1" />
+		<property name="password" value="e00cf25ad42683b3df678c61f42c6bda" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMIN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	
+	
+	<!-- Other domain beans come here -->	
+	
+	<bean id="admin1" class="domain.Administrator">
+		<property name="userAccount" ref="userAccount1"/>
+		<property name="name" value="admin1" />
+		<property name="surname" value="admin1"/>
+		<property name="vatNumber" value="21"/>
+		<property name="creditCard" ref="creditCardAdmin1"/>
+		<property name="photo" value="https://github.com/dp2-anacardo/DP2-D01"/>
+		<property name="email" value="emailDePrueba@gmail.com"/>
+		<property name="phoneNumber" value="+34 678123674"/>
+		<property name="address" value="Avenida Reina Mercedes"/>
+		<property name="isSpammer" value="false"/>
+		<property name="isBanned" value="false"/>
+		<property name="socialProfiles">
+			<list>
+				<ref bean="socialProfileAdmin1"/>
+			</list>
+		</property>
+		<property name="messagesReceived">
+			<list>
+			</list>
+		</property>
+		<property name="messagesSent">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="socialProfileAdmin1" class="domain.SocialProfile">
+		<property name="nick" value="admin1Nick" />
+		<property name="socialNetworkName" value="twitter" />
+		<property name="profileLink" value="http://www.twitter.com" />
+	</bean>
+	
+	<bean id="creditCardAdmin1" class ="datatype.CreditCard">
+		<property name = "holder" value = "Admin1"/>
+		<property name = "brandName" value = "VISA"/>
+		<property name = "number" value = "4885149505523388"/>
+		<property name = "expirationYear" value="01/11/2023"/>
+		<property name = "cvv" value = "891"/>
+	</bean>
+	
+	
+	<bean id="configuration1" class="domain.Configuration">
+		<property name="maxResults" value="10"/>
+		<property name="maxTime" value="1"/>
+		<property name="systemName" value="Acme Rookies"/>
+		<property name="banner" value="https://i.imgur.com/7b8lu4b.png"/>
+		<property name="welcomeMessageEs" value="¡Bienvenidos a Acme Rookies! ¡Somos el mercado de trabajo favorito de los profesionales de las TICs!"/>
+		<property name="welcomeMessageEn" value="Welcome to Acme Rookies! We're IT rookie's favourite job marketplace!"/>
+		<property name="countryCode" value="34"/>
+		<property name="spamWords">
+			<list>
+				<value>sex</value>
+				<value>viagra</value>
+				<value>cialis</value>
+				<value>one million</value>
+				<value>you've been selected</value>
+				<value>Nigeria</value>
+				<value>sexo</value>
+				<value>un millon</value>
+				<value>has sido seleccionado</value>
+				<value>has sido seleccionada</value>
+			</list>
+		</property>
+	</bean>
+	
+</beans>

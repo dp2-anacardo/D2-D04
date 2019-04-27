@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- 
+ * tiles.xml
+ * Copyright (C) 2017 Universidad de Sevilla
+ * Author (A) 2012 Rafael Corchuelo (corchu@us.es)
+ *
+ * The use of this project is hereby constrained to the conditions of the
+ * TDG Licence, a copy of which you may download from
+ * http://www.tdg-seville.info/License.html
+ -->
+
+<!DOCTYPE tiles-definitions PUBLIC
+		"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+		"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="position/listNotLogged" extends="master.page">
+		<put-attribute name="title" value="Posiciones Disponibles" />
+		<put-attribute name="body" value="/views/position/listNotLogged.jsp" />
+	</definition>
+
+	<definition name="position/company/list" extends="master.page">
+		<put-attribute name="title" value="Posiciones Disponibles" />
+		<put-attribute name="body" value="/views/position/list.jsp" />
+	</definition>
+
+	<definition name="position/company/edit" extends="master.page">
+		<put-attribute name="title" value="Posición" />
+		<put-attribute name="body" value="/views/position/edit.jsp" />
+	</definition>
+
+	<definition name="position/show" extends="master.page">
+		<put-attribute name="title" value="Mostrar posición" />
+		<put-attribute name="body" value="/views/position/show.jsp" />
+	</definition>
+
+	<definition name="position/search" extends="master.page">
+		<put-attribute name="title" value="Mostrar resultados de la busqueda" />
+		<put-attribute name="body" value="/views/position/search.jsp" />
+	</definition>
+
+	<definition name="position/listByCompany" extends="master.page">
+		<put-attribute name="title" value="Posiciones Disponibles" />
+		<put-attribute name="body" value="/views/position/listNotLogged.jsp" />
+	</definition>
+
+</tiles-definitions>

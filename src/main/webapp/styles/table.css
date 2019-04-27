@@ -1,0 +1,16 @@
+table {
+	border: 1px solid #666;
+	width: 80%;
+	margin: 20px 0 20px 0 !important;
+}
+
+th {
+	padding: 2px 4px 2px 4px !important;
+	text-align: left;
+	vertical-align: top;
+	background-color: #fc0;
+}
+
+tr:nth-child(even) {
+	background-color: #fea;
+}
