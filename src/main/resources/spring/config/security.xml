@@ -73,6 +73,8 @@
         <security:intercept-url pattern="/position/company/**" access="hasAnyRole('COMPANY')"/>
         <security:intercept-url pattern="/position/search.do" access="permitAll"/>
 
+        <security:intercept-url pattern="/provider/listNotLogged.do" access="permitAll"/>
+
         <security:intercept-url pattern="/company/show.do" access="permitAll"/>
 
         <security:intercept-url pattern="/personalData/rookie/**" access="hasAnyRole('ROOKIE')"/>
