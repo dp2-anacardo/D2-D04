@@ -36,6 +36,9 @@
 		<value>/views/socialProfile/tiles.xml</value>
 		<value>/views/gdpr/tiles.xml</value>
 		<value>/views/audit/tiles.xml</value>
+		<value>/views/item/tiles.xml</value>
+		<value>/views/provider/tiles.xml</value>
+		<value>/views/sponsorship/tiles.xml</value>
 	</util:list>
 
 </beans>

@@ -59,6 +59,12 @@
 		<bean class="converters.StringToAuditorConverter"/>
 		<bean class="converters.AuditToStringConverter"/>
 		<bean class="converters.StringToAuditConverter"/>
+		<bean class="converters.ProviderToStringConverter"/>
+		<bean class="converters.StringToProviderConverter"/>
+		<bean class="converters.ItemToStringConverter"/>
+		<bean class="converters.StringToItemConverter"/>
+		<bean class="converters.SponsorshipToStringConverter"/>
+		<bean class="converters.StringToSponsorshipConverter"/>
 	</util:list>
 	
 </beans>

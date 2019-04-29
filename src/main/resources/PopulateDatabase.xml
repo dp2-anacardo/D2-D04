@@ -56,7 +56,7 @@
 	
 	<bean id="userAccount4" class="security.UserAccount">
 		<property name="username" value="rookie1" />
-		<property name="password" value="2ba2a8ac968a7a2b0a7baa7f2fef18d2" />
+		<property name="password" value="9701eb1802a4c63f51e1501512fbdd30" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -68,11 +68,23 @@
 	
 	<bean id="userAccount5" class="security.UserAccount">
 		<property name="username" value="rookie2" />
-		<property name="password" value="91af68b69a50a98dbc0800942540342c" />
+		<property name="password" value="124be4fa2a59341a1d7e965ac49b2923" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
 					<property name="authority" value="ROOKIE" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount6" class="security.UserAccount">
+		<property name="username" value="provider1" />
+		<property name="password" value="cdb82d56473901641525fbbd1d5dab56" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="PROVIDER" />
 				</bean>
 			</list>
 		</property>
@@ -482,7 +494,45 @@
 		<property name = "description" value = "I am a secondary school teacher"/>
 		<property name = "startDate" value = "14/04/2014"/>
 	</bean>
-	
+
+	<!-- Providers -->
+	<bean id="provider1" class="domain.Provider">
+		<property name="userAccount" ref="userAccount6"/>
+		<property name="name" value="provider1" />
+		<property name="surname" value="provider1"/>
+		<property name="make" value="provider1 provider1"/>
+		<property name="vatNumber" value="21"/>
+		<property name="creditCard" ref="creditCardProvider1"/>
+		<property name="photo" value="https://github.com/dp2-anacardo/DP2-D04"/>
+		<property name="email" value="provider1@gmail.com"/>
+		<property name="phoneNumber" value="+34 600102030"/>
+		<property name="address" value="Avenida Reina Mercedes"/>
+		<property name="isSpammer" value="false"/>
+		<property name="isBanned" value="false"/>
+		<property name="socialProfiles">
+			<list>
+			</list>
+		</property>
+		<property name="messagesReceived">
+			<list>
+			</list>
+		</property>
+		<property name="messagesSent">
+			<list>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Administrator's CreditCard -->
+
+	<bean id="creditCardProvider1" class ="datatype.CreditCard">
+		<property name = "holder" value = "Provider"/>
+		<property name = "brandName" value = "VISA"/>
+		<property name = "number" value = "4885149505523388"/>
+		<property name = "expirationYear" value="01/11/2023"/>
+		<property name = "cvv" value = "891"/>
+	</bean>
+
 	<!-- Messages -->
 	
 	<bean id="message1" class ="domain.Message">
@@ -517,7 +567,7 @@
 		<property name = "sender" ref = "rookie1"/>
 		<property name = "recipient" ref="rookie2"/>
 	</bean>
-	
+
 	<!-- Position -->
 	
 	<bean id="position1" class ="domain.Position">

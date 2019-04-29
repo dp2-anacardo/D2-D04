@@ -22,7 +22,7 @@
 <form:form action="message/create.do" modelAttribute="mesage">
 
 	<security:authorize
-		access="hasAnyRole('ADMIN', 'ROOKIE', 'COMPANY')">
+		access="hasAnyRole('ADMIN', 'ROOKIE', 'COMPANY', 'PROVIDER', 'AUDITOR')">
 
 		<%-- Subject --%>
 		<acme:textbox code="message.subject" path="subject" />

@@ -55,7 +55,7 @@
 </display:table>
 
 <security:authorize
-	access="hasAnyRole('ADMIN', 'ROOKIE', 'COMPANY')">
+	access="hasAnyRole('ADMIN', 'ROOKIE', 'COMPANY', 'PROVIDER', 'AUDITOR')">
 	<acme:cancel url="message/create.do" code="message.create"/>
 </security:authorize>
 
