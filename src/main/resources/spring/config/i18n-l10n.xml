@@ -35,6 +35,9 @@
 		<value>/views/position/messages</value>
 		<value>/views/socialProfile/messages</value>
 		<value>/views/gdpr/messages</value>
+		<value>/views/item/messages</value>
+		<value>/views/provider/messages</value>
+		<value>/views/sponsorship/messages</value>
 	</util:list>
 
 </beans>

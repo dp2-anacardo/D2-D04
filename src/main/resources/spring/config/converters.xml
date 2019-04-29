@@ -55,6 +55,12 @@
 		<bean class="converters.StringToFinderConverter"/>
 		<bean class="converters.ActorToStringConverter"/>
 		<bean class="converters.StringToActorConverter"/>
+		<bean class="converters.ProviderToStringConverter"/>
+		<bean class="converters.StringToProviderConverter"/>
+		<bean class="converters.ItemToStringConverter"/>
+		<bean class="converters.StringToItemConverter"/>
+		<bean class="converters.SponsorshipToStringConverter"/>
+		<bean class="converters.StringToSponsorshipConverter"/>
 	</util:list>
 	
 </beans>

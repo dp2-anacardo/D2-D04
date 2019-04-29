@@ -49,6 +49,7 @@ public class Item extends DomainEntity {
 	}
 
 	@NotEmpty
+	@Valid
 	@ElementCollection(fetch = FetchType.EAGER)
 	public Collection<Url> getLinks() {
 		return links;
@@ -59,6 +60,7 @@ public class Item extends DomainEntity {
 	}
 
 	@NotNull
+	@Valid
 	@ElementCollection(fetch = FetchType.EAGER)
 	public Collection<Url> getPictures() {
 		return pictures;
