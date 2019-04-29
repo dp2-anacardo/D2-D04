@@ -1,17 +1,9 @@
-<%--
- * action-1.jsp
- *
- * Copyright (C) 2018 Universidad de Sevilla
- * 
- * The use of this project is hereby constrained to the conditions of the 
- * TDG Licence, a copy of which you may download from 
- * http://www.tdg-seville.info/License.html
- --%>
-
-<%@page language="java" contentType="text/html; charset=ISO-8859-1"
-        pageEncoding="ISO-8859-1" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+         pageEncoding="ISO-8859-1" %>
 
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@taglib prefix="security"
@@ -19,46 +11,33 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net" %>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
-<display:table name="problems" id="row" requestURI="${requestURI}"
-               pagesize="5" class="displaytag">
+<security:authorize access="hasRole('PROVIDER')">
+    <display:table name="sponsorships" id="row" requestURI="${requestURI}"
+                   pagesize="5" class="displaytag">
 
+        <spring:message code="sponsorship.position" var="position"/>
+        <display:column property="position.title" title="${position}"/>
 
-    <spring:message code="problem.title" var="titleHeader"/>
-    <display:column property="title" title="${titleHeader}"/>
+        <spring:message code="sponsorship.targetURL" var="targetURL"/>
+        <display:column title="${targetURL}">
+            <a href="<%=request.getContextPath()%>/position/show.do?positionId=${row.position.id}">Target URL</a>
+        </display:column>
 
-    <spring:message code="problem.isFinal" var="isFinalHeader"/>
-    <display:column title="${isFinalHeader}">
-        <jstl:if test="${row.isFinal eq true}">
-            <spring:message code="problem.isFinal.final"/>
-        </jstl:if>
-        <jstl:if test="${row.isFinal eq false}">
-            <spring:message code="problem.isFinal.draft"/>
-        </jstl:if>
-    </display:column>
+        <spring:message code="sponsorship.update" var="udpateHeader"/>
+        <display:column title="${udpateHeader}">
+            <a href="sponsorship/provider/update.do?sponsorshipId=${row.id}"> <spring:message
+                    code="sponsorship.update"/></a>
+        </display:column>
 
-    <spring:message code="problem.update" var="updateHeader"/>
-    <display:column title="${updateHeader}">
-        <jstl:if test="${row.isFinal eq false}">
-        <a
-                href="problem/company/update.do?problemID=${row.id}">
-            <spring:message code="problem.update"/>
-        </a>
-        </jstl:if>
-    </display:column>
+        <spring:message code="sponsorship.show" var="showHeader"/>
+        <display:column title="${showHeader}">
+            <a href="sponsorship/provider/show.do?sponsorshipId=${row.id}"> <spring:message
+                    code="sponsorship.show"/></a>
+        </display:column>
+    </display:table>
 
-    <spring:message code="problem.show" var="showHeader"/>
-    <display:column title="${showHeader}">
-        <a
-                href="problem/show.do?problemID=${row.id}">
-            <spring:message code="problem.show"/>
-        </a>
-    </display:column>
-
-</display:table>
-
-<security:authorize
-        access="hasAnyRole('COMPANY')">
-    <acme:cancel url="problem/company/create.do" code="problem.create"/>
+    <div>
+        <acme:cancel url="sponsorship/provider/create.do" code="sponsorship.create"/>
+        <acme:cancel url="/" code="sponsorship.back"/>
+    </div>
 </security:authorize>
-
-<acme:cancel url="/" code="problem.goBack"/>

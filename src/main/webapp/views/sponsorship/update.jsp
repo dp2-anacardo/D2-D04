@@ -1,65 +1,86 @@
-<%--
- * action-2.jsp
- *
- * Copyright (C) 2018 Universidad de Sevilla
- * 
- * The use of this project is hereby constrained to the conditions of the 
- * TDG Licence, a copy of which you may download from 
- * http://www.tdg-seville.info/License.html
- --%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+         pageEncoding="ISO-8859-1" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-<%@page language="java" contentType="text/html; charset=ISO-8859-1"
-        pageEncoding="ISO-8859-1" %>
+    <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+    <%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+    <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+    <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+    <%@taglib prefix="security"
+              uri="http://www.springframework.org/security/tags" %>
+    <%@taglib prefix="display" uri="http://displaytag.sf.net" %>
+    <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
-<%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@taglib prefix="security"
-          uri="http://www.springframework.org/security/tags" %>
-<%@taglib prefix="display" uri="http://displaytag.sf.net" %>
-<%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
+</head>
+<body>
+<form:form action="sponsorship/create.do" modelAttribute="sponsorship">
 
-<form:form modelAttribute="problem">
+    <%--  Hidden properties --%>
+    <form:hidden path="id"/>
 
-    <security:authorize
-            access="hasRole('COMPANY')">
+    <%-- Banner --%>
+    <acme:textbox code="sponsorship.banner" path="banner"/>
+    <br>
 
-        <form:hidden path="id" />
-
-        <%-- Title --%>
-        <acme:textbox code="problem.title" path="title"/>
+    <%-- CreditCard --%>
+    <div id="card">
+            <%-- creditCard --%>
+        <form:label path="creditCard">
+            <spring:message code="sponsorship.creditCard"/>
+        </form:label>
         <br>
 
-        <%-- Statement --%>
-        <acme:textarea code="problem.statement" path="statement"/>
+
+        <form:label path="creditCard.holder">
+            <spring:message code="sponsorship.creditCard.holderName"/>
+        </form:label>
+        <form:input path="creditCard.holder"/>
+        <form:errors class="error" path="creditCard.holder"/>
         <br>
 
-        <%-- Hint --%>
-        <acme:textbox code="problem.hint" path="hint"/>
+        <form:label path="creditCard.brandName">
+            <spring:message code="sponsorship.creditCard.brandName"/>:
+        </form:label>
+        <form:input path="creditCard.brandName"/>
+        <form:errors class="error" path="creditCard.brandName"/>
         <br>
 
-        <%-- Attachment --%>
-        <acme:textbox code="problem.attachment" path="attachment"/>
-        <jstl:if test="${not empty attachmentError }">
-            <p class="error">${attachmentError }</p>
-        </jstl:if>
+        <form:label path="creditCard.number">
+            <spring:message code="sponsorship.creditCard.number"/>
+        </form:label>
+        <form:input path="creditCard.number" type="number"/>
+        <form:errors class="error" path="creditCard.number"/>
         <br>
 
-        <%-- Is Final --%>
-        <spring:message code="problem.isFinal"/>
-        <form:select path="isFinal" multiple="false">
-            <form:option value="0"><spring:message code="problem.isFinal.draft"/></form:option>
-            <form:option value="1"><spring:message code="problem.isFinal.final"/></form:option>
-        </form:select>
-        <form:errors class="error" path="isFinal"/>
+        <form:label path="creditCard.expirationYear">
+            <spring:message code="sponsorship.creditCard.expiration"/>
+        </form:label>
+        <form:input path="creditCard.expirationYear" placeholder="MM/YY"
+                    format="{0,date,MM/YY}"/>
+        <form:errors class="error" path="creditCard.expirationYear"/>
         <br>
 
-        <%-- Buttons --%>
-        <acme:submit name="update" code="problem.update"/>
+        <form:label path="creditCard.cvv">
+            <spring:message code="sponsorship.creditCard.cvvCode"/>
+        </form:label>
+        <form:input path="creditCard.cvv" type="number"/>
+        <form:errors class="error" path="creditCard.cvv"/>
+        <br>
 
-        <acme:submit name="delete" code="problem.delete"/>
+    </div>
 
-        <acme:cancel url="problem/company/list.do" code="problem.cancel"/>
+    <%-- Buttons --%>
+    <security:authorize access="hasRole('PROVIDER')">
+        <acme:submit name="save" code="sponsorship.save"/>
+
+        <acme:cancel url="sponsorship/provider/list.do" code="sponsorship.back"/>
 
     </security:authorize>
+
 </form:form>
+</body>
+</html>

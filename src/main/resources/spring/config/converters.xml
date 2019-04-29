@@ -65,6 +65,8 @@
 		<bean class="converters.StringToItemConverter"/>
 		<bean class="converters.SponsorshipToStringConverter"/>
 		<bean class="converters.StringToSponsorshipConverter"/>
+		<bean class="converters.PositionToStringConverter"/>
+		<bean class="converters.StringToPositionConverter"/>
 	</util:list>
 	
 </beans>

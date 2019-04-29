@@ -1,88 +1,72 @@
-<%--
- * action-1.jsp
- *
- * Copyright (C) 2018 Universidad de Sevilla
- * 
- * The use of this project is hereby constrained to the conditions of the 
- * TDG Licence, a copy of which you may download from 
- * http://www.tdg-seville.info/License.html
- --%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 
-<%@page language="java" contentType="text/html; charset=ISO-8859-1"
-        pageEncoding="ISO-8859-1" %>
-
-<%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security"
-          uri="http://www.springframework.org/security/tags" %>
-<%@taglib prefix="display" uri="http://displaytag.sf.net" %>
-<%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
+	uri="http://www.springframework.org/security/tags"%>
+<%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@ taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
+<security:authorize access="hasRole('PROVIDER')">
+	<display:table name="sponsorship" id="row"
+		requestURI="sponsorship/provider/show.do" class="displaytag">
+		<spring:message code="sponsorship.position" var="paradeHeader" />
+		<display:column property="position.title" title="${paradeHeader}"
+			sortable="false" />
+	</display:table>
 
-<display:table name="problem" id="row" requestURI="problem/show.do"
-               class="displaytag">
-    <spring:message code="problem.title" var="titleHeader"/>
-    <display:column property="title" title="${titleHeader}"
-                    sortable="false"/>
-</display:table>
+	<display:table name="sponsorship" id="row"
+		requestURI="sponsorship/provider/display.do" class="displaytag">
+		<spring:message code="sponsorship.targetURL" var="targetURL" />
+		<display:column title="${targetURL}">
+			<a href="<%=request.getContextPath()%>/position/show.do?positionId=${row.position.id}">Target URL</a>
+		</display:column>
+	</display:table>
 
-<display:table name="problem" id="row" requestURI="problem/show.do"
-               class="displaytag">
-    <spring:message code="problem.statement" var="statementHeader"/>
-    <display:column property="statement" title="${statementHeader}"
-                    sortable="false"/>
-</display:table>
+	<display:table name="sponsorship" id="row"
+		requestURI="sponsorship/provider/display.do" class="displaytag">
+		<spring:message code="sponsorship.banner" var="bannerHeader" />
+		<display:column title="${bannerHeader}" sortable="false">
+			<img src="${row.banner}" />
+		</display:column>
+	</display:table>
 
-<display:table name="problem" id="row" requestURI="problem/show.do"
-               class="displaytag">
-    <spring:message code="problem.hint" var="hintHeader"/>
-    <display:column property="hint" title="${hintHeader}"
-                    sortable="false"/>
-</display:table>
+	<display:table name="sponsorship" id="row"
+		requestURI="sponsorship/provider/show.do" class="displaytag">
 
-<jstl:if test="${not empty problem.attachment}">
-    <display:table name="problem" id="row" requestURI="problem/show.do"
-                   class="displaytag">
-        <spring:message code="problem.attachment" var="attachmentHeader"/>
-        <display:column title="${attachmentHeader}" sortable="false">
-            <jstl:forEach items="${problem.attachment}" var="positiveWords">
-                <tr>
-                    <td><a href="<jstl:out value="${positiveWords.link}"/>"><jstl:out
-                            value="${positiveWords.link}"/></a></td>
-                </tr>
-            </jstl:forEach>
-        </display:column>
-    </display:table>
+		<spring:message code="sponsorship.creditCard.holderName"
+			var="creditCardholderHeader" />
+		<display:column property="creditCard.holder"
+			title="${creditCardholderHeader}" sortable="false" />
 
-</jstl:if>
-<security:authorize access="hasRole('COMPANY')">
+		<spring:message code="sponsorship.creditCard.brandName"
+			var="creditCardBrandNameHeader" />
+		<display:column property="creditCard.brandName"
+			title="${creditCardBrandNameHeader}" sortable="false" />
 
-    <display:table name="problem" id="row" requestURI="problem/show.do"
-                   class="displaytag">
-        <spring:message code="problem.isFinal" var="isFinalHeader"/>
-        <display:column title="${isFinalHeader}" sortable="false">
-            <jstl:if test="${row.isFinal eq true}">
-                <spring:message code="problem.isFinal.final"/>
-            </jstl:if>
-            <jstl:if test="${row.isFinal eq false}">
-                <spring:message code="problem.isFinal.draft"/>
-            </jstl:if>
-        </display:column>
-    </display:table>
-</security:authorize>
+		<spring:message code="sponsorship.creditCard.number"
+			var="creditCardNumberHeader" />
+		<display:column property="creditCard.number"
+			title="${creditCardNumberHeader}" sortable="false" />
 
-<security:authorize access="hasRole('COMPANY')">
-    <jstl:if test="${problem.isFinal eq false}">
-        <acme:cancel url="problem/company/delete.do?problemID=${row.id}" code="problem.delete"/>
-    </jstl:if>
-    <acme:cancel url="problem/company/list.do" code="problem.goBack"/>
+		<spring:message code="sponsorship.creditCard.cvvCode"
+			var="creditCardcvvCodeHeader" />
+		<display:column property="creditCard.cvv"
+			title="${creditCardcvvCodeHeader}" sortable="false" />
 
-</security:authorize>
+		<spring:message code="sponsorship.creditCard.expiration"
+			var="creditCardExpirationHeader" />
+		<display:column property="creditCard.expirationYear"
+			title="${creditCardExpirationHeader}" sortable="false" format="{0,date,MM/YY}" />
+	</display:table>
 
-<security:authorize access="hasRole('ROOKIE')">
-    <input type="button" name="cancel"
-           value="<spring:message code="message.goBack" />"
-           onclick="javascript: window.history.back();"/>
+	<acme:cancel url="sponsorship/provider/update.do?sponsorshipId=${row.id}"
+		code="sponsorship.update" />
+	<acme:cancel url="sponsorship/provider/list.do" code="sponsorship.back" />
+
 
 </security:authorize>
