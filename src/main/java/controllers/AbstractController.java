@@ -21,12 +21,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 import services.ConfigurationService;
+import services.MessageService;
 
 @Controller
 public class AbstractController {
 
 	@Autowired
 	ConfigurationService configurationService;
+	@Autowired
+	MessageService messageService;
 
 
 	// Panic handler ----------------------------------------------------------
@@ -35,6 +38,8 @@ public class AbstractController {
 
 		final Configuration conf = this.configurationService.findAll().get(0);
 		model.addAttribute("configuration", conf);
+		Boolean rebranding = this.messageService.canSendRebrandingMessage();
+		model.addAttribute("rebranding",rebranding);
 	}
 
 	@ExceptionHandler(Throwable.class)
@@ -48,5 +53,6 @@ public class AbstractController {
 
 		return result;
 	}
+
 
 }

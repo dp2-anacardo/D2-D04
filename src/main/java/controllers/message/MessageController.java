@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import services.ActorService;
+import services.AdministratorService;
 import services.MessageService;
 
 import javax.validation.ValidationException;
@@ -27,6 +28,9 @@ public class MessageController extends AbstractController {
 
     @Autowired
     private ActorService actorService;
+
+    @Autowired
+    private AdministratorService adminService;
 
     @ExceptionHandler(TypeMismatchException.class)
     public ModelAndView handleMismatchException(final TypeMismatchException oops) {
@@ -222,6 +226,20 @@ public class MessageController extends AbstractController {
         result.addObject("mesage", mesage);
         result.addObject("message", message);
 
+        return result;
+    }
+    @RequestMapping(value = "/admin/rebranding",method = RequestMethod.GET)
+    public ModelAndView rebrandingMessage(){
+        ModelAndView result;
+        try{
+            Actor a = this.actorService.getActorLogged();
+            Assert.notNull(this.adminService.findOne(a.getId()));
+            Assert.isTrue(this.messageService.canSendRebrandingMessage());
+            this.messageService.sendRebrandingMessage();
+            result= new ModelAndView("redirect:/");
+        }catch (Throwable oops){
+            result = new ModelAndView("redirect:/");
+        }
         return result;
     }
 

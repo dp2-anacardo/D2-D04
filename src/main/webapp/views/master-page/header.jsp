@@ -9,7 +9,7 @@
  --%>
 
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-
+<%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 
@@ -28,6 +28,9 @@
 					<li><a href="administrator/actorList.do"><spring:message code="master.page.administrator.actorList" /></a></li>
 					<li><a href="administrator/dashboard.do"><spring:message code="master.page.administrator.dashboard" /></a></li>
 					<li><a href="administrator/administrator/create.do"><spring:message code="master.page.administrator.register" /></a></li>
+					<jstl:if test="${rebranding==true}">
+						<li><a href="message/admin/rebranding.do"><spring:message code="master.page.administrator.rebranding" /></a></li>
+					</jstl:if>
 				</ul>
 			</li>
 			<li><a class="fNiv" href="configuration/administrator/show.do"><spring:message code="master.page.configuration" /></a></li>

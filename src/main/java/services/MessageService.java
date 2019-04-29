@@ -236,4 +236,39 @@ public class MessageService {
         return result;
 
     }
+
+    public Boolean canSendRebrandingMessage(){
+        Collection<Message> m = this.messageRepository.findRebrandingMessage();
+        Boolean result;
+        if(m==null || m.size()<=0){
+            result = true;
+        }else{
+            result = false;
+        }
+        return result;
+    }
+
+    public void sendRebrandingMessage(){
+        final Actor principal = this.actorService.getActorLogged();
+        Assert.isTrue(principal instanceof Administrator);
+
+        final Collection<Actor> actors = this.actorService.findAll();
+
+        for (Actor a : actors) {
+            Message msg = this.create();
+            Message result;
+
+
+            msg.setRecipient(a);
+            msg.setSubject("Rebranding");
+            msg.setBody("Acme-Hacker-Rank has changed its name to Acme-Rookie\nAcme-Hacker-Rank ha cambiado de nombre a Acme-Rookie");
+
+            msg.getTags().add("REBRANDING INFORMATION");
+            msg.getTags().add("SYSTEM");
+
+            result = this.messageRepository.save(msg);
+
+            a.getMessagesReceived().add(result);
+        }
+    }
 }
