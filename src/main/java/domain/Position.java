@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.SafeHtml;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.Future;
 import java.util.Collection;
 import java.util.Date;
@@ -28,6 +29,7 @@ public class Position extends DomainEntity {
 	private String				ticker;
 	private boolean				isFinal;
 	private boolean				isCancelled;
+	private Auditor auditor;
 
 
 	//Getters and setters ---------------------------------------------------------------------------
@@ -157,5 +159,15 @@ public class Position extends DomainEntity {
 
 	public void setApplications(final Collection<Application> applications) {
 		this.applications = applications;
+	}
+
+	@Valid
+	@OneToOne(optional=true)
+	public Auditor getAuditor() {
+		return auditor;
+	}
+
+	public void setAuditor(Auditor auditor) {
+		this.auditor = auditor;
 	}
 }

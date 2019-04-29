@@ -55,6 +55,10 @@
 		<bean class="converters.StringToFinderConverter"/>
 		<bean class="converters.ActorToStringConverter"/>
 		<bean class="converters.StringToActorConverter"/>
+		<bean class="converters.AuditorToStringConverter"/>
+		<bean class="converters.StringToAuditorConverter"/>
+		<bean class="converters.AuditToStringConverter"/>
+		<bean class="converters.StringToAuditConverter"/>
 	</util:list>
 	
 </beans>
