@@ -2,10 +2,7 @@
 package controllers.position;
 
 import controllers.AbstractController;
-import domain.Actor;
-import domain.Company;
-import domain.Position;
-import domain.Problem;
+import domain.*;
 import forms.SearchForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,10 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import services.ActorService;
-import services.CompanyService;
-import services.PositionService;
-import services.ProblemService;
+import services.*;
 
 import javax.validation.Valid;
 import javax.validation.ValidationException;
@@ -41,6 +35,9 @@ public class PositionController extends AbstractController {
 
 	@Autowired
 	private ProblemService	problemService;
+
+	@Autowired
+	private SponsorshipService sponsorshipService;
 
 
 	@RequestMapping(value = "/listNotLogged", method = RequestMethod.GET)
@@ -213,6 +210,11 @@ public class PositionController extends AbstractController {
 
 		result = new ModelAndView("position/show");
 		result.addObject("position", p);
+
+		Sponsorship banner = this.sponsorshipService.showSponsorship(positionId);
+
+		if(banner != null)
+			result.addObject("sponsorshipBanner", banner.getBanner());
 
 		return result;
 	}

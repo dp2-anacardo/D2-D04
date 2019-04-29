@@ -19,6 +19,8 @@ public class ConfigurationForm {
     private Collection<String>	spamWords;
     private String				countryCode;
     private String				addSW;
+    private Double				defaultVAT;
+    private Double				flatRate;
 
 
     public ConfigurationForm(final Configuration config) {
@@ -32,6 +34,8 @@ public class ConfigurationForm {
         this.welcomeMessageEs = config.getWelcomeMessageEs();
         this.spamWords = config.getSpamWords();
         this.countryCode = config.getCountryCode();
+        this.defaultVAT = config.getDefaultVAT();
+        this.flatRate = config.getFlatRate();
     }
 
     public ConfigurationForm() {
@@ -117,5 +121,21 @@ public class ConfigurationForm {
 
     public void setAddSW(final String addSW) {
         this.addSW = addSW;
+    }
+
+    public Double getDefaultVAT() {
+        return defaultVAT;
+    }
+
+    public void setDefaultVAT(Double defaultVAT) {
+        this.defaultVAT = defaultVAT;
+    }
+
+    public Double getFlatRate() {
+        return flatRate;
+    }
+
+    public void setFlatRate(Double flatRate) {
+        this.flatRate = flatRate;
     }
 }

@@ -11,6 +11,7 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
 import java.util.Collection;
 
 @Entity
@@ -25,6 +26,8 @@ public class Configuration extends DomainEntity {
 	private String				welcomeMessageEs;
 	private Collection<String>	spamWords;
 	private String				countryCode;
+	private Double				defaultVAT;
+	private Double				flatRate;
 
 
 	@Range(min = 10, max = 100)
@@ -103,5 +106,23 @@ public class Configuration extends DomainEntity {
 	@SafeHtml(whitelistType = WhiteListType.NONE)
 	public void setCountryCode(final String countryCode) {
 		this.countryCode = countryCode;
+	}
+
+	@NotNull
+	public Double getDefaultVAT() {
+		return this.defaultVAT;
+	}
+
+	public void setDefaultVAT(final Double defaultVAT) {
+		this.defaultVAT = defaultVAT;
+	}
+
+	@NotNull
+	public Double getFlatRate() {
+		return this.flatRate;
+	}
+
+	public void setFlatRate(final Double flatRate) {
+		this.flatRate = flatRate;
 	}
 }

@@ -2,6 +2,7 @@ package services;
 
 import domain.Actor;
 import domain.Administrator;
+import domain.Configuration;
 import domain.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,7 +39,7 @@ public class MessageService {
 
     // CRUD methods
     public Message create() {
-        Assert.notNull(this.actorService.getActorLogged());
+
         final Message result = new Message();
         final Calendar calendar = new GregorianCalendar();
         final Collection<String> tags = new ArrayList<String>();
@@ -58,7 +59,6 @@ public class MessageService {
 
     public Message save(final Message message) {
         Assert.notNull(message);
-        Assert.notNull(this.actorService.getActorLogged());
         final Message result;
 
         Actor sender = null;
@@ -68,8 +68,10 @@ public class MessageService {
 
             final String notification1 = "An application has changed its status.";
             final String notification2 = "A new position matches your criteria.";
+            final String notification3 = "A sponsorship has been shown \n Se ha mostrado un anuncio";
 
-            if (message.getSubject().equals(notification1) || message.getSubject().equals(notification2)) {
+            if (message.getSubject().equals(notification1) || message.getSubject().equals(notification2)
+                    || message.getSubject().equals(notification3)) {
 
                 final Actor recipient = message.getRecipient();
                 Assert.notNull(recipient);

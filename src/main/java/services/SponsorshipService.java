@@ -2,6 +2,7 @@
 package services;
 
 import domain.Actor;
+import domain.Message;
 import domain.Provider;
 import domain.Sponsorship;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import javax.validation.ValidationException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Random;
 
 @Service
 @Transactional
@@ -26,13 +28,16 @@ public class SponsorshipService {
     private SponsorshipRepository sponsorshipRepository;
 
     @Autowired
-    private ProviderService providerService;
-
-    @Autowired
-    private Validator validator;
+    private ConfigurationService configurationService;
 
     @Autowired
     private ActorService actorService;
+
+    @Autowired
+    private MessageService messageService;
+
+    @Autowired
+    private Validator validator;
 
 
     // CRUD methods
@@ -126,4 +131,28 @@ public class SponsorshipService {
         return sponsorships;
     }
 
+    public Sponsorship showSponsorship(final int positionID) {
+        Sponsorship result = null;
+        final List<Sponsorship> sponsorships = this.findAllByPosition(positionID);
+        if (sponsorships.size() > 0) {
+            final Random rnd = new Random();
+            result = sponsorships.get(rnd.nextInt(sponsorships.size()));
+
+            final Double vat = this.configurationService.getConfiguration().getDefaultVAT();
+            final Double fee = this.configurationService.getConfiguration().getFlatRate();
+            final Double totalAmount = (vat / 100) * fee + fee;
+            final Message message = this.messageService.create();
+            final Collection<String> tags = new ArrayList<String>();
+            message.setRecipient(result.getProvider());
+            tags.add("NOTIFICATION");
+            message.setTags(tags);
+            message.setSubject("A sponsorship has been shown \n Se ha mostrado un anuncio");
+            message.setBody("Se le cargará un importe de: " + totalAmount + "\n Se le cargará un importe de:" + totalAmount);
+            this.messageService.save(message);
+        }
+
+        return result;
+    }
 }
+
+

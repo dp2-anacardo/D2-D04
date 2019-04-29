@@ -106,5 +106,7 @@ public class ConfigurationService {
         result.setWelcomeMessageEn(config.getWelcomeMessageEn());
         result.setWelcomeMessageEs(config.getWelcomeMessageEs());
         result.setCountryCode(config.getCountryCode());
+        result.setDefaultVAT(config.getDefaultVAT());
+        result.setFlatRate(config.getFlatRate());
     }
 }

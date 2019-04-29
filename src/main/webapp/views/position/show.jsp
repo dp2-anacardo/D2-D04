@@ -67,7 +67,7 @@
 
 <jstl:if test="${row.isCancelled == true}">
     <display:table name="position" id="row" requestURI="position/show.do"
-               class="displaytag">
+                   class="displaytag">
         <spring:message code="position.status" var="status"/>
         <display:column title="${status}" sortable="false">
             Cancelled
@@ -75,8 +75,12 @@
     </display:table>
 </jstl:if>
 
+<jstl:if test="${not empty sponsorshipBanner}">
+    <img src="${sponsorshipBanner}"/>
+</jstl:if>
+
 <input type="button" name="cancel"
-         value="<spring:message code="position.goBack" />"
-         onclick="javascript: window.history.back();" />
+       value="<spring:message code="position.goBack" />"
+       onclick="javascript: window.history.back();"/>
 
 

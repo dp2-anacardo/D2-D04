@@ -54,6 +54,16 @@
                        value="${config.countryCode}"
                        fieldset="true"/>
     </p>
+    <p>
+        <acme:showtext code="configuration.edit.defaultVAT"
+                       value="${config.defaultVAT}"
+                       fieldset="true"/>
+    </p>
+    <p>
+        <acme:showtext code="configuration.edit.flatRate"
+                       value="${config.flatRate}"
+                       fieldset="true"/>
+    </p>
 
     <!-- Table Attributes -->
 

@@ -66,6 +66,9 @@
 
 	<acme:cancel url="sponsorship/provider/update.do?sponsorshipId=${row.id}"
 		code="sponsorship.update" />
+
+	<acme:cancel url="sponsorship/provider/delete.do?sponsorshipID=${row.id}" code="problem.delete"/>
+
 	<acme:cancel url="sponsorship/provider/list.do" code="sponsorship.back" />
 
 

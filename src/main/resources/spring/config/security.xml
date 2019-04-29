@@ -89,6 +89,12 @@
         <security:intercept-url pattern="/item/provider/delete.do" access="hasRole('PROVIDER')"/>
         <security:intercept-url pattern="/item/show.do" access="permitAll"/>
 
+        <security:intercept-url pattern="/sponsorship/provider/list.do" access="hasRole('PROVIDER')"/>
+        <security:intercept-url pattern="/sponsorship/provider/create.do" access="hasRole('PROVIDER')"/>
+        <security:intercept-url pattern="/sponsorship/provider/update.do" access="hasRole('PROVIDER')"/>
+        <security:intercept-url pattern="/sponsorship/provider/show.do" access="hasRole('PROVIDER')"/>
+        <security:intercept-url pattern="/sponsorship/provider/delete.do" access="hasRole('PROVIDER')"/>
+
         <security:intercept-url pattern="/gdpr/**" access="permitAll"/>
 
         <security:intercept-url pattern="/**" access="permitAll"/>

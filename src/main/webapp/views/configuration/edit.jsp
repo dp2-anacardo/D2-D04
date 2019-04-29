@@ -32,6 +32,8 @@
         <acme:textboxbs code="configuration.edit.welcomeEs"
                         path="welcomeMessageEs"/>
         <acme:textboxbs code="configuration.edit.defaultCC" path="countryCode"/>
+        <acme:textboxbs code="configuration.edit.defaultVAT" path="defaultVAT"/>
+        <acme:textboxbs code="configuration.edit.flatRate" path="flatRate"/>
 
         <!-- Edit words -->
 

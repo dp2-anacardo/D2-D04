@@ -17,7 +17,7 @@
 
 </head>
 <body>
-<form:form action="sponsorship/create.do" modelAttribute="sponsorship">
+<form:form action="sponsorship/provider/create.do" modelAttribute="sponsorship">
 
     <%--  Hidden properties --%>
     <form:hidden path="id"/>
@@ -27,55 +27,30 @@
     <br>
 
     <%-- CreditCard --%>
-    <div id="card">
-            <%-- creditCard --%>
-        <form:label path="creditCard">
-            <spring:message code="sponsorship.creditCard"/>
-        </form:label>
-        <br>
+    <fieldset>
+        <legend><spring:message code="actor.CreditCard" /></legend>
 
+        <acme:textbox code="credit.holderName" path="creditCard.holder"/>
+        <br />
 
-        <form:label path="creditCard.holder">
-            <spring:message code="sponsorship.creditCard.holderName"/>
-        </form:label>
-        <form:input path="creditCard.holder"/>
-        <form:errors class="error" path="creditCard.holder"/>
-        <br>
+        <acme:textbox code="credit.brandName" path="creditCard.brandName"/>
+        <br />
 
-        <form:label path="creditCard.brandName">
-            <spring:message code="sponsorship.creditCard.brandName"/>:
-        </form:label>
-        <form:input path="creditCard.brandName"/>
-        <form:errors class="error" path="creditCard.brandName"/>
-        <br>
+        <acme:textbox code="credit.number" path="creditCard.number"/>
+        <br />
 
-        <form:label path="creditCard.number">
-            <spring:message code="sponsorship.creditCard.number"/>
-        </form:label>
-        <form:input path="creditCard.number" type="number"/>
-        <form:errors class="error" path="creditCard.number"/>
-        <br>
+        <acme:textbox code="credit.expiration" path="creditCard.expirationYear"/>
+        <br />
 
-        <form:label path="creditCard.expirationYear">
-            <spring:message code="sponsorship.creditCard.expiration"/>
-        </form:label>
-        <form:input path="creditCard.expirationYear" placeholder="MM/YY"
-                    format="{0,date,MM/YY}"/>
-        <form:errors class="error" path="creditCard.expirationYear"/>
-        <br>
-
-        <form:label path="creditCard.cvv">
-            <spring:message code="sponsorship.creditCard.cvvCode"/>
-        </form:label>
-        <form:input path="creditCard.cvv" type="number"/>
-        <form:errors class="error" path="creditCard.cvv"/>
-        <br>
-
-    </div>
+        <acme:textbox code="credit.cvvCode" path="creditCard.cvv"/>
+        <br />
+    </fieldset>
 
     <%-- Buttons --%>
     <security:authorize access="hasRole('PROVIDER')">
         <acme:submit name="save" code="sponsorship.save"/>
+
+        <acme:submit name="delete" code="problem.delete"/>
 
         <acme:cancel url="sponsorship/provider/list.do" code="sponsorship.back"/>
 

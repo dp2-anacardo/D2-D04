@@ -10,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import services.ActorService;
 import services.PositionService;
@@ -130,6 +127,51 @@ public class SponsorshipController extends AbstractController {
         return result;
     }
 
+    // Delete GET ------------------------------------------------------
+    @RequestMapping(value = "provider/delete", method = RequestMethod.GET)
+    public ModelAndView deleteGet(@RequestParam final int sponsorshipID) {
+        ModelAndView result;
+        Sponsorship sponsorship;
+
+        try {
+            try {
+                final Provider principal = (Provider) this.actorService.getActorLogged();
+                sponsorship = this.sponsorshipService.findOne(sponsorshipID);
+                Assert.isTrue(sponsorship.getProvider().equals(principal));
+            } catch (final Exception e) {
+                result = new ModelAndView("redirect:/");
+                return result;
+            }
+            this.sponsorshipService.delete(sponsorship);
+            result = new ModelAndView("redirect:list.do");
+        } catch (final Throwable oops) {
+            sponsorship = this.sponsorshipService.findOne(sponsorshipID);
+            result = this.createEditModelAndView(sponsorship, "problem.commit.error");
+        }
+
+        return result;
+    }
+
+    // Delete POST ------------------------------------------------------
+    @RequestMapping(value = "provider/create", method = RequestMethod.POST, params = "delete")
+    public ModelAndView deletePost(@ModelAttribute("sponsorship") Sponsorship sponsorship, final BindingResult binding) {
+        ModelAndView result;
+
+        try {
+            try {
+                final Sponsorship sp = this.sponsorshipService.findOne(sponsorship.getId());
+                this.sponsorshipService.delete(sp);
+                result = new ModelAndView("redirect:list.do");
+            } catch (final Exception e) {
+                result = new ModelAndView("redirect:/");
+                return result;
+            }
+        } catch (final Throwable oops) {
+            result = this.createEditModelAndView(sponsorship, "problem.commit.error");
+        }
+
+        return result;
+    }
     // Ancillary methods ------------------------------------------------------
     protected ModelAndView createEditModelAndView(final Sponsorship sponsorship) {
         ModelAndView result;
