@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import services.ActorService;
 import services.PositionService;
-import services.ProviderService;
 import services.SponsorshipService;
 
 import javax.validation.ValidationException;
@@ -68,25 +67,22 @@ public class SponsorshipController extends AbstractController {
         return result;
     }
 
-    // Edition -------------------------------------------------------------
-    @RequestMapping(value = "/provider/update", method = RequestMethod.GET)
-    public ModelAndView edit(@RequestParam final int sponsorshipId) {
+    // Update ------------------------------------------------------------
+    @RequestMapping(value = "provider/update", method = RequestMethod.GET)
+    public ModelAndView update(@RequestParam final int sponsorshipId) {
         ModelAndView result;
-        final Sponsorship sponsorship;
+        Sponsorship sponsorship;
 
         try {
             final Provider principal = (Provider) this.actorService.getActorLogged();
             sponsorship = this.sponsorshipService.findOne(sponsorshipId);
             Assert.isTrue(sponsorship.getProvider().equals(principal));
-
+            result = this.updateModelAndView(sponsorship);
+            return result;
         } catch (final Exception e) {
-            result = this.forbiddenOpperation();
+            result = new ModelAndView("redirect:/");
             return result;
         }
-
-        result = this.createEditModelAndView(sponsorship);
-
-        return result;
     }
 
     // Save -------------------------------------------------------------
@@ -99,12 +95,29 @@ public class SponsorshipController extends AbstractController {
             this.sponsorshipService.save(sponsorship);
             result = new ModelAndView("redirect:list.do");
 
-        } catch (ValidationException e){
+        } catch (ValidationException e) {
             result = this.createEditModelAndView(sponsorship, null);
         } catch (final Throwable oops) {
             result = this.createEditModelAndView(sponsorship, "sponsorship.commit.error");
         }
 
+        return result;
+    }
+
+    // Update Save -------------------------------------------------------------
+    @RequestMapping(value = "provider/update", method = RequestMethod.POST, params = "update")
+    public ModelAndView updateSave(@ModelAttribute("sponsorship") Sponsorship sponsorship, final BindingResult binding) {
+        ModelAndView result;
+
+        try {
+            sponsorship = this.sponsorshipService.reconstruct(sponsorship, binding);
+            sponsorship = this.sponsorshipService.save(sponsorship);
+            result = new ModelAndView("redirect:list.do");
+        } catch (final ValidationException e) {
+            result = this.updateModelAndView(sponsorship, null);
+        } catch (final Throwable oops) {
+            result = this.updateModelAndView(sponsorship, "item.commit.error");
+        }
         return result;
     }
 
@@ -129,14 +142,14 @@ public class SponsorshipController extends AbstractController {
 
     // Delete GET ------------------------------------------------------
     @RequestMapping(value = "provider/delete", method = RequestMethod.GET)
-    public ModelAndView deleteGet(@RequestParam final int sponsorshipID) {
+    public ModelAndView deleteGet(@RequestParam final int sponsorshipId) {
         ModelAndView result;
         Sponsorship sponsorship;
 
         try {
             try {
                 final Provider principal = (Provider) this.actorService.getActorLogged();
-                sponsorship = this.sponsorshipService.findOne(sponsorshipID);
+                sponsorship = this.sponsorshipService.findOne(sponsorshipId);
                 Assert.isTrue(sponsorship.getProvider().equals(principal));
             } catch (final Exception e) {
                 result = new ModelAndView("redirect:/");
@@ -145,7 +158,7 @@ public class SponsorshipController extends AbstractController {
             this.sponsorshipService.delete(sponsorship);
             result = new ModelAndView("redirect:list.do");
         } catch (final Throwable oops) {
-            sponsorship = this.sponsorshipService.findOne(sponsorshipID);
+            sponsorship = this.sponsorshipService.findOne(sponsorshipId);
             result = this.createEditModelAndView(sponsorship, "problem.commit.error");
         }
 
@@ -153,7 +166,7 @@ public class SponsorshipController extends AbstractController {
     }
 
     // Delete POST ------------------------------------------------------
-    @RequestMapping(value = "provider/create", method = RequestMethod.POST, params = "delete")
+    @RequestMapping(value = "provider/update", method = RequestMethod.POST, params = "delete")
     public ModelAndView deletePost(@ModelAttribute("sponsorship") Sponsorship sponsorship, final BindingResult binding) {
         ModelAndView result;
 
@@ -167,11 +180,12 @@ public class SponsorshipController extends AbstractController {
                 return result;
             }
         } catch (final Throwable oops) {
-            result = this.createEditModelAndView(sponsorship, "problem.commit.error");
+            result = this.updateModelAndView(sponsorship, "problem.commit.error");
         }
 
         return result;
     }
+
     // Ancillary methods ------------------------------------------------------
     protected ModelAndView createEditModelAndView(final Sponsorship sponsorship) {
         ModelAndView result;
@@ -184,12 +198,28 @@ public class SponsorshipController extends AbstractController {
     protected ModelAndView createEditModelAndView(final Sponsorship sponsorship, final String message) {
         ModelAndView result;
 
-        if (sponsorship.getId() == 0) {
-            result = new ModelAndView("sponsorship/provider/create");
-            final Collection<Position> positionList = this.positionService.getPositionsAvilables();
-            result.addObject("positionList", positionList);
-        } else
-            result = new ModelAndView("sponsorship/provider/update");
+        result = new ModelAndView("sponsorship/provider/create");
+        final Collection<Position> positionList = this.positionService.getPositionsAvilables();
+
+        result.addObject("positionList", positionList);
+        result.addObject("sponsorship", sponsorship);
+        result.addObject("message", message);
+
+        return result;
+    }
+
+    protected ModelAndView updateModelAndView(final Sponsorship sponsorship) {
+        ModelAndView result;
+
+        result = this.updateModelAndView(sponsorship, null);
+
+        return result;
+    }
+
+    protected ModelAndView updateModelAndView(final Sponsorship sponsorship, final String message) {
+        ModelAndView result;
+
+        result = new ModelAndView("sponsorship/provider/update");
 
         result.addObject("sponsorship", sponsorship);
         result.addObject("message", message);

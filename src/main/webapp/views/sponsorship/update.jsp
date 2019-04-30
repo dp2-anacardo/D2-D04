@@ -17,7 +17,7 @@
 
 </head>
 <body>
-<form:form action="sponsorship/provider/create.do" modelAttribute="sponsorship">
+<form:form action="sponsorship/provider/update.do" modelAttribute="sponsorship">
 
     <%--  Hidden properties --%>
     <form:hidden path="id"/>
@@ -48,7 +48,7 @@
 
     <%-- Buttons --%>
     <security:authorize access="hasRole('PROVIDER')">
-        <acme:submit name="save" code="sponsorship.save"/>
+        <acme:submit name="update" code="sponsorship.save"/>
 
         <acme:submit name="delete" code="problem.delete"/>
 

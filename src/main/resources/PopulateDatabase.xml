@@ -15,7 +15,7 @@
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 	">
-	
+
 	<!-- User accounts -->
 
 	<bean id="userAccount1" class="security.UserAccount">
@@ -29,7 +29,7 @@
 			</list>
 		</property>
 	</bean>
-	
+
 	<bean id="userAccount2" class="security.UserAccount">
 		<property name="username" value="company1" />
 		<property name="password" value="df655f976f7c9d3263815bd981225cd9" />
@@ -41,7 +41,7 @@
 			</list>
 		</property>
 	</bean>
-	
+
 	<bean id="userAccount3" class="security.UserAccount">
 		<property name="username" value="company2" />
 		<property name="password" value="d196a28097115067fefd73d25b0c0be8" />
@@ -53,7 +53,7 @@
 			</list>
 		</property>
 	</bean>
-	
+
 	<bean id="userAccount4" class="security.UserAccount">
 		<property name="username" value="rookie1" />
 		<property name="password" value="9701eb1802a4c63f51e1501512fbdd30" />
@@ -65,7 +65,7 @@
 			</list>
 		</property>
 	</bean>
-	
+
 	<bean id="userAccount5" class="security.UserAccount">
 		<property name="username" value="rookie2" />
 		<property name="password" value="124be4fa2a59341a1d7e965ac49b2923" />
@@ -89,11 +89,24 @@
 			</list>
 		</property>
 	</bean>
-	
+
+	<bean id="userAccount7" class="security.UserAccount">
+		<property name="username" value="provider2" />
+		<property name="password" value="ebfc815ee2cc6a16225105bb7b3e1e53" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="PROVIDER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+
 	<!-- Other domain beans come here -->
-	
+
 	<!-- Administrator -->
-	
+
 	<bean id="admin1" class="domain.Administrator">
 		<property name="userAccount" ref="userAccount1"/>
 		<property name="name" value="admin1" />
@@ -122,17 +135,17 @@
 			</list>
 		</property>
 	</bean>
-	
-	<!-- Administrator's SocialProfiles -->	
-	
+
+	<!-- Administrator's SocialProfiles -->
+
 	<bean id="socialProfileAdmin1" class="domain.SocialProfile">
 		<property name="nick" value="admin1Nick" />
 		<property name="socialNetworkName" value="twitter" />
 		<property name="profileLink" value="http://www.twitter.com" />
 	</bean>
-	
-	<!-- Administrator's CreditCard -->	
-	
+
+	<!-- Administrator's CreditCard -->
+
 	<bean id="creditCardAdmin1" class ="datatype.CreditCard">
 		<property name = "holder" value = "Admin1"/>
 		<property name = "brandName" value = "VISA"/>
@@ -140,9 +153,9 @@
 		<property name = "expirationYear" value="01/11/2023"/>
 		<property name = "cvv" value = "891"/>
 	</bean>
-	
+
 	<!-- Companies -->
-	
+
 	<bean id="company1" class="domain.Company">
 		<property name="userAccount" ref="userAccount2"/>
 		<property name="name" value="company1" />
@@ -171,7 +184,7 @@
 			</list>
 		</property>
 	</bean>
-	
+
 	<bean id="company2" class="domain.Company">
 		<property name="userAccount" ref="userAccount3"/>
 		<property name="name" value="company2" />
@@ -198,17 +211,17 @@
 			</list>
 		</property>
 	</bean>
-	
-	<!-- Companies' SocialProfiles -->	
-	
+
+	<!-- Companies' SocialProfiles -->
+
 	<bean id="socialProfileCompany1" class="domain.SocialProfile">
 		<property name="nick" value="company1Nick" />
 		<property name="socialNetworkName" value="twitter" />
 		<property name="profileLink" value="http://www.twitter.com" />
 	</bean>
-	
-	<!-- Companies' CreditCard -->	
-	
+
+	<!-- Companies' CreditCard -->
+
 	<bean id="creditCardCompany1" class ="datatype.CreditCard">
 		<property name = "holder" value = "Company1"/>
 		<property name = "brandName" value = "VISA"/>
@@ -216,7 +229,7 @@
 		<property name = "expirationYear" value="01/02/2027"/>
 		<property name = "cvv" value = "485"/>
 	</bean>
-	
+
 	<bean id="creditCardCompany2" class ="datatype.CreditCard">
 		<property name = "holder" value = "Company2"/>
 		<property name = "brandName" value = "VISA"/>
@@ -224,9 +237,9 @@
 		<property name = "expirationYear" value="01/05/2018"/>
 		<property name = "cvv" value = "486"/>
 	</bean>
-	
+
 	<!-- Rookies -->
-	
+
 	<bean id="rookie1" class="domain.Rookie">
 		<property name="userAccount" ref="userAccount4"/>
 		<property name="name" value="rookie1" />
@@ -262,7 +275,7 @@
 			</list>
 		</property>
 	</bean>
-	
+
 	<bean id="rookie2" class="domain.Rookie">
 		<property name="userAccount" ref="userAccount5"/>
 		<property name="name" value="rookie2" />
@@ -295,17 +308,17 @@
 			</list>
 		</property>
 	</bean>
-	
+
 	<!-- Rookies' SocialProfiles -->
-	
+
 	<bean id="socialProfileRookie1" class="domain.SocialProfile">
 		<property name="nick" value="rookie1Nick" />
 		<property name="socialNetworkName" value="instagram" />
 		<property name="profileLink" value="http://www.instagram.com" />
 	</bean>
-	
+
 	<!-- Rookies' CreditCard -->
-	
+
 	<bean id="creditCardRookie1" class ="datatype.CreditCard">
 		<property name = "holder" value = "Rookie1"/>
 		<property name = "brandName" value = "MASTERCARD"/>
@@ -313,7 +326,7 @@
 		<property name = "expirationYear" value="05/12/2020"/>
 		<property name = "cvv" value = "488"/>
 	</bean>
-	
+
 	<bean id="creditCardRookie2" class ="datatype.CreditCard">
 		<property name = "holder" value = "Rookie2"/>
 		<property name = "brandName" value = "MASTERCARD"/>
@@ -321,9 +334,9 @@
 		<property name = "expirationYear" value="06/05/2021"/>
 		<property name = "cvv" value = "666"/>
 	</bean>
-	
+
 	<!-- Rookies' Finder -->
-	
+
 	<bean id="finderRookie1" class="domain.Finder">
 		<property name="keyWord" value="Developer" />
 		<property name="deadline" value="05/09/2019" />
@@ -335,7 +348,7 @@
 		</property>
 		<property name="lastUpdate" value="15/04/2019"/>
 	</bean>
-	
+
 	<bean id="finderRookie2" class="domain.Finder">
 		<property name="keyWord" value="" />
 		<property name="minSalary" value="0"/>
@@ -345,16 +358,16 @@
 		</property>
 		<property name="lastUpdate" value="10/04/2019"/>
 	</bean>
-	
+
 	<!-- Rookies' Curricula -->
-	
+
 	<bean id="curricula1Rookie1" class ="domain.Curricula">
 		<property name = "educationalData" ref = "educationalDataRookie1"/>
 		<property name = "personalData" ref = "personalData1Rookie1"/>
 		<property name = "miscData" ref = "miscellaneousDataRookie1"/>
 		<property name = "positionData" ref ="positionDataRookie1"/>
 	</bean>
-	
+
 	<bean id="curricula1Rookie1Copy" class ="domain.Curricula">
 		<property name = "educationalData" ref = "educationalDataRookie1Copy"/>
 		<property name="isCopy" value="true"/>
@@ -362,32 +375,32 @@
 		<property name = "miscData" ref = "miscellaneousDataRookie1Copy"/>
 		<property name = "positionData" ref ="positionDataRookie1Copy"/>
 	</bean>
-	
+
 	<bean id="curricula2Rookie1" class ="domain.Curricula">
 		<property name = "personalData" ref = "personalData2Rookie1"/>
 	</bean>
-	
+
 	<bean id="curriculaRookie2" class ="domain.Curricula">
 		<property name = "personalData" ref = "personalDataRookie2"/>
 	</bean>
-	
+
 	<bean id="curriculaRookie2Copy" class ="domain.Curricula">
 		<property name = "personalData" ref = "personalDataRookie2Copy"/>
 		<property name="isCopy" value="true"/>
 	</bean>
-	
+
 	<bean id="curriculaRookie2Copy2" class ="domain.Curricula">
 		<property name = "personalData" ref = "personalDataRookie2Copy2"/>
 		<property name="isCopy" value="true"/>
 	</bean>
-	
+
 	<bean id="curriculaRookie2Copy3" class ="domain.Curricula">
 		<property name = "personalData" ref = "personalDataRookie2Copy3"/>
 		<property name="isCopy" value="true"/>
 	</bean>
-	
+
 	<!-- Curricula's EducationalData -->
-	
+
 	<bean id="educationalDataRookie1" class ="domain.EducationalData">
 		<property name = "degree" value = "Software Engineering"/>
 		<property name = "institution" value = "ETSII"/>
@@ -395,7 +408,7 @@
 		<property name = "startDate" value ="24/09/2006"/>
 		<property name = "endDate" value ="18/06/2012"/>
 	</bean>
-	
+
 	<bean id="educationalDataRookie1Copy" class ="domain.EducationalData">
 		<property name = "degree" value = "Software Engineering"/>
 		<property name = "institution" value = "ETSII"/>
@@ -403,9 +416,9 @@
 		<property name = "startDate" value ="24/09/2006"/>
 		<property name = "endDate" value ="18/06/2012"/>
 	</bean>
-	
+
 	<!-- Curricula's PersonalData -->
-	
+
 	<bean id="personalData1Rookie1" class ="domain.PersonalData">
 		<property name = "fullName" value = "Eduardo García Jiménez"/>
 		<property name = "statement" value = "No se que poner, ¿qué declaración haría un rookie?"/>
@@ -413,7 +426,7 @@
 		<property name = "githubProfile" value ="https://github.com/edugj7126"/>
 		<property name = "linkedInProfile" value ="https://linkedIn.com/edugj7126"/>
 	</bean>
-	
+
 	<bean id="personalData1Rookie1Copy" class ="domain.PersonalData">
 		<property name = "fullName" value = "Eduardo García Jiménez"/>
 		<property name = "statement" value = "No se que poner, ¿qué declaración haría un rookie?"/>
@@ -421,7 +434,7 @@
 		<property name = "githubProfile" value ="https://github.com/edugj7126"/>
 		<property name = "linkedInProfile" value ="https://linkedIn.com/edugj7126"/>
 	</bean>
-	
+
 	<bean id="personalData2Rookie1" class ="domain.PersonalData">
 		<property name = "fullName" value = "Eduardo García Jiménez"/>
 		<property name = "statement" value = "No se que poner, ¿qué declaración haría un rookie?"/>
@@ -429,7 +442,7 @@
 		<property name = "githubProfile" value ="https://github.com/prueba"/>
 		<property name = "linkedInProfile" value ="https://linkedIn.com/prueba"/>
 	</bean>
-	
+
 	<bean id="personalDataRookie2" class ="domain.PersonalData">
 		<property name = "fullName" value = "Francisco Caro de la Barrera"/>
 		<property name = "statement" value = "No se que poner, ¿qué declaración haría un rookie?"/>
@@ -437,7 +450,7 @@
 		<property name = "githubProfile" value ="https://github.com/franCb81"/>
 		<property name = "linkedInProfile" value ="https://linkedIn.com/franCb81"/>
 	</bean>
-	
+
 	<bean id="personalDataRookie2Copy" class ="domain.PersonalData">
 		<property name = "fullName" value = "Francisco Caro de la Barrera"/>
 		<property name = "statement" value = "No se que poner, ¿qué declaración haría un rookie?"/>
@@ -445,7 +458,7 @@
 		<property name = "githubProfile" value ="https://github.com/franCb81"/>
 		<property name = "linkedInProfile" value ="https://linkedIn.com/franCb81"/>
 	</bean>
-	
+
 	<bean id="personalDataRookie2Copy2" class ="domain.PersonalData">
 		<property name = "fullName" value = "Francisco Caro de la Barrera"/>
 		<property name = "statement" value = "No se que poner, ¿qué declaración haría un rookie?"/>
@@ -453,7 +466,7 @@
 		<property name = "githubProfile" value ="https://github.com/franCb81"/>
 		<property name = "linkedInProfile" value ="https://linkedIn.com/franCb81"/>
 	</bean>
-	
+
 	<bean id="personalDataRookie2Copy3" class ="domain.PersonalData">
 		<property name = "fullName" value = "Francisco Caro de la Barrera"/>
 		<property name = "statement" value = "No se que poner, ¿qué declaración haría un rookie?"/>
@@ -461,34 +474,34 @@
 		<property name = "githubProfile" value ="https://github.com/franCb81"/>
 		<property name = "linkedInProfile" value ="https://linkedIn.com/franCb81"/>
 	</bean>
-	
+
 	<!-- Curricula's MiscellaneousData -->
-	
+
 	<bean id="miscellaneousDataRookie1" class ="domain.MiscData">
 		<property name = "attachment" ref="attachment1"/>
 		<property name = "freeText" value=""/>
 	</bean>
-	
+
 	<bean id="miscellaneousDataRookie1Copy" class ="domain.MiscData">
 		<property name = "attachment" ref="attachment1"/>
 		<property name = "freeText" value=""/>
 	</bean>
-	
+
 	<!-- Attachment 1 -->
-	
+
 	<bean id="attachment1" class="datatype.Url">
 		<property name="link"
 			value="http://www.youtube.com" />
 	</bean>
-	
+
 	<!-- Curricula's PositionData -->
-	
+
 	<bean id="positionDataRookie1" class ="domain.PositionData">
 		<property name = "title" value = "Teacher"/>
 		<property name = "description" value = "I am a secondary school teacher"/>
 		<property name = "startDate" value = "14/04/2014"/>
 	</bean>
-	
+
 	<bean id="positionDataRookie1Copy" class ="domain.PositionData">
 		<property name = "title" value = "Teacher"/>
 		<property name = "description" value = "I am a secondary school teacher"/>
@@ -501,7 +514,7 @@
 		<property name="name" value="provider1" />
 		<property name="surname" value="provider1"/>
 		<property name="make" value="provider1 provider1"/>
-		<property name="vatNumber" value="21"/>
+		<property name="vatNumber" value="685357234"/>
 		<property name="creditCard" ref="creditCardProvider1"/>
 		<property name="photo" value="https://github.com/dp2-anacardo/DP2-D04"/>
 		<property name="email" value="provider1@gmail.com"/>
@@ -523,18 +536,119 @@
 		</property>
 	</bean>
 
-	<!-- Administrator's CreditCard -->
-
-	<bean id="creditCardProvider1" class ="datatype.CreditCard">
-		<property name = "holder" value = "Provider"/>
-		<property name = "brandName" value = "VISA"/>
-		<property name = "number" value = "4885149505523388"/>
-		<property name = "expirationYear" value="01/11/2023"/>
-		<property name = "cvv" value = "891"/>
+	<bean id="provider2" class="domain.Provider">
+		<property name="userAccount" ref="userAccount7"/>
+		<property name="name" value="provider2" />
+		<property name="surname" value="provider2"/>
+		<property name="make" value="provider2 provider2"/>
+		<property name="vatNumber" value="75257235"/>
+		<property name="creditCard" ref="creditCardProvider2"/>
+		<property name="photo" value="https://github.com/dp2-anacardo/DP2-D04"/>
+		<property name="email" value="provider2@gmail.com"/>
+		<property name="phoneNumber" value="+34 620304050"/>
+		<property name="address" value="Avenida Reina Mercedes"/>
+		<property name="isSpammer" value="false"/>
+		<property name="isBanned" value="false"/>
+		<property name="socialProfiles">
+			<list>
+			</list>
+		</property>
+		<property name="messagesReceived">
+			<list>
+			</list>
+		</property>
+		<property name="messagesSent">
+			<list>
+			</list>
+		</property>
 	</bean>
 
+	<!-- Provider's CreditCard -->
+
+	<bean id="creditCardProvider1" class ="datatype.CreditCard">
+		<property name = "holder" value = "Provider1"/>
+		<property name = "brandName" value = "VISA"/>
+		<property name = "number" value = "4557833831274975"/>
+		<property name = "expirationYear" value="01/12/2023"/>
+		<property name = "cvv" value = "456"/>
+	</bean>
+
+	<bean id="creditCardProvider2" class ="datatype.CreditCard">
+		<property name = "holder" value = "Provider2"/>
+		<property name = "brandName" value = "VISA"/>
+		<property name = "number" value = "4378918064257461"/>
+		<property name = "expirationYear" value="01/05/2024"/>
+		<property name = "cvv" value = "666"/>
+	</bean>
+
+
+	<!-- Items -->
+	<bean id="item1" class="domain.Item">
+		<property name="name" value="Item 1"/>
+        <property name="description" value="Item 1 Description"/>
+        <property name="links">
+            <list>
+                <ref bean="attachment8"/>
+            </list>
+        </property>
+        <property name="pictures">
+            <list>
+                <ref bean="attachment9"/>
+            </list>
+        </property>
+        <property name="provider" ref="provider1"/>
+    </bean>
+
+    <bean id="item2" class="domain.Item">
+        <property name="name" value="Item 2"/>
+        <property name="description" value="Item 2 Description"/>
+        <property name="links">
+            <list>
+                <ref bean="attachment10"/>
+            </list>
+        </property>
+        <property name="pictures">
+            <list>
+                <ref bean="attachment11"/>
+            </list>
+        </property>
+        <property name="provider" ref="provider1"/>
+    </bean>
+
+    <bean id="item3" class="domain.Item">
+        <property name="name" value="Item 3"/>
+        <property name="description" value="Item 3 Description"/>
+        <property name="links">
+            <list>
+                <ref bean="attachment12"/>
+            </list>
+        </property>
+        <property name="pictures">
+            <list>
+                <ref bean="attachment13"/>
+            </list>
+        </property>
+        <property name="provider" ref="provider2"/>
+    </bean>
+
+    <bean id="item4" class="domain.Item">
+        <property name="name" value="Item 4"/>
+        <property name="description" value="Item 4 Description"/>
+        <property name="links">
+            <list>
+                <ref bean="attachment14"/>
+            </list>
+        </property>
+        <property name="pictures">
+            <list>
+                <ref bean="attachment15"/>
+            </list>
+        </property>
+        <property name="provider" ref="provider2"/>
+    </bean>
+
 	<!-- Messages -->
-	
+
 	<bean id="message1" class ="domain.Message">
 		<property name = "moment" value = "04/14/2019 16:09"/>
 		<property name = "subject" value = "prueba"/>
@@ -569,7 +683,7 @@
 	</bean>
 
 	<!-- Position -->
-	
+
 	<bean id="position1" class ="domain.Position">
 		<property name = "title" value = "Developer"/>
 		<property name = "description" value = "We need a developer"/>
@@ -603,7 +717,7 @@
 			</list>
 		</property>
 	</bean>
-	
+
 	<bean id="position2" class ="domain.Position">
 		<property name = "title" value = "Requirement Engineer"/>
 		<property name = "description" value = "We need a requirement engineer"/>
@@ -637,7 +751,7 @@
 			</list>
 		</property>
 	</bean>
-	
+
 	<bean id="position3" class ="domain.Position">
 		<property name = "title" value = "Requirement Engineer"/>
 		<property name = "description" value = "We need a requirement engineer"/>
@@ -669,9 +783,9 @@
 			</list>
 		</property>
 	</bean>
-	
+
 	<!-- Problem -->
-	
+
 	<bean id="problem1" class ="domain.Problem">
 		<property name = "title" value = "Problem1"/>
 		<property name = "statement" value = "Good luck"/>
@@ -680,11 +794,11 @@
 			<list>
 				<ref bean = "attachment2"/>
 			</list>
-		</property> 
+		</property>
 		<property name = "isFinal" value ="true"/>
 		<property name = "company" ref="company1"/>
 	</bean>
-	
+
 	<bean id="problem2" class ="domain.Problem">
 		<property name = "title" value = "Problem2"/>
 		<property name = "statement" value = "Good luck"/>
@@ -693,11 +807,11 @@
 			<list>
 				<ref bean = "attachment3"/>
 			</list>
-		</property> 
+		</property>
 		<property name = "isFinal" value ="true"/>
 		<property name = "company" ref="company1"/>
 	</bean>
-	
+
 	<bean id="problem3" class ="domain.Problem">
 		<property name = "title" value = "Problem3"/>
 		<property name = "statement" value = "Good luck"/>
@@ -706,11 +820,11 @@
 			<list>
 				<ref bean = "attachment4"/>
 			</list>
-		</property> 
+		</property>
 		<property name = "isFinal" value ="true"/>
 		<property name = "company" ref="company1"/>
 	</bean>
-	
+
 	<bean id="problem4" class ="domain.Problem">
 		<property name = "title" value = "Problem4"/>
 		<property name = "statement" value = "Good luck"/>
@@ -719,11 +833,11 @@
 			<list>
 				<ref bean = "attachment5"/>
 			</list>
-		</property> 
+		</property>
 		<property name = "isFinal" value ="true"/>
 		<property name = "company" ref="company2"/>
 	</bean>
-	
+
 	<bean id="problem5" class ="domain.Problem">
 		<property name = "title" value = "Problem5"/>
 		<property name = "statement" value = "Good luck"/>
@@ -732,11 +846,11 @@
 			<list>
 				<ref bean = "attachment6"/>
 			</list>
-		</property> 
+		</property>
 		<property name = "isFinal" value ="true"/>
 		<property name = "company" ref="company2"/>
 	</bean>
-	
+
 	<bean id="problem6" class ="domain.Problem">
 		<property name = "title" value = "Problem1"/>
 		<property name = "statement" value = "Good luck"/>
@@ -745,45 +859,85 @@
 			<list>
 				<ref bean = "attachment7"/>
 			</list>
-		</property> 
+		</property>
 		<property name = "isFinal" value ="false"/>
 		<property name = "company" ref="company1"/>
 	</bean>
-	
-	<!-- Attachment 2-7 -->
-	
+
+	<!-- Attachments -->
+
 	<bean id="attachment2" class="datatype.Url">
 		<property name="link"
 			value="http://www.prueba.com" />
 	</bean>
-	
+
 	<bean id="attachment3" class="datatype.Url">
 		<property name="link"
 			value="http://www.prueba3.com" />
 	</bean>
-	
+
 	<bean id="attachment4" class="datatype.Url">
 		<property name="link"
 			value="http://www.prueba4.com" />
 	</bean>
-	
+
 	<bean id="attachment5" class="datatype.Url">
 		<property name="link"
 			value="http://www.prueba5.com" />
 	</bean>
-	
+
 	<bean id="attachment6" class="datatype.Url">
 		<property name="link"
 			value="http://www.prueba6.com" />
 	</bean>
-	
+
 	<bean id="attachment7" class="datatype.Url">
 		<property name="link"
 			value="http://www.prueba7.com" />
 	</bean>
-	
+
+    <bean id="attachment8" class="datatype.Url">
+        <property name="link"
+                  value="http://www.item1-link.com" />
+    </bean>
+
+    <bean id="attachment9" class="datatype.Url">
+        <property name="link"
+                  value="http://www.item1-picture.com" />
+    </bean>
+
+    <bean id="attachment10" class="datatype.Url">
+        <property name="link"
+                  value="http://www.item2-link.com" />
+    </bean>
+
+    <bean id="attachment11" class="datatype.Url">
+        <property name="link"
+                  value="http://www.item2-picture.com" />
+    </bean>
+
+    <bean id="attachment12" class="datatype.Url">
+        <property name="link"
+                  value="http://www.item3-link.com" />
+    </bean>
+
+    <bean id="attachment13" class="datatype.Url">
+        <property name="link"
+                  value="http://www.item3-picture.com" />
+    </bean>
+
+    <bean id="attachment14" class="datatype.Url">
+        <property name="link"
+                  value="http://www.item4-link.com" />
+    </bean>
+
+    <bean id="attachment15" class="datatype.Url">
+        <property name="link"
+                  value="http://www.item4-picture.com" />
+    </bean>
+
 	<!-- Application -->
-	
+
 	<bean id="application1" class ="domain.Application">
 		<property name = "moment" value = "14/04/2019 13:00"/>
 		<property name = "explanation" value = "I iterated the list"/>
@@ -795,7 +949,7 @@
 		<property name = "problem" ref ="problem1"/>
 		<property name = "curricula" ref ="curricula1Rookie1Copy"/>
 	</bean>
-	
+
 	<bean id="application2" class ="domain.Application">
 		<property name = "moment" value = "14/04/2019 13:00"/>
 		<property name = "explanation" value = "I used a switch for all cases"/>
@@ -830,9 +984,9 @@
 		<property name = "problem" ref ="problem1"/>
 		<property name = "curricula" ref="curriculaRookie2Copy3"/>
 	</bean>
-	
+
 	<!-- Configuration -->
-	
+
 	<bean id="configuration1" class="domain.Configuration">
 		<property name="maxResults" value="10"/>
 		<property name="maxTime" value="1"/>
@@ -858,5 +1012,5 @@
 			</list>
 		</property>
 	</bean>
-	
+
 </beans>
