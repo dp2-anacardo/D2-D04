@@ -41,14 +41,13 @@ public class ProvideService {
 		final Collection<SocialProfile> profiles;
 		final Collection<Message> sent;
 		final Collection<Message> received;
-		final Collection<Curricula> curriculas;
 		final Provider a = new Provider();
 		userAccount = new UserAccount();
 		auth = new Authority();
-		authorities = new ArrayList<Authority>();
-		profiles = new ArrayList<SocialProfile>();
-		sent = new ArrayList<Message>();
-		received = new ArrayList<Message>();
+		authorities = new ArrayList<>();
+		profiles = new ArrayList<>();
+		sent = new ArrayList<>();
+		received = new ArrayList<>();
 
 		auth.setAuthority(Authority.PROVIDER);
 		authorities.add(auth);
@@ -125,6 +124,7 @@ public class ProvideService {
 			result.setAddress(p.getAddress());
 			result.setVatNumber(p.getVatNumber());
 			result.setSurname(p.getSurname());
+			result.setMake(p.getMake());
 			this.validator.validate(p, binding);
 		}
 		return result;
