@@ -16,6 +16,8 @@ import domain.Actor;
 import domain.Administrator;
 import domain.Company;
 import domain.Rookie;
+import domain.Auditor;
+import domain.Provider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
@@ -24,10 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import security.LoginService;
 import security.UserAccount;
-import services.ActorService;
-import services.AdministratorService;
-import services.CompanyService;
-import services.RookieService;
+import services.*;
 
 @Controller
 @RequestMapping("/profile")
@@ -44,6 +43,12 @@ public class ProfileController extends AbstractController {
 
 	@Autowired
 	private CompanyService			companyService;
+
+	@Autowired
+	private AuditorService			auditorService;
+
+	@Autowired
+	private ProviderService			providerService;
 
 
 	@RequestMapping(value = "/myInformation", method = RequestMethod.GET)
@@ -71,6 +76,20 @@ public class ProfileController extends AbstractController {
 			company = this.companyService.findOne(user.getId());
 			Assert.notNull(company);
 			result.addObject("company", company);
+		}
+
+		if (userAccount.getAuthorities().iterator().next().getAuthority().equals("AUDITOR")) {
+			Auditor a;
+			a = this.auditorService.findOne(user.getId());
+			Assert.notNull(a);
+			result.addObject("auditor", a);
+		}
+
+		if (userAccount.getAuthorities().iterator().next().getAuthority().equals("PROVIDER")) {
+			Provider p;
+			p = this.providerService.findOne(user.getId());
+			Assert.notNull(p);
+			result.addObject("provider", p);
 		}
 		return result;
 	}

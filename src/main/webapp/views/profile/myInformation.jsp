@@ -85,6 +85,56 @@
 
 </security:authorize>
 
+<security:authorize access="hasRole('AUDITOR')">
+
+	<acme:showtext code="actor.name" value="${auditor.name}" fieldset="true"/>
+	<br>
+	<acme:showtext code="actor.surname" value="${auditor.surname}" fieldset="true"/>
+	<br>
+	<acme:showtext code="actor.email" value="${auditor.email}" fieldset="true"/>
+	<br>
+	<acme:showtext code="actor.phoneNumber" value="${auditor.phoneNumber}" fieldset="true"/>
+	<br>
+	<acme:showtext code="actor.vatNumber" value="${auditor.vatNumber}" fieldset="true"/>
+	<br>
+	<acme:showtext code="actor.address" value="${auditor.address}" fieldset="true"/>
+	<br>
+
+	<input type="button" name="Edit PD" value="<spring:message code="edit.PD" />"
+		   onclick="javascript: relativeRedir('/auditor/auditor/edit.do');" />
+	<input type="button" name="socialProfiles" value="<spring:message code="socialProfile" />"
+		   onclick="javascript: relativeRedir('/socialProfile/admin,company,rookie/list.do');" />
+	<input type="button" name="socialProfiles" value="<spring:message code="profile.export" />"
+		   onclick="javascript: relativeRedir('/profile/exportJSON.do');" />
+
+</security:authorize>
+
+<security:authorize access="hasRole('PROVIDER')">
+
+	<acme:showtext code="actor.name" value="${provider.name}" fieldset="true"/>
+	<br>
+	<acme:showtext code="actor.surname" value="${provider.surname}" fieldset="true"/>
+	<br>
+	<acme:showtext code="actor.make" value="${provider.make}" fieldset="true"/>
+	<br>
+	<acme:showtext code="actor.email" value="${provider.email}" fieldset="true"/>
+	<br>
+	<acme:showtext code="actor.phoneNumber" value="${provider.phoneNumber}" fieldset="true"/>
+	<br>
+	<acme:showtext code="actor.vatNumber" value="${provider.vatNumber}" fieldset="true"/>
+	<br>
+	<acme:showtext code="actor.address" value="${provider.address}" fieldset="true"/>
+	<br>
+
+	<input type="button" name="Edit PD" value="<spring:message code="edit.PD" />"
+		   onclick="javascript: relativeRedir('/provider/provicer/edit.do');" />
+	<input type="button" name="socialProfiles" value="<spring:message code="socialProfile" />"
+		   onclick="javascript: relativeRedir('/socialProfile/admin,company,rookie/list.do');" />
+	<input type="button" name="socialProfiles" value="<spring:message code="profile.export" />"
+		   onclick="javascript: relativeRedir('/profile/exportJSON.do');" />
+
+</security:authorize>
+
 <acme:cancel url="/" code="messageBox.goBack"/>
 
 
