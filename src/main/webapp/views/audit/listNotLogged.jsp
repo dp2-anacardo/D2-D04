@@ -19,19 +19,19 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net" %>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
-<acme:showtext fieldset="true" code="audit.moment" value="${audit.moment}"/>
-<acme:showtext fieldset="true" code="audit.text" value="${audit.text}"/>
-<acme:showtext fieldset="true" code="audit.score" value="${audit.score}"/>
-
-<fieldset><legend><spring:message code="audit.isFinal"/></legend>
-    <jstl:if test="${row.isFinal eq true}">
-        <spring:message code="audit.final"/>
-    </jstl:if>
-    <jstl:if test="${row.isFinal eq false}">
-        <spring:message code="audit.draft"/>
-    </jstl:if>
-</fieldset>
-
-<acme:cancel url="audit/auditor/list.do" code="audit.back"/>
+<display:table name="audits" id="row" requestURI="${requestURI}"
+               pagesize="5" class="displaytag">
 
 
+    <spring:message code="audit.moment" var="moment"/>
+    <display:column property="moment" title="${moment}"/>
+
+    <spring:message code="audit.text" var="text"/>
+    <display:column property="text" title="${text}"/>
+
+    <spring:message code="audit.score" var="score"/>
+    <display:column property="score" title="${score}"/>
+
+</display:table>
+
+<acme:cancel url="position/listNotLogged.do" code="audit.back"/>

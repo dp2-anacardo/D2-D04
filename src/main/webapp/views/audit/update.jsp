@@ -19,47 +19,30 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net" %>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
-<form:form modelAttribute="problem">
+<security:authorize access="hasRole('AUDITOR')">
+    <form:form action="audit/auditor/update.do" modelAttribute="audit">
 
-    <security:authorize
-            access="hasRole('COMPANY')">
+        <form:hidden path="id" readOnly="true"/>
 
-        <form:hidden path="id" />
-
-        <%-- Title --%>
-        <acme:textbox code="problem.title" path="title"/>
+        <acme:textbox code="audit.text" path="text"/>
         <br>
 
-        <%-- Statement --%>
-        <acme:textarea code="problem.statement" path="statement"/>
+        <acme:textarea code="audit.score" path="score"/>
         <br>
 
-        <%-- Hint --%>
-        <acme:textbox code="problem.hint" path="hint"/>
-        <br>
-
-        <%-- Attachment --%>
-        <acme:textbox code="problem.attachment" path="attachment"/>
-        <jstl:if test="${not empty attachmentError }">
-            <p class="error">${attachmentError }</p>
-        </jstl:if>
-        <br>
-
-        <%-- Is Final --%>
-        <spring:message code="problem.isFinal"/>
+        <spring:message code="audit.isFinal"/>
         <form:select path="isFinal" multiple="false">
-            <form:option value="0"><spring:message code="problem.isFinal.draft"/></form:option>
-            <form:option value="1"><spring:message code="problem.isFinal.final"/></form:option>
+            <form:option value="0"><spring:message code="audit.draft"/></form:option>
+            <form:option value="1"><spring:message code="audit.final"/></form:option>
         </form:select>
         <form:errors class="error" path="isFinal"/>
         <br>
 
-        <%-- Buttons --%>
-        <acme:submit name="update" code="problem.update"/>
+        <acme:submit name="update" code="audit.update"/>
 
-        <acme:submit name="delete" code="problem.delete"/>
+        <acme:submit name="delete" code="audit.delete"/>
 
-        <acme:cancel url="problem/company/list.do" code="problem.cancel"/>
+        <acme:cancel url="audit/auditor/list.do" code="audit.cancel"/>
 
-    </security:authorize>
-</form:form>
+    </form:form>
+</security:authorize>

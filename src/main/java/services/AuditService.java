@@ -3,6 +3,7 @@ package services;
 import domain.Actor;
 import domain.Audit;
 import domain.Auditor;
+import domain.Position;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -24,6 +25,8 @@ public class AuditService {
     private ActorService actorService;
     @Autowired
     private AuditorService auditorService;
+    @Autowired
+    private PositionService positionService;
     @Autowired
     private Validator validator;
 
@@ -72,18 +75,28 @@ public class AuditService {
         return result;
     }
 
-    public Audit save(Audit audit){
+    public Audit saveCreate(Audit audit, int positionId){
         Assert.notNull(audit);
         final Actor actor = this.actorService.getActorLogged();
         Assert.isTrue(actor instanceof Auditor);
         final Audit result;
 
-        if (audit.getId() == 0)
-            result = this.auditRepository.save(audit);
-        else {
-            Assert.isTrue(audit.getAuditor() == actor);
-            result = this.auditRepository.save(audit);
-        }
+        result = this.auditRepository.save(audit);
+        Position position = this.positionService.findOne(positionId);
+        position.getAudits().add(result);
+
+        return result;
+    }
+
+    public Audit saveUpdate(Audit audit){
+        Assert.notNull(audit);
+        final Actor actor = this.actorService.getActorLogged();
+        Assert.isTrue(actor instanceof Auditor);
+        final Audit result;
+
+        Assert.isTrue(audit.getAuditor() == actor);
+        result = this.auditRepository.save(audit);
+
         return result;
     }
 
@@ -104,6 +117,14 @@ public class AuditService {
         Auditor auditor = this.auditorService.findOne(actorService.getActorLogged().getId());
 
         result = this.auditRepository.getAuditsByAuditor(auditor.getId());
+
+        return result;
+    }
+
+    public Collection<Audit> getAuditsFinalByPosition(int positionId){
+        Collection<Audit> result;
+
+        result = this.auditRepository.getAuditsFinalByPosition(positionId);
 
         return result;
     }
