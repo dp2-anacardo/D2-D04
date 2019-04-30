@@ -77,7 +77,7 @@
 	<acme:textbox code="credit.number" path="number"/>
 	<br />
 	*
-	<acme:textbox code="credit.expiration" path="expiration"/>
+	<acme:textbox code="credit.expiration" path="expiration" placeholder="MM/YY"/>
 	<br />
 	*
 	<acme:textbox code="credit.cvvCode" path="cvvCode"/>
