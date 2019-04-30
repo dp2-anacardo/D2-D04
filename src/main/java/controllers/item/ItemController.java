@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import services.ActorService;
 import services.ItemService;
+import services.ProviderService;
 
 import javax.validation.ValidationException;
 import java.util.Collection;
@@ -29,6 +30,9 @@ public class ItemController extends AbstractController {
 
     @Autowired
     private ActorService actorService;
+
+    @Autowired
+    private ProviderService providerService;
 
     @ExceptionHandler(TypeMismatchException.class)
     public ModelAndView handleMismatchException(final TypeMismatchException oops) {
@@ -54,6 +58,25 @@ public class ItemController extends AbstractController {
         result.addObject("items", items);
         result.addObject("requestURI", "item/provider/list.do");
 
+        return result;
+    }
+
+    // List Not Logged --------------------------------------------------
+    @RequestMapping(value = "/listNotLogged", method = RequestMethod.GET)
+    public ModelAndView listNotLogged(@RequestParam int providerId){
+        ModelAndView result;
+        Collection<Item> items;
+        try {
+            Provider p = this.providerService.findOne(providerId);
+            Assert.notNull(p);
+            items = this.itemService.findAllByProvider(providerId);
+
+            result = new ModelAndView("item/listNotLogged");
+            result.addObject("items", items);
+            result.addObject("RequestURI", "item/listNotLogged.do");
+        } catch (Throwable oops){
+            result = new ModelAndView("redirect:/");
+        }
         return result;
     }
 

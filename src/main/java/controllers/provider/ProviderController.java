@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import services.ProviderService;
 
-import java.util.List;
+import java.util.Collection;
 
 @Controller
 @RequestMapping("/provider")
@@ -21,9 +21,9 @@ public class ProviderController extends AbstractController {
     @RequestMapping(value = "/listNotLogged", method = RequestMethod.GET)
     public ModelAndView listNotLogged(){
         ModelAndView result;
-        //List<Provider> providers = this.providerService.findAll();
+        Collection<Provider> providers = this.providerService.findAll();
         result = new ModelAndView("provider/listNotLogged");
-        //gitresult.addObject("providers", providers);
+        result.addObject("providers", providers);
         result.addObject("RequestURI", "provider/listNotLogged.do");
 
         return result;
