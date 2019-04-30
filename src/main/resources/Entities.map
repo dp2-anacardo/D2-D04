@@ -1,6 +1,5 @@
 #./src/main/resources/Entities.map
-<<<<<<< HEAD
-#Tue Apr 30 13:59:21 CEST 2019
+#Tue Apr 30 15:29:01 CEST 2019
 problem6=724
 application4=736
 problem5=723
@@ -65,58 +64,3 @@ position2=717
 educationalDataRookie1Copy=698
 position1=716
 miscellaneousDataRookie1Copy=696
-=======
-#Mon Apr 29 18:36:56 CEST 2019
-problem6=462
-application4=470
-problem5=461
-application3=469
-problem4=460
-application2=468
-message3=467
-problem3=459
-positionDataRookie1Copy=443
-application1=472
-message2=465
-problem2=458
-problem1=457
-educationalDataRookie1=437
-message1=428
-configuration1=463
-curriculaRookie2Copy=448
-curricula1Rookie1Copy=439
-personalData1Rookie1Copy=441
-finderRookie2=433
-curriculaRookie2Copy3=452
-finderRookie1=432
-curriculaRookie2Copy2=450
-personalDataRookie2Copy3=453
-personalDataRookie2Copy2=451
-curricula1Rookie1=434
-socialProfileRookie1=431
-curricula2Rookie1=444
-personalData1Rookie1=436
-rookie2=466
-rookie1=471
-personalData2Rookie1=445
-miscellaneousDataRookie1=435
-positionDataRookie1=438
-socialProfileCompany1=430
-company2=429
-company1=427
-userAccount5=425
-userAccount4=424
-userAccount3=423
-userAccount2=422
-userAccount1=421
-personalDataRookie2=447
-personalDataRookie2Copy=449
-curriculaRookie2=446
-admin1=464
-position3=456
-socialProfileAdmin1=426
-position2=455
-educationalDataRookie1Copy=442
-miscellaneousDataRookie1Copy=440
-position1=454
->>>>>>> sergi
