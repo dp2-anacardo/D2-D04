@@ -96,4 +96,16 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 
     @Query("select (count(f1)*100.0)/(select count(f2) from Finder f2) from Finder f1 where f1.positions is empty")
     Double getRatioOfEmptyFinders();
+
+    @Query("select avg(a.score)from Audit a where a.isFinal = true")
+    Double getAvgAuditScore();
+
+    @Query("select min(a.score)from Audit a where a.isFinal = true")
+    Double getMinimumAuditScore();
+
+    @Query("select max(a.score) from Audit a where a.isFinal = true")
+    Double getMaximumAuditScore();
+
+    @Query("select stddev(a.score) from Audit a where a.isFinal = true")
+    Double getStddevAuditScore();
 }
