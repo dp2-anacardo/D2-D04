@@ -37,6 +37,7 @@
         <security:intercept-url pattern="/gdpr/show.do" access="permitAll"/>
         <security:intercept-url pattern="/rookie/create.do" access="permitAll"/>
         <security:intercept-url pattern="/company/create.do" access="permitAll"/>
+        <security:intercept-url pattern="/provider/create.do" access="permitAll"/>
         <security:intercept-url pattern="/company/list.do" access="permitAll"/>
         <security:intercept-url pattern="/profile/**" access="isAuthenticated()"/>
         <security:intercept-url pattern="/socialProfile/**" access="isAuthenticated()"/>
@@ -45,6 +46,7 @@
         <security:intercept-url pattern="/finder/rookie/**" access="hasRole('ROOKIE')"/>
         <security:intercept-url pattern="/application/company/**" access="hasRole('COMPANY')"/>
         <security:intercept-url pattern="/administrator/administrator/**" access="hasRole('ADMIN')"/>
+        <security:intercept-url pattern="/administrator/auditor/create.do" access="hasRole('ADMIN')"/>
 
         <security:intercept-url pattern="/audit/auditor/**" access="hasRole('AUDITOR')"/>
 

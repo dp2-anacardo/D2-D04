@@ -48,4 +48,9 @@
 		<put-attribute name="body" value="/views/problem/show.jsp" />
 	</definition>
 
+	<definition name="provider/create" extends="master.page">
+		<put-attribute name="title" value="Registro" />
+		<put-attribute name="body" value="/views/provider/register.jsp" />
+	</definition>
+
 </tiles-definitions>
