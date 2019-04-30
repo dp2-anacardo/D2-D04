@@ -33,7 +33,6 @@ public class Audit extends DomainEntity{
     }
 
     @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
-    @NotBlank
     public String getText() {
         return text;
     }
