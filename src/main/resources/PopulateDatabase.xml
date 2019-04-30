@@ -647,6 +647,35 @@
         <property name="provider" ref="provider2"/>
     </bean>
 
+	<!-- Sponsorships -->
+	<bean id="sponsorship1" class="domain.Sponsorship">
+		<property name="provider" ref="provider1"/>
+		<property name="position" ref="position1"/>
+		<property name="banner" value="https://www.sponsorship1.com"/>
+		<property name="creditCard" ref="creditCardProvider1"/>
+	</bean>
+
+	<bean id="sponsorship2" class="domain.Sponsorship">
+		<property name="provider" ref="provider1"/>
+		<property name="position" ref="position1"/>
+		<property name="banner" value="https://www.sponsorship2.com"/>
+		<property name="creditCard" ref="creditCardProvider1"/>
+	</bean>
+
+	<bean id="sponsorship3" class="domain.Sponsorship">
+		<property name="provider" ref="provider2"/>
+		<property name="position" ref="position1"/>
+		<property name="banner" value="https://www.sponsorship3.com"/>
+		<property name="creditCard" ref="creditCardProvider2"/>
+	</bean>
+
+	<bean id="sponsorship4" class="domain.Sponsorship">
+		<property name="provider" ref="provider2"/>
+		<property name="position" ref="position1"/>
+		<property name="banner" value="https://www.sponsorship4.com"/>
+		<property name="creditCard" ref="creditCardProvider2"/>
+	</bean>
+
 	<!-- Messages -->
 
 	<bean id="message1" class ="domain.Message">
