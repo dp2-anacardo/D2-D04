@@ -24,4 +24,7 @@ public interface PositionRepository extends JpaRepository<Position, Integer> {
 	@Query("select p from Position p join p.company c where c.id = ?1")
 	Collection<Position> getPositionsByCompanyAll(int companyId);
 
+	@Query("select p from Position p join p.audits a where a.id =?1")
+	Collection<Position> getPositionByAudit(int auditId);
+
 }

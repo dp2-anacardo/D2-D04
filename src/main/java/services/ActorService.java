@@ -276,15 +276,19 @@ public class ActorService {
 			//Borrado items de un provider
 			Collection<Item> items = new ArrayList<>();
 			items = this.itemService.findAllByProvider(p.getId());
-			for(Item i:items){
-				this.itemService.delete(i);
+			if(!(items.isEmpty())) {
+				for (Item i : items) {
+					this.itemService.delete(i);
+				}
 			}
 
 			//Borrado sponsorship de un provider
 			Collection<Sponsorship> sponsorships=new ArrayList<>();
 			sponsorships=this.sponsorshipService.findAllByProvider(p.getId());
-			for(Sponsorship s : sponsorships){
-				this.sponsorshipService.delete(s);
+			if(!(sponsorships.isEmpty())) {
+				for (Sponsorship s : sponsorships) {
+					this.sponsorshipService.delete(s);
+				}
 			}
 			this.providerService.delete(p);
 		}
@@ -295,11 +299,18 @@ public class ActorService {
 			final Auditor a = this.auditorService.findOne(user.getId());
 
 			//Borrado audit de auditor
-			Collection<Audit> audits = new ArrayList<>();
-			audits = this.auditService.getAuditsByAuditor();
-			for(Audit au: audits){
-				this.auditService.delete(au);
-			}
+//			Collection<Audit> audits = new ArrayList<>();
+//			audits = this.auditService.getAuditsByAuditor();
+//			if(!(audits.isEmpty())) {
+//				for (Audit au : audits) {
+//					Collection<Position> positions = new ArrayList<>();
+//					positions = this.positionService.getPositionByAudit(au.getId());
+//					for (Position p : positions) {
+//						p.setAuditor(null);
+//					}
+//					this.auditService.delete(au);
+//				}
+//			}
 			this.auditorService.delete(a);
 		}
 	}
