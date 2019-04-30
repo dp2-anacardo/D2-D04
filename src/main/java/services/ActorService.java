@@ -46,6 +46,16 @@ public class ActorService {
 	private ProblemService			problemService;
 	@Autowired
 	private PositionService			positionService;
+	@Autowired
+	private ProviderService			providerService;
+	@Autowired
+	private AuditorService			auditorService;
+	@Autowired
+	private ItemService			itemService;
+	@Autowired
+	private SponsorshipService		sponsorshipService;
+	@Autowired
+	private AuditService		auditService;
 
 
 	public Collection<Actor> findAll() {
@@ -257,6 +267,40 @@ public class ActorService {
 			}
 
 			this.companyService.delete(company);
+		}
+
+		//Borrado del provider
+		if (userAccount.getAuthorities().iterator().next().getAuthority().equals("PROVIDER")) {
+			final Provider p = this.providerService.findOne(user.getId());
+
+			//Borrado items de un provider
+			Collection<Item> items = new ArrayList<>();
+			items = this.itemService.findAllByProvider(p.getId());
+			for(Item i:items){
+				this.itemService.delete(i);
+			}
+
+			//Borrado sponsorship de un provider
+			Collection<Sponsorship> sponsorships=new ArrayList<>();
+			sponsorships=this.sponsorshipService.findAllByProvider(p.getId());
+			for(Sponsorship s : sponsorships){
+				this.sponsorshipService.delete(s);
+			}
+			this.providerService.delete(p);
+		}
+
+		//Borrado si auditor
+		if (userAccount.getAuthorities().iterator().next().getAuthority().equals("AUDITOR")) {
+
+			final Auditor a = this.auditorService.findOne(user.getId());
+
+			//Borrado audit de auditor
+			Collection<Audit> audits = new ArrayList<>();
+			audits = this.auditService.getAuditsByAuditor();
+			for(Audit au: audits){
+				this.auditService.delete(au);
+			}
+			this.auditorService.delete(a);
 		}
 	}
 
