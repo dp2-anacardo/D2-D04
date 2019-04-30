@@ -130,7 +130,7 @@ public class AuditController extends AbstractController {
 
         try {
             audit = this.auditService.reconstruct(audit, binding);
-            this.auditService.save(audit, positionId);
+            this.auditService.saveCreate(audit, positionId);
             result = new ModelAndView("redirect:/audit/auditor/list.do");
         }catch (ValidationException v){
             result = new ModelAndView("audit/auditor/create");
@@ -164,141 +164,46 @@ public class AuditController extends AbstractController {
         }
         return result;
     }
-//
-//    // Update Save -------------------------------------------------------------
-//    @RequestMapping(value = "company/update", method = RequestMethod.POST, params = "update")
-//    public ModelAndView updateSave(@ModelAttribute("problem") Problem problem, final BindingResult binding) {
-//        ModelAndView result;
-//        Problem prblm;
-//
-//        try {
-//            problem = this.problemService.reconstruct(problem, binding);
-//            problem = this.problemService.save(problem);
-//            result = new ModelAndView("redirect:list.do");
-//        } catch (final ValidationException e) {
-//            result = this.updateModelAndView(problem, null);
-//            for (final ObjectError oe : binding.getAllErrors())
-//                if (oe.getDefaultMessage().equals("URL incorrecta") || oe.getDefaultMessage().equals("Invalid URL"))
-//                    result.addObject("attachmentError", oe.getDefaultMessage());
-//        } catch (final Throwable oops) {
-//            result = this.updateModelAndView(problem, "problem.commit.error");
-//        }
-//        return result;
-//    }
-//
-//    // Display ---------------------------------------
-//    @RequestMapping(value = "show", method = RequestMethod.GET)
-//    public ModelAndView display(@RequestParam final int problemID) {
-//        ModelAndView result;
-//        Problem problem;
-//
-//        try {
-//            final Actor principal = this.actorService.getActorLogged();
-//            if (principal instanceof Company) {
-//                problem = this.problemService.findOne(problemID);
-//                Assert.isTrue(this.problemService.findAllByCompany(principal.getId()).contains(problem));
-//            } else {
-//                //TODO Caso Rookie ?
-//            }
-//            problem = this.problemService.findOne(problemID);
-//        } catch (final Exception e) {
-//            result = new ModelAndView("redirect:/");
-//            return result;
-//        }
-//
-//        result = new ModelAndView("problem/show");
-//        result.addObject("problem", problem);
-//
-//        return result;
-//    }
-//
-//    // Delete GET ------------------------------------------------------
-//    @RequestMapping(value = "company/delete", method = RequestMethod.GET)
-//    public ModelAndView deleteGet(@RequestParam final int problemID) {
-//        ModelAndView result;
-//        Problem problem;
-//        Collection<Problem> problems;
-//
-//        try {
-//            try {
-//                final Actor principal = this.actorService.getActorLogged();
-//                problem = this.problemService.findOne(problemID);
-//                problems = this.problemService.findAllByCompany(principal.getId());
-//                Assert.isTrue(problems.contains(problem));
-//                Assert.isTrue(problem.getIsFinal() == false);
-//            } catch (final Exception e) {
-//                result = new ModelAndView("redirect:/");
-//                return result;
-//            }
-//            this.problemService.delete(problem);
-//            result = new ModelAndView("redirect:list.do");
-//        } catch (final Throwable oops) {
-//            problem = this.problemService.findOne(problemID);
-//            result = this.updateModelAndView(problem, "problem.commit.error");
-//        }
-//
-//        return result;
-//    }
-//
-//    // Delete POST ------------------------------------------------------
-//    @RequestMapping(value = "company/update", method = RequestMethod.POST, params = "delete")
-//    public ModelAndView deletePost(@ModelAttribute("problem") Problem problem, final BindingResult binding) {
-//        ModelAndView result;
-//        Collection<Problem> problems;
-//
-//        try {
-//            try {
-//                this.problemService.delete(problem);
-//                result = new ModelAndView("redirect:list.do");
-//            } catch (final Exception e) {
-//                result = new ModelAndView("redirect:/");
-//                return result;
-//            }
-//        } catch (final Throwable oops) {
-//            result = this.updateModelAndView(problem, "problem.commit.error");
-//        }
-//
-//        return result;
-//    }
-//
-//    // Ancillary methods ------------------------------------------------------
-//
-//    protected ModelAndView createModelAndView(final Problem problem) {
-//        ModelAndView result;
-//
-//        result = this.createModelAndView(problem, null);
-//
-//        return result;
-//    }
-//
-//    protected ModelAndView createModelAndView(final Problem problem, final String message) {
-//        ModelAndView result;
-//
-//        result = new ModelAndView("problem/company/create");
-//
-//        result.addObject("problem", problem);
-//        result.addObject("message", message);
-//
-//        return result;
-//    }
-//
-//    protected ModelAndView updateModelAndView(final Problem problem) {
-//        ModelAndView result;
-//
-//        result = this.updateModelAndView(problem, null);
-//
-//        return result;
-//    }
-//
-//    protected ModelAndView updateModelAndView(final Problem problem, final String message) {
-//        ModelAndView result;
-//
-//        result = new ModelAndView("problem/company/update");
-//
-//        result.addObject("problem", problem);
-//        result.addObject("message", message);
-//
-//        return result;
-//    }
 
+    // Update Save -------------------------------------------------------------
+    @RequestMapping(value = "auditor/update", method = RequestMethod.POST, params = "update")
+    public ModelAndView updateSave(@ModelAttribute("audit") Audit audit, final BindingResult binding) {
+        ModelAndView result;
+        if(StringUtils.isEmpty(audit.getText())) {
+            binding.rejectValue("text", "error.text");
+            result = new ModelAndView("audit/auditor/update");
+            result.addObject("audit",audit);
+        }
+
+        try {
+            audit = this.auditService.reconstruct(audit, binding);
+            this.auditService.saveUpdate(audit);
+            result = new ModelAndView("redirect:/audit/auditor/list.do");
+        }catch (ValidationException v){
+            result = new ModelAndView("audit/auditor/update");
+            result.addObject("audit", audit);
+        }catch (Throwable oops){
+            result = new ModelAndView("audit/auditor/update");
+            result.addObject("audit",audit);
+            result.addObject("message","audit.commit.error");
+        }
+        return result;
+    }
+
+
+    // Delete ------------------------------------------------------
+    @RequestMapping(value = "company/update", method = RequestMethod.POST, params = "delete")
+    public ModelAndView delete(@ModelAttribute("audit") Audit audit) {
+        ModelAndView result;
+
+        try {
+             this.auditService.delete(audit);
+             result = new ModelAndView("redirect:/audit/auditor/list.do");
+        } catch (final Exception e) {
+             result = new ModelAndView("redirect:/audit/auditor/update.do");
+             result.addObject("audit", audit);
+             return result;
+        }
+        return result;
+    }
 }

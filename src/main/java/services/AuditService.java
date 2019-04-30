@@ -75,20 +75,28 @@ public class AuditService {
         return result;
     }
 
-    public Audit save(Audit audit, int positionId){
+    public Audit saveCreate(Audit audit, int positionId){
         Assert.notNull(audit);
         final Actor actor = this.actorService.getActorLogged();
         Assert.isTrue(actor instanceof Auditor);
         final Audit result;
 
-        if (audit.getId() == 0) {
-            result = this.auditRepository.save(audit);
-            Position position = this.positionService.findOne(positionId);
-            position.getAudits().add(result);
-        }else {
-            Assert.isTrue(audit.getAuditor() == actor);
-            result = this.auditRepository.save(audit);
-        }
+        result = this.auditRepository.save(audit);
+        Position position = this.positionService.findOne(positionId);
+        position.getAudits().add(result);
+
+        return result;
+    }
+
+    public Audit saveUpdate(Audit audit){
+        Assert.notNull(audit);
+        final Actor actor = this.actorService.getActorLogged();
+        Assert.isTrue(actor instanceof Auditor);
+        final Audit result;
+
+        Assert.isTrue(audit.getAuditor() == actor);
+        result = this.auditRepository.save(audit);
+
         return result;
     }
 
