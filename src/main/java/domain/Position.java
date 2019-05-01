@@ -161,7 +161,6 @@ public class Position extends DomainEntity {
 		this.applications = applications;
 	}
 
-	@Valid
 	@OneToMany
 	public Collection<Audit> getAudits() {
 		return audits;

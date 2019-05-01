@@ -204,7 +204,7 @@ public class AuditController extends AbstractController {
         try {
              this.auditService.delete(audit);
              result = new ModelAndView("redirect:/audit/auditor/list.do");
-        } catch (final Exception e) {
+        } catch (final Throwable oops) {
              result = new ModelAndView("audit/auditor/update");
              result.addObject("audit", audit);
              return result;
