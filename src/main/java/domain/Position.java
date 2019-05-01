@@ -29,7 +29,6 @@ public class Position extends DomainEntity {
 	private String				ticker;
 	private boolean				isFinal;
 	private boolean				isCancelled;
-	private Auditor auditor;
 
 
 	//Getters and setters ---------------------------------------------------------------------------
@@ -160,16 +159,6 @@ public class Position extends DomainEntity {
 
 	public void setApplications(final Collection<Application> applications) {
 		this.applications = applications;
-	}
-
-	@Valid
-	@OneToOne(optional=true)
-	public Auditor getAuditor() {
-		return auditor;
-	}
-
-	public void setAuditor(Auditor auditor) {
-		this.auditor = auditor;
 	}
 
 	@Valid

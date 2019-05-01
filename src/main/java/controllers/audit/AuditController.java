@@ -101,10 +101,15 @@ public class AuditController extends AbstractController {
         ModelAndView result;
         Audit audit;
         Position position;
+        Auditor auditor = this.auditorService.findOne(actorService.getActorLogged().getId());
 
         try {
+            Collection<Auditor> auditors = this.positionService.getAuditorsByPosition(positionId);
             Assert.notNull(positionId);
             position = this.positionService.findOne(positionId);
+            Assert.isTrue(position.getIsFinal());
+            Assert.isTrue(!position.getIsCancelled());
+            Assert.isTrue(auditors.contains(auditor));
             Assert.notNull(position);
             audit = this.auditService.create();
             result = new ModelAndView("audit/auditor/create");
