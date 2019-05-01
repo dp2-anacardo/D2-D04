@@ -27,7 +27,7 @@
         <acme:textbox code="audit.text" path="text"/>
         <br>
 
-        <acme:textarea code="audit.score" path="score"/>
+        <acme:textbox code="audit.score" path="score"/>
         <br>
 
         <spring:message code="audit.isFinal"/>

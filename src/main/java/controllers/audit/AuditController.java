@@ -109,7 +109,7 @@ public class AuditController extends AbstractController {
             position = this.positionService.findOne(positionId);
             Assert.isTrue(position.getIsFinal());
             Assert.isTrue(!position.getIsCancelled());
-            Assert.isTrue(auditors.contains(auditor));
+            Assert.isTrue(!auditors.contains(auditor));
             Assert.notNull(position);
             audit = this.auditService.create();
             result = new ModelAndView("audit/auditor/create");
@@ -197,7 +197,7 @@ public class AuditController extends AbstractController {
 
 
     // Delete ------------------------------------------------------
-    @RequestMapping(value = "company/update", method = RequestMethod.POST, params = "delete")
+    @RequestMapping(value = "auditor/update", method = RequestMethod.POST, params = "delete")
     public ModelAndView delete(@ModelAttribute("audit") Audit audit) {
         ModelAndView result;
 
@@ -205,7 +205,7 @@ public class AuditController extends AbstractController {
              this.auditService.delete(audit);
              result = new ModelAndView("redirect:/audit/auditor/list.do");
         } catch (final Exception e) {
-             result = new ModelAndView("redirect:/audit/auditor/update.do");
+             result = new ModelAndView("audit/auditor/update");
              result.addObject("audit", audit);
              return result;
         }

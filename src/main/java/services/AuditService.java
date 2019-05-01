@@ -14,6 +14,7 @@ import repositories.AuditRepository;
 import javax.transaction.Transactional;
 import javax.validation.ValidationException;
 import java.util.Collection;
+import java.util.Date;
 
 @Service
 @Transactional
@@ -35,14 +36,18 @@ public class AuditService {
         Audit result;
         if (audit.getId() == 0) {
             result = this.create();
-            result.setMoment(audit.getMoment());
+            result.setMoment(new Date());
+            result.setText(audit.getText());
+            result.setScore(audit.getScore());
+            result.setIsFinal(audit.getIsFinal());
             result.setAuditor(auditorService.findOne(actorService.getActorLogged().getId()));
 
-        } else
+        } else {
             result = this.auditRepository.findOne(audit.getId());
-        result.setText(audit.getText());
-        result.setScore(audit.getScore());
-        result.setIsFinal(audit.getIsFinal());
+            result.setText(audit.getText());
+            result.setScore(audit.getScore());
+            result.setIsFinal(audit.getIsFinal());
+        }
 
         this.validator.validate(result, binding);
         if (binding.hasErrors())
@@ -51,7 +56,7 @@ public class AuditService {
     }
 
     public Audit create(){
-        Assert.isTrue(actorService.getActorLogged().getUserAccount().getAuthorities().iterator().next().equals("AUDITOR"));
+        Assert.isTrue(actorService.getActorLogged().getUserAccount().getAuthorities().iterator().next().getAuthority().equals("AUDITOR"));
         Audit result;
 
         result = new Audit();
@@ -112,7 +117,7 @@ public class AuditService {
     }
 
     public Collection<Audit> getAuditsByAuditor(){
-        Assert.isTrue(actorService.getActorLogged().getUserAccount().getAuthorities().iterator().next().equals("AUDITOR"));
+        Assert.isTrue(actorService.getActorLogged().getUserAccount().getAuthorities().iterator().next().getAuthority().equals("AUDITOR"));
         Collection<Audit> result;
         Auditor auditor = this.auditorService.findOne(actorService.getActorLogged().getId());
 

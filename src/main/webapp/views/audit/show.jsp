@@ -24,10 +24,10 @@
 <acme:showtext fieldset="true" code="audit.score" value="${audit.score}"/>
 
 <fieldset><legend><spring:message code="audit.isFinal"/></legend>
-    <jstl:if test="${row.isFinal eq true}">
+    <jstl:if test="${audit.isFinal eq true}">
         <spring:message code="audit.final"/>
     </jstl:if>
-    <jstl:if test="${row.isFinal eq false}">
+    <jstl:if test="${audit.isFinal eq false}">
         <spring:message code="audit.draft"/>
     </jstl:if>
 </fieldset>

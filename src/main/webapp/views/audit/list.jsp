@@ -60,6 +60,4 @@
     </display:column>
 </display:table>
 
-<acme:cancel url="audit/auditor/create.do" code="audit.create"/>
-
 <acme:cancel url="/" code="audit.back"/>
