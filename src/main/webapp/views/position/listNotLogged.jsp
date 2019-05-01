@@ -29,4 +29,10 @@
             <spring:message code="application.create" /></a> </display:column>
     </security:authorize>
 
+    <security:authorize access="hasRole('AUDITOR')">
+        <display:column> <a href="audit/auditor/create.do?positionId=${row.id}">
+            <spring:message code="audit.create" /></a> </display:column>
+    </security:authorize>
+
+
 </display:table>
