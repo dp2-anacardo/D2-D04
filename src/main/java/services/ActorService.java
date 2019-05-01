@@ -300,8 +300,8 @@ public class ActorService {
 
 			//Borrado audit de auditor
 //			Collection<Audit> audits = new ArrayList<>();
-//			audits = this.auditService.getAuditsByAuditor();
-//			if(!(audits.isEmpty())) {
+//			if(this.auditService.getAuditsByAuditor().size() != 0){
+//				audits = this.auditService.getAuditsByAuditor();
 //				for (Audit au : audits) {
 //					Collection<Position> positions = new ArrayList<>();
 //					positions = this.positionService.getPositionByAudit(au.getId());
@@ -311,6 +311,7 @@ public class ActorService {
 //					this.auditService.delete(au);
 //				}
 //			}
+
 			this.auditorService.delete(a);
 		}
 	}
