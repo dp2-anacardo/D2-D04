@@ -206,7 +206,7 @@ public class PositionService {
 		return this.positionRepository.getPositionsByCompanyAvailable(companyId);
 	}
 
-	public Collection<Auditor> getAuditorsByPosition(int positionId){
+	public Collection<Auditor> getAuditorsByPosition(int positionId) {
 		return this.positionRepository.getAuditorsByPosition(positionId);
 	}
 }

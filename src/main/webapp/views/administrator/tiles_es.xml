@@ -40,5 +40,10 @@
 		<put-attribute name="title" value="Tabla de estadisticas" />
 		<put-attribute name="body" value="/views/administrator/dashboard.jsp" />
 	</definition>
+
+	<definition name="administrator/auditor/create" extends="master.page">
+		<put-attribute name="title" value="Registrar oyente" />
+		<put-attribute name="body" value="/views/administrator/registerAuditor.jsp" />
+	</definition>
 	
 </tiles-definitions>

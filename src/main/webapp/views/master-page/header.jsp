@@ -28,6 +28,7 @@
 					<li><a href="administrator/actorList.do"><spring:message code="master.page.administrator.actorList" /></a></li>
 					<li><a href="administrator/dashboard.do"><spring:message code="master.page.administrator.dashboard" /></a></li>
 					<li><a href="administrator/administrator/create.do"><spring:message code="master.page.administrator.register" /></a></li>
+					<li><a href="administrator/auditor/create.do"><spring:message code="master.page.administrator.registerAuditor" /></a></li>
 					<jstl:if test="${rebranding==true}">
 						<li><a href="message/admin/rebranding.do"><spring:message code="master.page.administrator.rebranding" /></a></li>
 					</jstl:if>

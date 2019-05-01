@@ -28,4 +28,5 @@ public interface PositionRepository extends JpaRepository<Position, Integer> {
 	@Query("select a.auditor from Position p join p.audits a where p.isFinal=true and p.isCancelled=false and p.id=?1")
 	Collection<Auditor> getAuditorsByPosition(int positionId);
 
+
 }

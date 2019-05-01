@@ -39,6 +39,7 @@
 		<value>/views/item/tiles.xml</value>
 		<value>/views/provider/tiles.xml</value>
 		<value>/views/sponsorship/tiles.xml</value>
+		<value>/views/auditor/tiles.xml</value>
 	</util:list>
 
 </beans>
