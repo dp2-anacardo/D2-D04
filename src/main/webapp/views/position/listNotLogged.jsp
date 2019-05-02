@@ -24,6 +24,12 @@
     <display:column> <a href="company/show.do?companyId=${row.company.id}">
         <spring:message code="position.company" /></a> </display:column>
 
+    <spring:message code="position.audits" var="audits"/>
+    <display:column title="${audits}">
+        <a href="audit/list.do?positionId=${row.id}">
+            <spring:message code="position.audits"/></a>
+    </display:column>
+
     <security:authorize access="hasRole('ROOKIE')">
         <display:column> <a href="application/rookie/create.do?positionId=${row.id}">
             <spring:message code="application.create" /></a> </display:column>

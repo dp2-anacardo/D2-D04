@@ -110,10 +110,15 @@ public class AuditService {
         Auditor auditor = auditorService.findOne(actor.getId());
         Assert.isTrue(actor instanceof Auditor);
         Assert.isTrue(audit.getAuditor().equals(auditor));
-        Assert.isTrue(audit.getIsFinal() == false);
+        Assert.isTrue(!audit.getIsFinal());
         Assert.notNull(audit);
 
-        this.auditRepository.delete(audit.getId());
+        Collection<Audit> audits = this.getAuditsByPositionWithAuditorId(auditor.getId());
+        Assert.isTrue(audits.contains(audit));
+
+        audits.remove(audit);
+
+        this.auditRepository.delete(audit);
     }
 
     public Collection<Audit> getAuditsByAuditor(){
