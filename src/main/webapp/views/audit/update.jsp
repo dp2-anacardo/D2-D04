@@ -42,8 +42,6 @@
 
         <acme:submit name="update" code="audit.update"/>
 
-        <acme:submit name="delete" code="audit.delete"/>
-
         <acme:cancel url="audit/auditor/list.do" code="audit.cancel"/>
 
     </form:form>

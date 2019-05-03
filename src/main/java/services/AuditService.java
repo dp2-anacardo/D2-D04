@@ -113,12 +113,7 @@ public class AuditService {
         Assert.isTrue(!audit.getIsFinal());
         Assert.notNull(audit);
 
-        Collection<Audit> audits = this.getAuditsByPositionWithAuditorId(auditor.getId());
-        Assert.isTrue(audits.contains(audit));
-
-        audits.remove(audit);
-
-        this.auditRepository.delete(audit);
+        this.auditRepository.delete(audit.getId());
     }
 
     public Collection<Audit> getAuditsByAuditor(){

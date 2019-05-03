@@ -211,4 +211,20 @@ public class AuditController extends AbstractController {
         }
         return result;
     }
+
+    @RequestMapping(value="auditor/delete", method = RequestMethod.GET)
+    public ModelAndView delete(@RequestParam int auditId){
+        ModelAndView result;
+
+        try{
+            Audit audit = this.auditService.findOne(auditId);
+            Collection<Audit> audits = this.auditService.getAuditsByAuditor();
+            Assert.isTrue(audits.contains(audit));
+            this.auditService.delete(audit);
+            result = new ModelAndView("redirect:/audit/auditor/list.do");
+        }catch (Throwable oops){
+            result = new ModelAndView("redirect:/audit/auditor/list.do");
+        }
+        return result;
+    }
 }
