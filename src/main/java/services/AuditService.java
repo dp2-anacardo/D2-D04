@@ -113,6 +113,9 @@ public class AuditService {
         Assert.isTrue(!audit.getIsFinal());
         Assert.notNull(audit);
 
+        Position p = this.getPositionByAudit(audit.getId());
+        p.getAudits().remove(audit);
+
         this.auditRepository.delete(audit.getId());
     }
 
@@ -138,6 +141,15 @@ public class AuditService {
         Collection<Audit> result;
 
         result = this.auditRepository.getAuditsByPositionWithAuditorId(auditorId);
+
+        return result;
+    }
+
+    public Position getPositionByAudit(int auditId){
+
+        Position result;
+
+        result = this.auditRepository.getPositionByAudit(auditId);
 
         return result;
     }
