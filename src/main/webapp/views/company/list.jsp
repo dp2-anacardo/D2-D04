@@ -25,6 +25,19 @@
                     href="position/listByCompany.do?companyId=${row.id}">
                 <spring:message code="company.positions" />
             </a>
+
+        </display:column>
+
+        <spring:message code="company.auditScore" var="auditScore"/>
+        <display:column  title="auditScore">
+        <jstl:choose>
+            <jstl:when test="${row.auditScore == 0.0}">
+                nil
+            </jstl:when>
+            <jstl:otherwise>
+                ${row.auditScore}
+            </jstl:otherwise>
+        </jstl:choose>
         </display:column>
 
     </display:table>

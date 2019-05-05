@@ -191,6 +191,7 @@
 		<property name="phoneNumber" value="+34 679123486"/>
 		<property name="address" value="Crrt Carmona"/>
 		<property name="isSpammer" value="false"/>
+		<property name="auditScore" value="0.0"/>
 		<property name="isBanned" value="false"/>
 		<property name="socialProfiles">
 			<list>
@@ -220,6 +221,7 @@
 		<property name="phoneNumber" value="+34 681538301"/>
 		<property name="address" value="Calle Feria"/>
 		<property name="isSpammer" value="false"/>
+		<property name="auditScore" value="0.0"/>
 		<property name="isBanned" value="false"/>
 		<property name="socialProfiles">
 			<list>
