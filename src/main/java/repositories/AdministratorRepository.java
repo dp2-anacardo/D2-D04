@@ -1,10 +1,7 @@
 
 package repositories;
 
-import domain.Administrator;
-import domain.Company;
-import domain.Position;
-import domain.Rookie;
+import domain.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -96,4 +93,57 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
 
     @Query("select (count(f1)*100.0)/(select count(f2) from Finder f2) from Finder f1 where f1.positions is empty")
     Double getRatioOfEmptyFinders();
+
+    //Query 11.a
+
+    @Query("select avg(1.0*(select count(f) from Item f where f.provider = p)) from Provider p))")
+    Double getAvgNumberOfItemsPerProvider();
+
+    @Query("select min(1.0*(select count(f) from Item f where f.provider = p)) from Provider p))")
+    Double getMinNumberOfItemsPerProvider();
+
+    @Query("select max(1.0*(select count(f) from Item f where f.provider = p)) from Provider p))")
+    Double getMaxNumberOfItemsPerProvider();
+
+    @Query("select stddev(1.0*(select count(f) from Item f where f.provider = p)) from Provider p))")
+    Double getStddevNumberOfItemsPerProvider();
+
+    //Query 11.b
+
+    @Query("select i.provider from Item i group by i.provider order by count(i) desc")
+    List<Provider> getProvidersWithMoreItems();
+
+    //Query 14.a
+
+    @Query("select avg(1.0*(select count(f) from Sponsorship f where f.provider = p)) from Provider p))")
+    Double getAvgNumberOfSponsorshipsPerProvider();
+
+    @Query("select min(1.0*(select count(f) from Sponsorship f where f.provider = p)) from Provider p))")
+    Double getMinNumberOfSponsorshipsPerProvider();
+
+    @Query("select max(1.0*(select count(f) from Sponsorship f where f.provider = p)) from Provider p))")
+    Double getMaxNumberOfSponsorshipsPerProvider();
+
+    @Query("select stddev(1.0*(select count(f) from Sponsorship f where f.provider = p)) from Provider p))")
+    Double getStddevNumberOfSponsorshipsPerProvider();
+
+    //Query 14.b
+
+    @Query("select avg(1.0*(select count(f) from Sponsorship f where f.position = p)) from Position p))")
+    Double getAvgNumberOfSponsorshipsPerPosition();
+
+    @Query("select min(1.0*(select count(f) from Sponsorship f where f.position = p)) from Position p))")
+    Double getMinNumberOfSponsorshipsPerPosition();
+
+    @Query("select max(1.0*(select count(f) from Sponsorship f where f.position = p)) from Position p))")
+    Double getMaxNumberOfSponsorshipsPerPosition();
+
+    @Query("select stddev(1.0*(select count(f) from Sponsorship f where f.position = p)) from Position p))")
+    Double getStddevNumberOfSponsorshipsPerPosition();
+
+    //Query 14.c
+
+    @Query("select p from Sponsorship s join s.provider p group by p having count(s) >= " +
+            "1.1*(select avg(1.0*(select count(f) from Sponsorship f where f.provider = p)) from Provider p))")
+    List<Provider> getProvidersAboveAverage();
 }

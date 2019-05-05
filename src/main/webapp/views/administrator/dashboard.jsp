@@ -66,6 +66,34 @@
 
     <b><spring:message code="administrator.ratioOfEmptyFinders" /></b> ${RatioOfEmptyFinders} <br />
 
+    <b><spring:message code="administrator.avgNumOfItems" /></b> ${AvgNumOfItems} <br />
+    <b><spring:message code="administrator.minNumOfItems" /></b> ${MinNumOfItems} <br />
+    <b><spring:message code="administrator.maxNumOfItems" /></b> ${MaxNumOfItems} <br />
+    <b><spring:message code="administrator.stddevNumOfItems" /></b> ${StddevNumOfItems} <br />
+
+    <b><spring:message code="administrator.top5Providers" /></b>
+    <jstl:forEach var="x" items="${Top5Providers}">
+        <br>
+        - ${x.name}
+    </jstl:forEach>
+    <br />
+
+    <b><spring:message code="administrator.avgNumOfSpoXPro" /></b> ${AvgNumOfSpoXPro} <br />
+    <b><spring:message code="administrator.minNumOfSpoXPro" /></b> ${MinNumOfSpoXPro} <br />
+    <b><spring:message code="administrator.maxNumOfSpoXPro" /></b> ${MaxNumOfSpoXPro} <br />
+    <b><spring:message code="administrator.stddevNumOfSpoXPro" /></b> ${StddevNumOfSpoXPro} <br />
+
+    <b><spring:message code="administrator.avgNumOfSpoXPos" /></b> ${AvgNumOfSpoXPos} <br />
+    <b><spring:message code="administrator.minNumOfSpoXPos" /></b> ${MinNumOfSpoXPos} <br />
+    <b><spring:message code="administrator.maxNumOfSpoXPos" /></b> ${MaxNumOfSpoXPos} <br />
+    <b><spring:message code="administrator.stddevNumOfSpoXPos" /></b> ${StddevNumOfSpoXPos} <br />
+
+    <b><spring:message code="administrator.providersAboveAvg" /></b>
+    <jstl:forEach var="x" items="${ProvidersAboveAvg}">
+        <br>
+        - ${x.name}
+    </jstl:forEach>
+
 </security:authorize>
 </body>
 </html>
