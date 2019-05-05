@@ -383,4 +383,64 @@ public class AdministratorService {
         return result;
     }
 
+    //QUERYS ACME-ROOKIES
+    //11.a
+    public List<Double> getNumberOfItemsPerProvider(){
+
+        List<Double> result = new ArrayList<>();
+
+        result.add(this.administratorRepository.getAvgNumberOfItemsPerProvider());
+        result.add(this.administratorRepository.getMinNumberOfItemsPerProvider());
+        result.add(this.administratorRepository.getMaxNumberOfItemsPerProvider());
+        result.add(this.administratorRepository.getStddevNumberOfItemsPerProvider());
+
+        return result;
+    }
+
+    //11.b
+    public List<Provider> getTop5Providers(){
+
+        List<Provider> providerList = this.administratorRepository.getProvidersWithMoreItems();
+        List<Provider> result;
+
+        if(providerList.size() > 5)
+            result = providerList.subList(0,4);
+        else
+            result = providerList;
+
+        return result;
+    }
+
+    //14.a
+    public List<Double> getNumberOfSponsorshipsPerProvider(){
+
+        List<Double> result = new ArrayList<>();
+
+        result.add(this.administratorRepository.getAvgNumberOfSponsorshipsPerProvider());
+        result.add(this.administratorRepository.getMinNumberOfSponsorshipsPerProvider());
+        result.add(this.administratorRepository.getMaxNumberOfSponsorshipsPerProvider());
+        result.add(this.administratorRepository.getStddevNumberOfSponsorshipsPerProvider());
+
+        return result;
+    }
+
+    //14.b
+    public List<Double> getNumberOfSponsorshipsPerPosition(){
+
+        List<Double> result = new ArrayList<>();
+
+        result.add(this.administratorRepository.getAvgNumberOfSponsorshipsPerPosition());
+        result.add(this.administratorRepository.getMinNumberOfSponsorshipsPerPosition());
+        result.add(this.administratorRepository.getMaxNumberOfSponsorshipsPerPosition());
+        result.add(this.administratorRepository.getStddevNumberOfSponsorshipsPerPosition());
+
+        return result;
+    }
+
+    //14.c
+    public List<Provider> getProvidersAboveAverage(){
+        return this.administratorRepository.getProvidersAboveAverage();
+    }
+
+
 }
