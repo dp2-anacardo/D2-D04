@@ -779,30 +779,6 @@
 		<property name = "text" value = "Primera auditoría"/>
 		<property name = "score" value = "7"/>
 		<property name = "isFinal" value="true"/>
-		<property name="auditor" ref="auditor1"/>
-	</bean>
-
-	<bean id="audit2" class ="domain.Audit">
-		<property name = "moment" value = "01/02/2021"/>
-		<property name = "text" value = "Segunda auditoría"/>
-		<property name = "score" value = "10"/>
-		<property name = "isFinal" value="false"/>
-		<property name="auditor" ref="auditor1"/>
-	</bean>
-
-	<bean id="audit3" class ="domain.Audit">
-		<property name = "moment" value = "01/04/2021"/>
-		<property name = "text" value = "Tercera auditoría"/>
-		<property name = "score" value = "8"/>
-		<property name = "isFinal" value="true"/>
-		<property name="auditor" ref="auditor2"/>
-	</bean>
-
-	<bean id="audit4" class ="domain.Audit">
-		<property name = "moment" value = "01/12/2019"/>
-		<property name = "text" value = "Cuarta auditoría"/>
-		<property name = "score" value = "5"/>
-		<property name = "isFinal" value="false"/>
 		<property name="auditor" ref="auditor2"/>
 	</bean>
 
@@ -873,6 +849,11 @@
 			<list>
 				<ref bean = "application1"/>
 				<ref bean = "application2"/>
+			</list>
+		</property>
+		<property name = "audits">
+			<list>
+				<ref bean = "audit1"/>
 			</list>
 		</property>
 	</bean>

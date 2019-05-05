@@ -51,6 +51,17 @@
         </a>
         </jstl:if>
     </display:column>
+
+    <spring:message code="audit.delete" var="delete"/>
+    <display:column title="${delete}">
+        <jstl:if test="${row.isFinal eq false}">
+            <a
+                    href="audit/auditor/delete.do?auditId=${row.id}">
+                <spring:message code="audit.delete"/>
+            </a>
+        </jstl:if>
+    </display:column>
+
     <spring:message code="audit.show" var="show"/>
     <display:column title="${show}">
         <a
@@ -59,7 +70,5 @@
         </a>
     </display:column>
 </display:table>
-
-<acme:cancel url="audit/auditor/create.do" code="audit.create"/>
 
 <acme:cancel url="/" code="audit.back"/>

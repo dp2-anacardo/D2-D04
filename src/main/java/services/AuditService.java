@@ -14,6 +14,7 @@ import repositories.AuditRepository;
 import javax.transaction.Transactional;
 import javax.validation.ValidationException;
 import java.util.Collection;
+import java.util.Date;
 
 @Service
 @Transactional
@@ -35,14 +36,18 @@ public class AuditService {
         Audit result;
         if (audit.getId() == 0) {
             result = this.create();
-            result.setMoment(audit.getMoment());
+            result.setMoment(new Date());
+            result.setText(audit.getText());
+            result.setScore(audit.getScore());
+            result.setIsFinal(audit.getIsFinal());
             result.setAuditor(auditorService.findOne(actorService.getActorLogged().getId()));
 
-        } else
+        } else {
             result = this.auditRepository.findOne(audit.getId());
-        result.setText(audit.getText());
-        result.setScore(audit.getScore());
-        result.setIsFinal(audit.getIsFinal());
+            result.setText(audit.getText());
+            result.setScore(audit.getScore());
+            result.setIsFinal(audit.getIsFinal());
+        }
 
         this.validator.validate(result, binding);
         if (binding.hasErrors())
@@ -51,7 +56,7 @@ public class AuditService {
     }
 
     public Audit create(){
-        Assert.isTrue(actorService.getActorLogged().getUserAccount().getAuthorities().iterator().next().equals("AUDITOR"));
+        Assert.isTrue(actorService.getActorLogged().getUserAccount().getAuthorities().iterator().next().getAuthority().equals("AUDITOR"));
         Audit result;
 
         result = new Audit();
@@ -105,14 +110,17 @@ public class AuditService {
         Auditor auditor = auditorService.findOne(actor.getId());
         Assert.isTrue(actor instanceof Auditor);
         Assert.isTrue(audit.getAuditor().equals(auditor));
-        Assert.isTrue(audit.getIsFinal() == false);
+        Assert.isTrue(!audit.getIsFinal());
         Assert.notNull(audit);
+
+        Position p = this.getPositionByAudit(audit.getId());
+        p.getAudits().remove(audit);
 
         this.auditRepository.delete(audit.getId());
     }
 
     public Collection<Audit> getAuditsByAuditor(){
-        Assert.isTrue(actorService.getActorLogged().getUserAccount().getAuthorities().iterator().next().equals("AUDITOR"));
+        Assert.isTrue(actorService.getActorLogged().getUserAccount().getAuthorities().iterator().next().getAuthority().equals("AUDITOR"));
         Collection<Audit> result;
         Auditor auditor = this.auditorService.findOne(actorService.getActorLogged().getId());
 
@@ -125,6 +133,23 @@ public class AuditService {
         Collection<Audit> result;
 
         result = this.auditRepository.getAuditsFinalByPosition(positionId);
+
+        return result;
+    }
+
+    public Collection<Audit> getAuditsByPositionWithAuditorId(int auditorId){
+        Collection<Audit> result;
+
+        result = this.auditRepository.getAuditsByPositionWithAuditorId(auditorId);
+
+        return result;
+    }
+
+    public Position getPositionByAudit(int auditId){
+
+        Position result;
+
+        result = this.auditRepository.getPositionByAudit(auditId);
 
         return result;
     }

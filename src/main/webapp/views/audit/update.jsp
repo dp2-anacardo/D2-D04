@@ -23,11 +23,13 @@
     <form:form action="audit/auditor/update.do" modelAttribute="audit">
 
         <form:hidden path="id" readOnly="true"/>
+        <form:hidden path="moment" readOnly="true"/>
+        <form:hidden path="auditor" readOnly="true"/>
 
         <acme:textbox code="audit.text" path="text"/>
         <br>
 
-        <acme:textarea code="audit.score" path="score"/>
+        <acme:textbox code="audit.score" path="score"/>
         <br>
 
         <spring:message code="audit.isFinal"/>
@@ -39,8 +41,6 @@
         <br>
 
         <acme:submit name="update" code="audit.update"/>
-
-        <acme:submit name="delete" code="audit.delete"/>
 
         <acme:cancel url="audit/auditor/list.do" code="audit.cancel"/>
 
