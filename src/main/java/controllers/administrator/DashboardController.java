@@ -3,6 +3,7 @@ package controllers.administrator;
 import java.util.List;
 
 import domain.Company;
+import domain.Provider;
 import domain.Rookie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -74,6 +75,32 @@ public class DashboardController extends AbstractController {
         /* Q13 */
         final Double ratioOfEmptyFinders = this.administratorService.getRatioOfEmptyFinders();
 
+        /* ACME-ROOKIES QUERIES */
+        /* 11.A */
+        final Double avgNumOfItems = this.administratorService.getNumberOfItemsPerProvider().get(0);
+        final Double minNumOfItems = this.administratorService.getNumberOfItemsPerProvider().get(1);
+        final Double maxNumOfItems = this.administratorService.getNumberOfItemsPerProvider().get(2);
+        final Double stddevNumOfItems = this.administratorService.getNumberOfItemsPerProvider().get(3);
+
+        /* 11.B */
+        final List<Provider> top5Providers = this.administratorService.getTop5Providers();
+
+        /* 14.A */
+        final Double avgNumOfSpoXPro = this.administratorService.getNumberOfSponsorshipsPerProvider().get(0);
+        final Double minNumOfSpoXPro = this.administratorService.getNumberOfSponsorshipsPerProvider().get(1);
+        final Double maxNumOfSpoXPro = this.administratorService.getNumberOfSponsorshipsPerProvider().get(2);
+        final Double stddevNumOfSpoXPro = this.administratorService.getNumberOfSponsorshipsPerProvider().get(3);
+
+        /* 14.B */
+        final Double avgNumOfSpoXPos = this.administratorService.getNumberOfSponsorshipsPerPosition().get(0);
+        final Double minNumOfSpoXPos = this.administratorService.getNumberOfSponsorshipsPerPosition().get(1);
+        final Double maxNumOfSpoXPos = this.administratorService.getNumberOfSponsorshipsPerPosition().get(2);
+        final Double stddevNumOfSpoXPos = this.administratorService.getNumberOfSponsorshipsPerPosition().get(3);
+
+        /* 14.C */
+        final List<Provider> providersAboveAvg = this.administratorService.getProvidersAboveAverage();
+
+
 
         /* ADD OBJECTS */
         result = new ModelAndView("administrator/dashboard");
@@ -120,6 +147,25 @@ public class DashboardController extends AbstractController {
         result.addObject("RatioOfNotEmptyFinders", ratioOfNotEmptyFinders);
 
         result.addObject("RatioOfEmptyFinders", ratioOfEmptyFinders);
+
+        result.addObject("AvgNumOfItems", avgNumOfItems);
+        result.addObject("MinNumOfItems", minNumOfItems);
+        result.addObject("MaxNumOfItems", maxNumOfItems);
+        result.addObject("StddevNumOfItems", stddevNumOfItems);
+
+        result.addObject("Top5Providers", top5Providers);
+
+        result.addObject("AvgNumOfSpoXPro", avgNumOfSpoXPro);
+        result.addObject("MinNumOfSpoXPro", minNumOfSpoXPro);
+        result.addObject("MaxNumOfSpoXPro", maxNumOfSpoXPro);
+        result.addObject("StddevNumOfSpoXPro", stddevNumOfSpoXPro);
+
+        result.addObject("AvgNumOfSpoXPos", avgNumOfSpoXPos);
+        result.addObject("MinNumOfSpoXPos", minNumOfSpoXPos);
+        result.addObject("MaxNumOfSpoXPos", maxNumOfSpoXPos);
+        result.addObject("StddevNumOfSpoXPos", stddevNumOfSpoXPos);
+
+        result.addObject("ProvidersAboveAvg", providersAboveAvg);
 
         return result;
     }
