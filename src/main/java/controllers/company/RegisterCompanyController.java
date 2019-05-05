@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import services.ActorService;
 import services.AdministratorService;
 import services.CompanyService;
+import sun.misc.Request;
 
 import javax.validation.Valid;
 import java.util.Collection;
@@ -111,6 +112,18 @@ public class RegisterCompanyController extends AbstractController {
 			result.addObject("RequestURI","company/list.do");
 		}catch (Throwable oops){
 			result = new ModelAndView("redirect:/" );
+		}
+		return result;
+	}
+
+	@RequestMapping(value = "/administrator/computeAS", method = RequestMethod.GET)
+	public ModelAndView computeAuditScore(){
+		ModelAndView result;
+		try{
+			this.companyService.computeAuditScore();
+			result = new ModelAndView("redirect:/company/list.do");
+		}catch(Throwable oops){
+			result = new ModelAndView("redirect:/");
 		}
 		return result;
 	}

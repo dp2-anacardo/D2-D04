@@ -102,6 +102,30 @@
 		</property>
 	</bean>
 
+	<bean id="userAccount8" class="security.UserAccount">
+		<property name="username" value="auditor1" />
+		<property name="password" value="175d2e7a63f386554a4dd66e865c3e14" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="AUDITOR" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount9" class="security.UserAccount">
+		<property name="username" value="auditor2" />
+		<property name="password" value="04dd94ba3212ac52ad3a1f4cbfb52d4f" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="AUDITOR" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
 
 	<!-- Other domain beans come here -->
 
@@ -167,6 +191,7 @@
 		<property name="phoneNumber" value="+34 679123486"/>
 		<property name="address" value="Crrt Carmona"/>
 		<property name="isSpammer" value="false"/>
+		<property name="auditScore" value="0.0"/>
 		<property name="isBanned" value="false"/>
 		<property name="socialProfiles">
 			<list>
@@ -196,6 +221,7 @@
 		<property name="phoneNumber" value="+34 681538301"/>
 		<property name="address" value="Calle Feria"/>
 		<property name="isSpammer" value="false"/>
+		<property name="auditScore" value="0.0"/>
 		<property name="isBanned" value="false"/>
 		<property name="socialProfiles">
 			<list>
@@ -628,7 +654,7 @@
                 <ref bean="attachment13"/>
             </list>
         </property>
-        <property name="provider" ref="provider2"/>
+        <property name="provider" ref="provider1"/>
     </bean>
 
     <bean id="item4" class="domain.Item">
@@ -663,7 +689,7 @@
 	</bean>
 
 	<bean id="sponsorship3" class="domain.Sponsorship">
-		<property name="provider" ref="provider2"/>
+		<property name="provider" ref="provider1"/>
 		<property name="position" ref="position1"/>
 		<property name="banner" value="https://www.sponsorship3.com"/>
 		<property name="creditCard" ref="creditCardProvider2"/>
@@ -671,9 +697,91 @@
 
 	<bean id="sponsorship4" class="domain.Sponsorship">
 		<property name="provider" ref="provider2"/>
-		<property name="position" ref="position1"/>
+		<property name="position" ref="position2"/>
 		<property name="banner" value="https://www.sponsorship4.com"/>
 		<property name="creditCard" ref="creditCardProvider2"/>
+	</bean>
+
+	<!-- Auditors -->
+
+	<bean id="auditor1" class="domain.Auditor">
+		<property name="userAccount" ref="userAccount8"/>
+		<property name="name" value="auditor1" />
+		<property name="surname" value="auditor1"/>
+		<property name="vatNumber" value="685357234"/>
+		<property name="creditCard" ref="creditCardAuditor1"/>
+		<property name="photo" value="https://github.com/dp2-anacardo/DP2-D03"/>
+		<property name="email" value="auditor1@gmail.com"/>
+		<property name="phoneNumber" value="+34 600102030"/>
+		<property name="address" value="Avenida Reina Mercedes"/>
+		<property name="isSpammer" value="false"/>
+		<property name="isBanned" value="false"/>
+		<property name="socialProfiles">
+			<list>
+			</list>
+		</property>
+		<property name="messagesReceived">
+			<list>
+			</list>
+		</property>
+		<property name="messagesSent">
+			<list>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="auditor2" class="domain.Auditor">
+		<property name="userAccount" ref="userAccount9"/>
+		<property name="name" value="auditor2" />
+		<property name="surname" value="auditor2"/>
+		<property name="vatNumber" value="685357255"/>
+		<property name="creditCard" ref="creditCardAuditor2"/>
+		<property name="photo" value="https://github.com/dp2-anacardo/DP2-D02"/>
+		<property name="email" value="auditor2@gmail.com"/>
+		<property name="phoneNumber" value="+34 600102055"/>
+		<property name="address" value="Avenida Reina Sofía"/>
+		<property name="isSpammer" value="false"/>
+		<property name="isBanned" value="false"/>
+		<property name="socialProfiles">
+			<list>
+			</list>
+		</property>
+		<property name="messagesReceived">
+			<list>
+			</list>
+		</property>
+		<property name="messagesSent">
+			<list>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Provider's CreditCard -->
+
+	<bean id="creditCardAuditor1" class ="datatype.CreditCard">
+		<property name = "holder" value = "Auditor1"/>
+		<property name = "brandName" value = "VISA"/>
+		<property name = "number" value = "5360197024854264"/>
+		<property name = "expirationYear" value="01/12/2033"/>
+		<property name = "cvv" value = "777"/>
+	</bean>
+
+	<bean id="creditCardAuditor2" class ="datatype.CreditCard">
+		<property name = "holder" value = "Auditor2"/>
+		<property name = "brandName" value = "VISA"/>
+		<property name = "number" value = "5521410059378570"/>
+		<property name = "expirationYear" value="01/05/2044"/>
+		<property name = "cvv" value = "888"/>
+	</bean>
+
+	<!-- Audits -->
+
+	<bean id="audit1" class ="domain.Audit">
+		<property name = "moment" value = "01/02/2020"/>
+		<property name = "text" value = "Primera auditoría"/>
+		<property name = "score" value = "7"/>
+		<property name = "isFinal" value="true"/>
+		<property name="auditor" ref="auditor2"/>
 	</bean>
 
 	<!-- Messages -->
@@ -743,6 +851,11 @@
 			<list>
 				<ref bean = "application1"/>
 				<ref bean = "application2"/>
+			</list>
+		</property>
+		<property name = "audits">
+			<list>
+				<ref bean = "audit1"/>
 			</list>
 		</property>
 	</bean>

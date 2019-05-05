@@ -19,70 +19,19 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net" %>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
+<acme:showtext fieldset="true" code="audit.moment" value="${audit.moment}"/>
+<acme:showtext fieldset="true" code="audit.text" value="${audit.text}"/>
+<acme:showtext fieldset="true" code="audit.score" value="${audit.score}"/>
 
-<display:table name="problem" id="row" requestURI="problem/show.do"
-               class="displaytag">
-    <spring:message code="problem.title" var="titleHeader"/>
-    <display:column property="title" title="${titleHeader}"
-                    sortable="false"/>
-</display:table>
-
-<display:table name="problem" id="row" requestURI="problem/show.do"
-               class="displaytag">
-    <spring:message code="problem.statement" var="statementHeader"/>
-    <display:column property="statement" title="${statementHeader}"
-                    sortable="false"/>
-</display:table>
-
-<display:table name="problem" id="row" requestURI="problem/show.do"
-               class="displaytag">
-    <spring:message code="problem.hint" var="hintHeader"/>
-    <display:column property="hint" title="${hintHeader}"
-                    sortable="false"/>
-</display:table>
-
-<jstl:if test="${not empty problem.attachment}">
-    <display:table name="problem" id="row" requestURI="problem/show.do"
-                   class="displaytag">
-        <spring:message code="problem.attachment" var="attachmentHeader"/>
-        <display:column title="${attachmentHeader}" sortable="false">
-            <jstl:forEach items="${problem.attachment}" var="positiveWords">
-                <tr>
-                    <td><a href="<jstl:out value="${positiveWords.link}"/>"><jstl:out
-                            value="${positiveWords.link}"/></a></td>
-                </tr>
-            </jstl:forEach>
-        </display:column>
-    </display:table>
-
-</jstl:if>
-<security:authorize access="hasRole('COMPANY')">
-
-    <display:table name="problem" id="row" requestURI="problem/show.do"
-                   class="displaytag">
-        <spring:message code="problem.isFinal" var="isFinalHeader"/>
-        <display:column title="${isFinalHeader}" sortable="false">
-            <jstl:if test="${row.isFinal eq true}">
-                <spring:message code="problem.isFinal.final"/>
-            </jstl:if>
-            <jstl:if test="${row.isFinal eq false}">
-                <spring:message code="problem.isFinal.draft"/>
-            </jstl:if>
-        </display:column>
-    </display:table>
-</security:authorize>
-
-<security:authorize access="hasRole('COMPANY')">
-    <jstl:if test="${problem.isFinal eq false}">
-        <acme:cancel url="problem/company/delete.do?problemID=${row.id}" code="problem.delete"/>
+<fieldset><legend><spring:message code="audit.isFinal"/></legend>
+    <jstl:if test="${audit.isFinal eq true}">
+        <spring:message code="audit.final"/>
     </jstl:if>
-    <acme:cancel url="problem/company/list.do" code="problem.goBack"/>
+    <jstl:if test="${audit.isFinal eq false}">
+        <spring:message code="audit.draft"/>
+    </jstl:if>
+</fieldset>
 
-</security:authorize>
+<acme:cancel url="audit/auditor/list.do" code="audit.back"/>
 
-<security:authorize access="hasRole('ROOKIE')">
-    <input type="button" name="cancel"
-           value="<spring:message code="message.goBack" />"
-           onclick="javascript: window.history.back();"/>
 
-</security:authorize>

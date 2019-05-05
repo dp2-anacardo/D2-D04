@@ -66,6 +66,56 @@
 
     <b><spring:message code="administrator.ratioOfEmptyFinders" /></b> ${RatioOfEmptyFinders} <br />
 
+    <b><spring:message code="administrator.avgNumOfItems" /></b> ${AvgNumOfItems} <br />
+    <b><spring:message code="administrator.minNumOfItems" /></b> ${MinNumOfItems} <br />
+    <b><spring:message code="administrator.maxNumOfItems" /></b> ${MaxNumOfItems} <br />
+    <b><spring:message code="administrator.stddevNumOfItems" /></b> ${StddevNumOfItems} <br />
+
+    <b><spring:message code="administrator.top5Providers" /></b>
+    <jstl:forEach var="x" items="${Top5Providers}">
+        <br>
+        - ${x.name}
+    </jstl:forEach>
+    <br />
+
+    <b><spring:message code="administrator.avgNumOfSpoXPro" /></b> ${AvgNumOfSpoXPro} <br />
+    <b><spring:message code="administrator.minNumOfSpoXPro" /></b> ${MinNumOfSpoXPro} <br />
+    <b><spring:message code="administrator.maxNumOfSpoXPro" /></b> ${MaxNumOfSpoXPro} <br />
+    <b><spring:message code="administrator.stddevNumOfSpoXPro" /></b> ${StddevNumOfSpoXPro} <br />
+
+    <b><spring:message code="administrator.avgNumOfSpoXPos" /></b> ${AvgNumOfSpoXPos} <br />
+    <b><spring:message code="administrator.minNumOfSpoXPos" /></b> ${MinNumOfSpoXPos} <br />
+    <b><spring:message code="administrator.maxNumOfSpoXPos" /></b> ${MaxNumOfSpoXPos} <br />
+    <b><spring:message code="administrator.stddevNumOfSpoXPos" /></b> ${StddevNumOfSpoXPos} <br />
+
+    <b><spring:message code="administrator.providersAboveAvg" /></b>
+    <jstl:forEach var="x" items="${ProvidersAboveAvg}">
+        <br>
+        - ${x.name}
+    </jstl:forEach>
+    <br />
+
+    <b><spring:message code="administrator.avgASPositions" /></b> ${avgASPositions} <br />
+    <b><spring:message code="administrator.minASPositions" /></b> ${minASPositions} <br />
+    <b><spring:message code="administrator.maxASPositions" /></b> ${maxASPositions} <br />
+    <b><spring:message code="administrator.stddevASPositions" /></b> ${stddevASPositions} <br />
+
+    <b><spring:message code="administrator.avgASCompanies" /></b> ${avgASCompanies} <br />
+    <b><spring:message code="administrator.minASCompanies" /></b> ${minASCompanies} <br />
+    <b><spring:message code="administrator.maxASCompanies" /></b> ${maxASCompanies} <br />
+    <b><spring:message code="administrator.stddevASCompanies" /></b> ${stddevASCompanies} <br />
+
+    <b><spring:message code="administrator.companiesHighestAS" /></b>
+    <jstl:forEach var="x" items="${companiesHighestAS}">
+        <br>
+        - ${x}
+    </jstl:forEach>
+    <br />
+
+
+
+
+
 </security:authorize>
 </body>
 </html>

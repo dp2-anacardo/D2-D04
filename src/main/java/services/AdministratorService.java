@@ -383,4 +383,103 @@ public class AdministratorService {
         return result;
     }
 
+    //QUERYS ACME-ROOKIES
+
+    //4.4.1
+    public List<Double> getStatsASPositions(){
+
+        List<Double> result = new ArrayList<>();
+
+        result.add(this.administratorRepository.getAvgAuditScorePositions());
+        result.add(this.administratorRepository.getMinimumAuditScorePositions());
+        result.add(this.administratorRepository.getMaximumAuditScorePositions());
+        result.add(this.administratorRepository.getStddevAuditScorePositions());
+
+        return result;
+    }
+
+    //4.4.2
+    public List<Double> getStatsASCompanies(){
+
+        List<Double> result = new ArrayList<>();
+
+        result.add(this.administratorRepository.getAvgAuditScoreCompanies());
+        result.add(this.administratorRepository.getMinimumAuditScoreCompanies());
+        result.add(this.administratorRepository.getMaximumAuditScoreCompanies());
+        result.add(this.administratorRepository.getStddevAuditScoreCompanies());
+
+        return result;
+    }
+
+    //4.4.3
+    public List<String> getCompaniesHighestAS(){
+        List<String> query = this.administratorRepository.getCompaniesHighestAS();
+        List<String> result = new ArrayList<>();
+        if(result.size()>5){
+            result = result.subList(0,5);
+        }else {
+            result = query;
+        }
+        return result;
+    }
+
+    //11.a
+    public List<Double> getNumberOfItemsPerProvider(){
+
+        List<Double> result = new ArrayList<>();
+
+        result.add(this.administratorRepository.getAvgNumberOfItemsPerProvider());
+        result.add(this.administratorRepository.getMinNumberOfItemsPerProvider());
+        result.add(this.administratorRepository.getMaxNumberOfItemsPerProvider());
+        result.add(this.administratorRepository.getStddevNumberOfItemsPerProvider());
+
+        return result;
+    }
+
+    //11.b
+    public List<Provider> getTop5Providers(){
+
+        List<Provider> providerList = this.administratorRepository.getProvidersWithMoreItems();
+        List<Provider> result;
+
+        if(providerList.size() > 5)
+            result = providerList.subList(0,4);
+        else
+            result = providerList;
+
+        return result;
+    }
+
+    //14.a
+    public List<Double> getNumberOfSponsorshipsPerProvider(){
+
+        List<Double> result = new ArrayList<>();
+
+        result.add(this.administratorRepository.getAvgNumberOfSponsorshipsPerProvider());
+        result.add(this.administratorRepository.getMinNumberOfSponsorshipsPerProvider());
+        result.add(this.administratorRepository.getMaxNumberOfSponsorshipsPerProvider());
+        result.add(this.administratorRepository.getStddevNumberOfSponsorshipsPerProvider());
+
+        return result;
+    }
+
+    //14.b
+    public List<Double> getNumberOfSponsorshipsPerPosition(){
+
+        List<Double> result = new ArrayList<>();
+
+        result.add(this.administratorRepository.getAvgNumberOfSponsorshipsPerPosition());
+        result.add(this.administratorRepository.getMinNumberOfSponsorshipsPerPosition());
+        result.add(this.administratorRepository.getMaxNumberOfSponsorshipsPerPosition());
+        result.add(this.administratorRepository.getStddevNumberOfSponsorshipsPerPosition());
+
+        return result;
+    }
+
+    //14.c
+    public List<Provider> getProvidersAboveAverage(){
+        return this.administratorRepository.getProvidersAboveAverage();
+    }
+
+
 }

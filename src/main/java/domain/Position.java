@@ -29,7 +29,6 @@ public class Position extends DomainEntity {
 	private String				ticker;
 	private boolean				isFinal;
 	private boolean				isCancelled;
-	private Auditor auditor;
 
 
 	//Getters and setters ---------------------------------------------------------------------------
@@ -132,6 +131,7 @@ public class Position extends DomainEntity {
 	private Company					company;
 	private Collection<Problem>		problems;
 	private Collection<Application>	applications;
+	private Collection<Audit> audits;
 
 
 	@ManyToOne(optional = false)
@@ -161,13 +161,12 @@ public class Position extends DomainEntity {
 		this.applications = applications;
 	}
 
-	@Valid
-	@OneToOne(optional=true)
-	public Auditor getAuditor() {
-		return auditor;
+	@OneToMany
+	public Collection<Audit> getAudits() {
+		return audits;
 	}
 
-	public void setAuditor(Auditor auditor) {
-		this.auditor = auditor;
+	public void setAudits(Collection<Audit> audits) {
+		this.audits = audits;
 	}
 }

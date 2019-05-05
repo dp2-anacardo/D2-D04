@@ -32,6 +32,7 @@
 					<jstl:if test="${rebranding==true}">
 						<li><a href="message/admin/rebranding.do"><spring:message code="master.page.administrator.rebranding" /></a></li>
 					</jstl:if>
+					<li><a href="company/administrator/computeAS.do"><spring:message code="master.page.administrator.computeAS" /></a></li>
 				</ul>
 			</li>
 			<li><a class="fNiv" href="configuration/administrator/show.do"><spring:message code="master.page.configuration" /></a></li>
@@ -70,6 +71,15 @@
 					<li class="arrow"></li>
 					<li><a href="item/provider/list.do"><spring:message code="master.page.provider.item" /></a></li>
 					<li><a href="sponsorship/provider/list.do"><spring:message code="master.page.provider.sponsorship" /></a></li>
+				</ul>
+			</li>
+		</security:authorize>
+
+		<security:authorize access="hasRole('AUDITOR')">
+			<li><a class="fNiv"><spring:message	code="master.page.auditor" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="audit/auditor/list.do"><spring:message code="master.page.auditor.audits" /></a></li>
 				</ul>
 			</li>
 		</security:authorize>

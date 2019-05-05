@@ -144,4 +144,8 @@ public class AuditorService {
         this.validator.validate(result, binding);
         return result;
     }
+
+    public void flush(){
+        this.auditorRepository.flush();
+    }
 }
