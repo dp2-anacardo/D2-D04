@@ -12,7 +12,11 @@
 <display:table name="providers" id="row" requestURI="${requestURI}"
                pagesize="5" class="displaytag">
 
-    <spring:message code="provider.make" var="make"/>
-    <display:column property="title" title="${make}"/>
+    <spring:message code="provider.make" var="title"/>
+    <display:column property="make" title="${title}"/>
 
+    <display:column> <a href="item/listNotLogged.do?providerId=${row.id}">
+        <spring:message code="provider.items" /></a> </display:column>
 </display:table>
+
+<acme:cancel url="/" code="item.goBack"/>

@@ -38,6 +38,8 @@
         <security:intercept-url pattern="/rookie/create.do" access="permitAll"/>
         <security:intercept-url pattern="/company/create.do" access="permitAll"/>
         <security:intercept-url pattern="/provider/create.do" access="permitAll"/>
+        <security:intercept-url pattern="/provider/provider/edit.do" access="hasRole('PROVIDER')"/>
+        <security:intercept-url pattern="/auditor/auditor/edit.do" access="hasRole('AUDITOR')"/>
         <security:intercept-url pattern="/company/list.do" access="permitAll"/>
         <security:intercept-url pattern="/profile/**" access="isAuthenticated()"/>
         <security:intercept-url pattern="/socialProfile/**" access="isAuthenticated()"/>
@@ -89,6 +91,7 @@
         <security:intercept-url pattern="/item/provider/create.do" access="hasRole('PROVIDER')"/>
         <security:intercept-url pattern="/item/provider/update.do" access="hasRole('PROVIDER')"/>
         <security:intercept-url pattern="/item/provider/delete.do" access="hasRole('PROVIDER')"/>
+        <security:intercept-url pattern="/item/listNotLogged.do" access="permitAll"/>
         <security:intercept-url pattern="/item/show.do" access="permitAll"/>
 
         <security:intercept-url pattern="/sponsorship/provider/list.do" access="hasRole('PROVIDER')"/>

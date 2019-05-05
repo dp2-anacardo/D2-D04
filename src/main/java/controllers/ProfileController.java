@@ -141,6 +141,22 @@ public class ProfileController extends AbstractController {
 			final String json = gson.toJson(member);
 			result.addObject("json", json);
 		}
+
+		if (userAccount.getAuthorities().iterator().next().getAuthority().equals("AUDITOR")) {
+			Auditor a;
+			a = this.auditorService.findOne(user.getId());
+			Assert.notNull(a);
+			final String json = gson.toJson(a);
+			result.addObject("json", json);
+		}
+
+		if (userAccount.getAuthorities().iterator().next().getAuthority().equals("PROVIDER")) {
+			Provider p;
+			p = this.providerService.findOne(user.getId());
+			Assert.notNull(p);
+			final String json = gson.toJson(p);
+			result.addObject("json", json);
+		}
 		return result;
 	}
 

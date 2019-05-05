@@ -127,7 +127,7 @@
 	<br>
 
 	<input type="button" name="Edit PD" value="<spring:message code="edit.PD" />"
-		   onclick="javascript: relativeRedir('/provider/provicer/edit.do');" />
+		   onclick="javascript: relativeRedir('/provider/provider/edit.do');" />
 	<input type="button" name="socialProfiles" value="<spring:message code="socialProfile" />"
 		   onclick="javascript: relativeRedir('/socialProfile/admin,company,rookie/list.do');" />
 	<input type="button" name="socialProfiles" value="<spring:message code="profile.export" />"

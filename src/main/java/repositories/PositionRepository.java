@@ -1,6 +1,7 @@
 
 package repositories;
 
+import domain.Auditor;
 import domain.Position;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -23,5 +24,9 @@ public interface PositionRepository extends JpaRepository<Position, Integer> {
 
 	@Query("select p from Position p join p.company c where c.id = ?1")
 	Collection<Position> getPositionsByCompanyAll(int companyId);
+
+	@Query("select a.auditor from Position p join p.audits a where p.isFinal=true and p.isCancelled=false and p.id=?1")
+	Collection<Auditor> getAuditorsByPosition(int positionId);
+
 
 }
