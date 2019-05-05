@@ -94,19 +94,39 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
     @Query("select (count(f1)*100.0)/(select count(f2) from Finder f2) from Finder f1 where f1.positions is empty")
     Double getRatioOfEmptyFinders();
 
-<<<<<<< HEAD
+    //QUERY 4.4.1
+
     @Query("select avg(a.score)from Audit a where a.isFinal = true")
-    Double getAvgAuditScore();
+    Double getAvgAuditScorePositions();
 
     @Query("select min(a.score)from Audit a where a.isFinal = true")
-    Double getMinimumAuditScore();
+    Double getMinimumAuditScorePositions();
 
     @Query("select max(a.score) from Audit a where a.isFinal = true")
-    Double getMaximumAuditScore();
+    Double getMaximumAuditScorePositions();
 
     @Query("select stddev(a.score) from Audit a where a.isFinal = true")
-    Double getStddevAuditScore();
-=======
+    Double getStddevAuditScorePositions();
+
+    //Query 4.4.2
+    @Query("select avg(c.auditScore)from Company c")
+    Double getAvgAuditScoreCompanies();
+
+    @Query("select min(c.auditScore)from Company c")
+    Double getMinimumAuditScoreCompanies();
+
+    @Query("select max(c.auditScore)from Company c")
+    Double getMaximumAuditScoreCompanies();
+
+    @Query("select stddev(c.auditScore)from Company c")
+    Double getStddevAuditScoreCompanies();
+
+    //Query 4.4.3
+
+    @Query("select c.commercialName from Company c order by c.auditScore desc")
+    List<String> getCompaniesHighestAS();
+
+
     //Query 11.a
 
     @Query("select avg(1.0*(select count(f) from Item f where f.provider = p)) from Provider p))")
@@ -159,5 +179,4 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
     @Query("select p from Sponsorship s join s.provider p group by p having count(s) >= " +
             "1.1*(select avg(1.0*(select count(f) from Sponsorship f where f.provider = p)) from Provider p))")
     List<Provider> getProvidersAboveAverage();
->>>>>>> 9a95f7e84a08cd310a141c51ef289f2eada4a101
 }

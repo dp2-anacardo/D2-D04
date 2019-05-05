@@ -76,6 +76,22 @@ public class DashboardController extends AbstractController {
         final Double ratioOfEmptyFinders = this.administratorService.getRatioOfEmptyFinders();
 
         /* ACME-ROOKIES QUERIES */
+
+        /* 4.4.1 */
+        Double avgASPositions = this.administratorService.getStatsASPositions().get(0);
+        Double minASPositions = this.administratorService.getStatsASPositions().get(1);
+        Double maxASPositions = this.administratorService.getStatsASPositions().get(2);
+        Double stddevASPositions = this.administratorService.getStatsASPositions().get(3);
+
+        /* 4.4.2 */
+        Double avgASCompanies = this.administratorService.getStatsASCompanies().get(0);
+        Double minASCompanies = this.administratorService.getStatsASCompanies().get(1);
+        Double maxASCompanies = this.administratorService.getStatsASCompanies().get(2);
+        Double stddevASCompanies = this.administratorService.getStatsASCompanies().get(3);
+
+        /* 4.4.3 */
+        List<String> companiesHighestAS = this.administratorService.getCompaniesHighestAS();
+
         /* 11.A */
         final Double avgNumOfItems = this.administratorService.getNumberOfItemsPerProvider().get(0);
         final Double minNumOfItems = this.administratorService.getNumberOfItemsPerProvider().get(1);
@@ -166,6 +182,18 @@ public class DashboardController extends AbstractController {
         result.addObject("StddevNumOfSpoXPos", stddevNumOfSpoXPos);
 
         result.addObject("ProvidersAboveAvg", providersAboveAvg);
+
+        result.addObject("avgASPositions",avgASPositions);
+        result.addObject("minASPositions",minASPositions);
+        result.addObject("maxASPositions",maxASPositions);
+        result.addObject("stddevASPositions",stddevASPositions);
+
+        result.addObject("avgASCompanies",avgASCompanies);
+        result.addObject("minASCompanies",minASCompanies);
+        result.addObject("maxASCompanies",maxASCompanies);
+        result.addObject("stddevASCompanies",stddevASCompanies);
+
+        result.addObject("companiesHighestAS",companiesHighestAS);
 
         return result;
     }

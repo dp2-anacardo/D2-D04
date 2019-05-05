@@ -93,6 +93,28 @@
         <br>
         - ${x.name}
     </jstl:forEach>
+    <br />
+
+    <b><spring:message code="administrator.avgASPositions" /></b> ${avgASPositions} <br />
+    <b><spring:message code="administrator.minASPositions" /></b> ${minASPositions} <br />
+    <b><spring:message code="administrator.maxASPositions" /></b> ${maxASPositions} <br />
+    <b><spring:message code="administrator.stddevASPositions" /></b> ${stddevASPositions} <br />
+
+    <b><spring:message code="administrator.avgASCompanies" /></b> ${avgASCompanies} <br />
+    <b><spring:message code="administrator.minASCompanies" /></b> ${minASCompanies} <br />
+    <b><spring:message code="administrator.maxASCompanies" /></b> ${maxASCompanies} <br />
+    <b><spring:message code="administrator.stddevASCompanies" /></b> ${stddevASCompanies} <br />
+
+    <b><spring:message code="administrator.companiesHighestAS" /></b>
+    <jstl:forEach var="x" items="${companiesHighestAS}">
+        <br>
+        - ${x}
+    </jstl:forEach>
+    <br />
+
+
+
+
 
 </security:authorize>
 </body>

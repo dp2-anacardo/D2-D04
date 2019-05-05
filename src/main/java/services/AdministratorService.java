@@ -384,6 +384,45 @@ public class AdministratorService {
     }
 
     //QUERYS ACME-ROOKIES
+
+    //4.4.1
+    public List<Double> getStatsASPositions(){
+
+        List<Double> result = new ArrayList<>();
+
+        result.add(this.administratorRepository.getAvgAuditScorePositions());
+        result.add(this.administratorRepository.getMinimumAuditScorePositions());
+        result.add(this.administratorRepository.getMaximumAuditScorePositions());
+        result.add(this.administratorRepository.getStddevAuditScorePositions());
+
+        return result;
+    }
+
+    //4.4.2
+    public List<Double> getStatsASCompanies(){
+
+        List<Double> result = new ArrayList<>();
+
+        result.add(this.administratorRepository.getAvgAuditScoreCompanies());
+        result.add(this.administratorRepository.getMinimumAuditScoreCompanies());
+        result.add(this.administratorRepository.getMaximumAuditScoreCompanies());
+        result.add(this.administratorRepository.getStddevAuditScoreCompanies());
+
+        return result;
+    }
+
+    //4.4.3
+    public List<String> getCompaniesHighestAS(){
+        List<String> query = this.administratorRepository.getCompaniesHighestAS();
+        List<String> result = new ArrayList<>();
+        if(result.size()>5){
+            result = result.subList(0,5);
+        }else {
+            result = query;
+        }
+        return result;
+    }
+
     //11.a
     public List<Double> getNumberOfItemsPerProvider(){
 
