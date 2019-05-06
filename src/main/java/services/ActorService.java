@@ -234,11 +234,10 @@ public class ActorService {
 
 			final Company company = this.companyService.findOne(user.getId());
 
-			//Borrado de los Applications de company
-			final Collection<Application> applications = this.applicationService.getApplicationsByCompany(company);
-			final Collection<Curricula> allCurriculas = this.curriculaService.findAll();
-			final Collection<Position> allPositions = this.positionService.findAll();
-			this.deleteApplications(applications, allPositions, allCurriculas);
+//			final Collection<Application> applications = this.applicationService.getApplicationsByCompany(company);
+//			final Collection<Curricula> allCurriculas = this.curriculaService.findAll();
+//			final Collection<Position> allPositions = this.positionService.findAll();
+//			this.deleteApplications(applications,allPositions, allCurriculas);
 
 			//Borrado de los problems de company
 			final Collection<Problem> problems = this.problemService.findAllByCompany(company.getId());
@@ -263,9 +262,30 @@ public class ActorService {
 					}
 
 				}
+				//Borrado de las audits de position
+				Collection<Audit> audits = p.getAudits();
+				for (Audit a : audits) {
+					this.auditService.deleteForced(a);
+					if(audits.size() == 0) break;
+				}
+				//Borrado de las sponsorships de position
+				Collection<Sponsorship> sponsorships = this.sponsorshipService.findAllByPosition(p.getId());
+				if(sponsorships.size() != 0) {
+					for (Sponsorship s : sponsorships) {
+						sponsorships.remove(s);
+						this.sponsorshipService.deleteForced(s);
+						if(sponsorships.isEmpty()) break;
+					}
+				}
+				//Borrado de las application de position
+				Collection<Application> a = p.getApplications();
+				for(Application ap : a){
+					p.getApplications().remove(ap);
+					this.applicationService.delete(ap);
+					if(a.isEmpty())break;
+				}
 				this.positionService.deleteForced(p);
 			}
-
 			this.companyService.delete(company);
 		}
 
@@ -299,18 +319,13 @@ public class ActorService {
 			final Auditor a = this.auditorService.findOne(user.getId());
 
 			//Borrado audit de auditor
-//			Collection<Audit> audits = new ArrayList<>();
-//			if(this.auditService.getAuditsByAuditor().size() != 0){
-//				audits = this.auditService.getAuditsByAuditor();
-//				for (Audit au : audits) {
-//					Collection<Position> positions = new ArrayList<>();
-//					positions = this.positionService.getPositionByAudit(au.getId());
-//					for (Position p : positions) {
-//						p.setAuditor(null);
-//					}
-//					this.auditService.delete(au);
-//				}
-//			}
+			Collection<Audit> audits = new ArrayList<>();
+			if(this.auditService.getAuditsByAuditor().size() != 0){
+				audits = this.auditService.getAuditsByAuditor();
+				for (Audit au : audits) {
+					this.auditService.deleteForced(au);
+				}
+			}
 
 			this.auditorService.delete(a);
 		}

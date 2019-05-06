@@ -119,6 +119,16 @@ public class AuditService {
         this.auditRepository.delete(audit.getId());
     }
 
+    public void deleteForced(final Audit audit) {
+
+        Assert.notNull(audit);
+
+        Position p = this.getPositionByAudit(audit.getId());
+        p.getAudits().remove(audit);
+
+        this.auditRepository.delete(audit.getId());
+    }
+
     public Collection<Audit> getAuditsByAuditor(){
         Assert.isTrue(actorService.getActorLogged().getUserAccount().getAuthorities().iterator().next().getAuthority().equals("AUDITOR"));
         Collection<Audit> result;
