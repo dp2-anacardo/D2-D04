@@ -163,4 +163,12 @@ public class AuditService {
 
         return result;
     }
+
+    public Collection<Audit> getAuditsByPosition(int positionId){
+        Collection<Audit> result;
+
+        result = this.auditRepository.getAuditsByPosition(positionId);
+
+        return result;
+    }
 }

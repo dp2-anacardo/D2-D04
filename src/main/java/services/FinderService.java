@@ -162,4 +162,13 @@ public class FinderService {
         }
         return result;
     }
+
+    public Collection<Finder> findAllByPosition(final int positionId){
+
+        Collection<Finder> result;
+
+        result = this.finderRepository.findAllByPosition(positionId);
+
+        return result;
+    }
 }
