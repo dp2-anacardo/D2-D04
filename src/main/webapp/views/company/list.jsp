@@ -20,7 +20,8 @@
 
 
         <!-- Display -->
-        <display:column>
+        <spring:message code="company.positions" var="positions"/>
+        <display:column title="${positions}">
             <a
                     href="position/listByCompany.do?companyId=${row.id}">
                 <spring:message code="company.positions" />
@@ -29,7 +30,7 @@
         </display:column>
 
         <spring:message code="company.auditScore" var="auditScore"/>
-        <display:column  title="auditScore">
+        <display:column  title="${auditScore}">
         <jstl:choose>
             <jstl:when test="${row.auditScore == 0.0}">
                 nil

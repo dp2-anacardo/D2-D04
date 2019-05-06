@@ -35,9 +35,6 @@ public class ApplicationService {
 	private CompanyService			companyService;
 
 	@Autowired
-	private ProblemService			problemService;
-
-	@Autowired
 	private PositionService			positionService;
 
 	@Autowired

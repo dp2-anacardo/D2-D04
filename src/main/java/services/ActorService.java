@@ -84,16 +84,6 @@ public class ActorService {
         this.actorRepository.delete(actor);
     }
 
-    public UserAccount findUserAccount(final Actor actor) {
-        Assert.notNull(actor);
-
-        UserAccount result;
-
-        result = this.userAccountService.findByActor(actor);
-
-        return result;
-    }
-
     public Actor findByUserAccount(final UserAccount userAccount) {
         Assert.notNull(userAccount);
 
@@ -132,18 +122,6 @@ public class ActorService {
 
         Actor result;
         result = this.actorRepository.findByUsername(username);
-        return result;
-    }
-
-    public Collection<Actor> findSuspiciousActors() {
-        Collection<Actor> result;
-        result = this.actorRepository.findSuspiciousActors();
-        return result;
-    }
-
-    public Collection<Actor> findBannedActors() {
-        Collection<Actor> result;
-        result = this.actorRepository.findBannedActors();
         return result;
     }
 
@@ -230,69 +208,6 @@ public class ActorService {
         }
 
         //Borrado si company
-//		if (userAccount.getAuthorities().iterator().next().getAuthority().equals("COMPANY")) {
-//
-//			final Company company = this.companyService.findOne(user.getId());
-//
-//			final Collection<Application> applications = this.applicationService.getApplicationsByCompany(company);
-//			final Collection<Curricula> allCurriculas = this.curriculaService.findAll();
-//			final Collection<Position> allPositions = this.positionService.findAll();
-//			this.deleteApplications(applications,allPositions, allCurriculas);
-//
-//			//Borrado de los problems de company
-//			final Collection<Problem> problems = this.problemService.findAllByCompany(company.getId());
-//			final Collection<Application> allApplications = this.applicationService.findAll();
-//			for (Problem p : problems) {
-//				for (Application a : allApplications) {
-//					if (a.getProblem().equals(p)) {
-////						final Position pos = this.applicationService.getPositionByApplication(a.getId());
-////						pos.getApplications().remove(a);
-//						this.applicationService.delete(a);
-//					}
-//				}
-//				this.problemService.deleteForced(p);
-//			}
-//
-//
-//			//Borrado de las positions
-//			final Collection<Position> positions = this.positionService.getPositionsByCompanyAll(company);
-//			final Collection<Finder> allFinders = this.finderService.findAll();
-//			for (Position p : positions) {
-//				for (Finder f : allFinders) {
-//					if (f.getPositions().contains(p)) {
-//						Collection<Position> pos = f.getPositions();
-//						pos.remove(p);
-//						f.setPositions(pos);
-//					}
-//
-//				}
-//				//Borrado de las audits de position
-//				Collection<Audit> audits = p.getAudits();
-//				for (Audit a : audits) {
-//					this.auditService.deleteForced(a);
-//					if(audits.size() == 0) break;
-//				}
-//				//Borrado de las sponsorships de position
-//				Collection<Sponsorship> sponsorships = this.sponsorshipService.findAllByPosition(p.getId());
-//				if(sponsorships.size() != 0) {
-//					for (Sponsorship s : sponsorships) {
-//						sponsorships.remove(s);
-//						this.sponsorshipService.deleteForced(s);
-//						if(sponsorships.isEmpty()) break;
-//					}
-//				}
-//				//Borrado de las application de position
-//				Collection<Application> a = p.getApplications();
-//				for(Application ap : a){
-//					p.getApplications().remove(ap);
-//					this.applicationService.delete(ap);
-//					if(a.isEmpty())break;
-//				}
-//				this.positionService.deleteForced(p);
-//			}
-//			this.companyService.delete(company);
-//		}
-
         if (userAccount.getAuthorities().iterator().next().getAuthority().equals("COMPANY")) {
 
             final Company company = this.companyService.findOne(user.getId());
@@ -371,15 +286,6 @@ public class ActorService {
             }
 
             this.auditorService.delete(a);
-        }
-    }
-
-    private void deleteApplications(Collection<Application> applications, Collection<Position> positions) {
-        for (Application a : applications) {
-            for (Position p : positions) {
-                if (p.getApplications().contains(a)) p.getApplications().remove(a);
-            }
-            this.applicationService.delete(a);
         }
     }
 

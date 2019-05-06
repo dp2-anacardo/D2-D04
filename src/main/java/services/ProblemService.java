@@ -135,14 +135,4 @@ public class ProblemService {
         return problems;
     }
 
-
-    public Collection<Problem> findByPosition(final int positionId){
-
-        Collection<Problem> problems;
-
-        problems = this.problemRepository.findByPosition(positionId);
-
-        return problems;
-    }
-
 }

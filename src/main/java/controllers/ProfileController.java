@@ -12,12 +12,7 @@ package controllers;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import domain.Actor;
-import domain.Administrator;
-import domain.Company;
-import domain.Rookie;
-import domain.Auditor;
-import domain.Provider;
+import domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;

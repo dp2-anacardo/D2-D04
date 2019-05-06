@@ -91,10 +91,6 @@ public class FinderService {
 
     //Another methods
 
-    public Collection<Position> findAllFinal() {
-        return this.finderRepository.findAllFinal();
-    }
-
     public void delete(final Finder f) {
         Assert.notNull(f);
         this.finderRepository.delete(f);

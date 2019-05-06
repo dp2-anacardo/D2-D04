@@ -1,6 +1,9 @@
 package services;
 
-import domain.*;
+import domain.Actor;
+import domain.Auditor;
+import domain.Message;
+import domain.SocialProfile;
 import forms.AuditorForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;

@@ -147,14 +147,6 @@ public class AuditService {
         return result;
     }
 
-    public Collection<Audit> getAuditsByPositionWithAuditorId(int auditorId){
-        Collection<Audit> result;
-
-        result = this.auditRepository.getAuditsByPositionWithAuditorId(auditorId);
-
-        return result;
-    }
-
     public Position getPositionByAudit(int auditId){
 
         Position result;
