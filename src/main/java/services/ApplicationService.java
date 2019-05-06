@@ -188,6 +188,15 @@ public class ApplicationService {
 		return applications;
 	}
 
+	public Collection<Application> getAllApplicationsByPosition(int positionId){
+
+		Collection<Application> applications;
+
+		applications = this.applicationRepository.getAllApplicationsByPosition(positionId);
+
+		return applications;
+	}
+
 	public Position getPositionByApplication(int applicationId){
 		Assert.notNull(applicationId);
 

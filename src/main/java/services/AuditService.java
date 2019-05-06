@@ -119,6 +119,16 @@ public class AuditService {
         this.auditRepository.delete(audit.getId());
     }
 
+    public void deleteForced(final Audit audit) {
+
+        Assert.notNull(audit);
+
+        Position p = this.getPositionByAudit(audit.getId());
+        p.getAudits().remove(audit);
+
+        this.auditRepository.delete(audit.getId());
+    }
+
     public Collection<Audit> getAuditsByAuditor(){
         Assert.isTrue(actorService.getActorLogged().getUserAccount().getAuthorities().iterator().next().getAuthority().equals("AUDITOR"));
         Collection<Audit> result;
@@ -150,6 +160,14 @@ public class AuditService {
         Position result;
 
         result = this.auditRepository.getPositionByAudit(auditId);
+
+        return result;
+    }
+
+    public Collection<Audit> getAuditsByPosition(int positionId){
+        Collection<Audit> result;
+
+        result = this.auditRepository.getAuditsByPosition(positionId);
 
         return result;
     }

@@ -80,6 +80,11 @@ public class SponsorshipService {
         this.sponsorshipRepository.delete(sponsorship);
     }
 
+    public void deleteForced(final Sponsorship sponsorship) {
+        Assert.notNull(sponsorship);
+        this.sponsorshipRepository.delete(sponsorship);
+    }
+
     // Other business methods
 
     public Sponsorship reconstruct(final Sponsorship sponsorship, final BindingResult binding) {
