@@ -40,6 +40,7 @@
         <security:intercept-url pattern="/provider/create.do" access="permitAll"/>
         <security:intercept-url pattern="/provider/provider/edit.do" access="hasRole('PROVIDER')"/>
         <security:intercept-url pattern="/auditor/auditor/edit.do" access="hasRole('AUDITOR')"/>
+        <security:intercept-url pattern="/company/administrator/computeAS.do" access="hasRole('ADMIN')"/>
         <security:intercept-url pattern="/company/list.do" access="permitAll"/>
         <security:intercept-url pattern="/profile/**" access="isAuthenticated()"/>
         <security:intercept-url pattern="/socialProfile/**" access="isAuthenticated()"/>

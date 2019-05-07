@@ -31,21 +31,26 @@
             <spring:message code="position.audits"/></a>
     </display:column>
 
-    <display:column> <a href="position/show.do?positionId=${row.id}">
+    <spring:message code="position.show" var="positionShow"/>
+    <display:column title="${positionShow}"> <a href="position/show.do?positionId=${row.id}">
         <spring:message code="position.show" /></a> </display:column>
-    <display:column>
+
+    <spring:message code="position.edit" var="positionEdit"/>
+    <display:column title="${positionEdit}">
         <jstl:if test="${row.isFinal == false}">
         <a href="position/company/edit.do?positionId=${row.id}">
         <spring:message code="position.edit" /></a> </jstl:if>
     </display:column>
 
-    <display:column>
+    <spring:message code="position.cancel" var="positionCancel"/>
+    <display:column title="${positionCancel}">
         <jstl:if test="${row.isFinal == true && row.isCancelled == false}">
             <acme:cancel code="position.cancel" url="position/company/cancel.do?positionId=${row.id}"/>
         </jstl:if>
     </display:column>
 
-    <display:column>
+    <spring:message code="position.delete" var="positionDelete"/>
+    <display:column title="${positionDelete}">
         <jstl:if test="${row.isFinal == false}">
             <acme:cancel code="position.delete" url="position/company/delete.do?positionId=${row.id}"/>
         </jstl:if>

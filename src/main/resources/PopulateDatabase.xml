@@ -203,6 +203,7 @@
 		<property name="phoneNumber" value="+34 679123486"/>
 		<property name="address" value="Crrt Carmona"/>
 		<property name="isSpammer" value="false"/>
+		<property name="auditScore" value="0.0"/>
 		<property name="isBanned" value="false"/>
 		<property name="socialProfiles">
 			<list>
@@ -232,6 +233,7 @@
 		<property name="phoneNumber" value="+34 681538301"/>
 		<property name="address" value="Calle Feria"/>
 		<property name="isSpammer" value="false"/>
+		<property name="auditScore" value="0.0"/>
 		<property name="isBanned" value="false"/>
 		<property name="socialProfiles">
 			<list>
@@ -664,7 +666,7 @@
                 <ref bean="attachment13"/>
             </list>
         </property>
-        <property name="provider" ref="provider2"/>
+        <property name="provider" ref="provider1"/>
     </bean>
 
     <bean id="item4" class="domain.Item">
@@ -699,7 +701,7 @@
 	</bean>
 
 	<bean id="sponsorship3" class="domain.Sponsorship">
-		<property name="provider" ref="provider2"/>
+		<property name="provider" ref="provider1"/>
 		<property name="position" ref="position1"/>
 		<property name="banner" value="https://www.sponsorship3.com"/>
 		<property name="creditCard" ref="creditCardProvider2"/>
@@ -707,7 +709,7 @@
 
 	<bean id="sponsorship4" class="domain.Sponsorship">
 		<property name="provider" ref="provider2"/>
-		<property name="position" ref="position1"/>
+		<property name="position" ref="position2"/>
 		<property name="banner" value="https://www.sponsorship4.com"/>
 		<property name="creditCard" ref="creditCardProvider2"/>
 	</bean>

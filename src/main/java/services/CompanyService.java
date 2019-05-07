@@ -1,10 +1,7 @@
 
 package services;
 
-import domain.Actor;
-import domain.Company;
-import domain.Message;
-import domain.SocialProfile;
+import domain.*;
 import forms.CompanyForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
@@ -128,6 +125,7 @@ public class CompanyService {
 			result.setVatNumber(company.getVatNumber());
 			result.setSurname(company.getSurname());
 			result.setCommercialName(company.getCommercialName());
+			result.setAuditScore(company.getAuditScore());
 
 			this.validator.validate(company, binding);
 		}
@@ -149,9 +147,22 @@ public class CompanyService {
 		result.setVersion(c.getVersion());
 		result.setVatNumber(c.getVatNumber());
 		result.setCommercialName(c.getCommercialName());
+		result.setAuditScore(0.0);
 
 		this.validator.validate(result, binding);
 		return result;
 	}
 
+	public void computeAuditScore(){
+		Actor a = this.actorService.getActorLogged();
+		Assert.isTrue(a instanceof Administrator);
+		Collection<Company> companies = this.findAll();
+		for (Company c : companies){
+			Double result = this.companyRepository.computeAuditScore(c);
+			if(result!=null){
+				c.setAuditScore(result);
+			}
+		}
+
+	}
 }

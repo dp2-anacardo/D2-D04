@@ -17,4 +17,5 @@ public interface ProblemRepository extends JpaRepository<Problem, Integer> {
 
 	@Query("select p from Problem p where p.isFinal = true and p.company.id = ?1")
 	List<Problem> getProblemsFinalByCompany(final int companyId);
+
 }

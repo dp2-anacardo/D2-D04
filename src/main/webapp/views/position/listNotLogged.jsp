@@ -18,11 +18,13 @@
     <spring:message code="position.description" var="description"/>
     <display:column property="description" title="${description}"/>
 
-    <display:column> <a href="position/show.do?positionId=${row.id}">
-        <spring:message code="position.show" /></a> </display:column>
+    <spring:message code="position.show" var="positionShow"/>
+    <display:column title="${positionShow}"> <a href="position/show.do?positionId=${row.id}">
+        <spring:message code="position.show"/></a> </display:column>
 
-    <display:column> <a href="company/show.do?companyId=${row.company.id}">
-        <spring:message code="position.company" /></a> </display:column>
+    <spring:message code="position.company" var="positionCompany"/>
+    <display:column title="${positionCompany}"> <a href="company/show.do?companyId=${row.company.id}">
+        <spring:message code="position.company"/></a> </display:column>
 
     <spring:message code="position.audits" var="audits"/>
     <display:column title="${audits}">
@@ -31,14 +33,19 @@
     </display:column>
 
     <security:authorize access="hasRole('ROOKIE')">
-        <display:column> <a href="application/rookie/create.do?positionId=${row.id}">
-            <spring:message code="application.create" /></a> </display:column>
+        <spring:message code="application.create" var="appCreate"/>
+        <display:column title="${appCreate}"> <a href="application/rookie/create.do?positionId=${row.id}">
+            <spring:message code="application.create"/></a> </display:column>
     </security:authorize>
 
     <security:authorize access="hasRole('AUDITOR')">
-        <display:column> <a href="audit/auditor/create.do?positionId=${row.id}">
-            <spring:message code="audit.create" /></a> </display:column>
+        <spring:message code="audit.create" var="auditCreate"/>
+        <display:column title="${auditCreate}"> <a href="audit/auditor/create.do?positionId=${row.id}">
+            <spring:message code="audit.create"/></a> </display:column>
     </security:authorize>
 
-
 </display:table>
+
+<input type="button" name="cancel"
+       value="<spring:message code="position.goBack" />"
+       onclick="javascript: window.history.back();"/>

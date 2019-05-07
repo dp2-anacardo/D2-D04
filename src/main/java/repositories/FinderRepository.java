@@ -31,4 +31,7 @@ public interface FinderRepository extends JpaRepository<Finder, Integer> {
 	@Query("select p from Position p where p.isFinal =TRUE and p.isCancelled = FALSE")
 	Collection<Position> findAllFinal();
 
+	@Query("select f from Finder f join f.positions pos where pos.id=?1")
+	Collection<Finder> findAllByPosition(int positionId);
+
 }

@@ -114,4 +114,16 @@ public class RegisterCompanyController extends AbstractController {
 		}
 		return result;
 	}
+
+	@RequestMapping(value = "/administrator/computeAS", method = RequestMethod.GET)
+	public ModelAndView computeAuditScore(){
+		ModelAndView result;
+		try{
+			this.companyService.computeAuditScore();
+			result = new ModelAndView("redirect:/company/list.do");
+		}catch(Throwable oops){
+			result = new ModelAndView("redirect:/");
+		}
+		return result;
+	}
 }

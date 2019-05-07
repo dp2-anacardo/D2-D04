@@ -1,13 +1,11 @@
 
 package converters;
 
-import domain.Actor;
 import domain.Position;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
-import repositories.ActorRepository;
 import repositories.PositionRepository;
 
 import javax.transaction.Transactional;

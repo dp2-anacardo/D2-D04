@@ -20,14 +20,16 @@
 
 
         <!-- Display -->
-        <display:column>
+        <spring:message code="curricula.display" var="display"/>
+        <display:column title="${display}">
             <a
                     href="curricula/rookie/display.do?curriculaId=${row.id}">
                 <spring:message code="curricula.display" />
             </a>
         </display:column>
 
-        <display:column>
+        <spring:message code="curricula.delete" var="delete"/>
+        <display:column title="${delete}">
             <a
                     href="curricula/rookie/delete.do?curriculaId=${row.id}">
                 <spring:message code="curricula.delete" />

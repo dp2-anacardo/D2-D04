@@ -265,24 +265,4 @@ public class PositionController extends AbstractController {
 		return result;
 	}
 
-	/*
-	 * // MODEL&VIEW
-	 * protected ModelAndView editModelAndView(final Configuration config) {
-	 * ModelAndView result;
-	 * final ConfigurationForm configF = new ConfigurationForm(config);
-	 * result = this.editModelAndView(configF, null);
-	 * return result;
-	 * }
-	 *
-	 * protected ModelAndView editModelAndView(final ConfigurationForm configF, final String messageCode) {
-	 * ModelAndView result;
-	 *
-	 * result = new ModelAndView("configuration/administrator/edit");
-	 * result.addObject("configF", configF);
-	 * result.addObject("messageCode", messageCode);
-	 *
-	 * return result;
-	 * }
-	 */
-
 }

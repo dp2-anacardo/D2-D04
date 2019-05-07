@@ -35,9 +35,6 @@ public class ApplicationService {
 	private CompanyService			companyService;
 
 	@Autowired
-	private ProblemService			problemService;
-
-	@Autowired
 	private PositionService			positionService;
 
 	@Autowired
@@ -184,6 +181,15 @@ public class ApplicationService {
 		Collection<Application> applications;
 
 		applications = applicationRepository.getApplicationsByPosition(positionId);
+
+		return applications;
+	}
+
+	public Collection<Application> getAllApplicationsByPosition(int positionId){
+
+		Collection<Application> applications;
+
+		applications = this.applicationRepository.getAllApplicationsByPosition(positionId);
 
 		return applications;
 	}

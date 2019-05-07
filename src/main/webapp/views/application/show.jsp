@@ -1,50 +1,57 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+         pageEncoding="ISO-8859-1" %>
 
-    
-<%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
-<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
-<%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+
+<%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<%@taglib prefix="display" uri="http://displaytag.sf.net" %>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 <security:authorize access="hasRole('ROOKIE')">
-<jstl:if test="${application.status != 'PENDING'}">
-<acme:showtext fieldset="true" code="application.submitMoment" value="${application.submitMoment}"/>
-<acme:showtext fieldset="true" code="application.explanation" value="${application.explanation}"/>
+    <jstl:if test="${application.status != 'PENDING'}">
+        <acme:showtext fieldset="true" code="application.submitMoment" value="${application.submitMoment}"/>
+        <acme:showtext fieldset="true" code="application.explanation" value="${application.explanation}"/>
 
-<fieldset><legend><spring:message code="application.link"/></legend>
-	<a href='${application.link}'>${application.link}</a>
-</fieldset>
-</jstl:if>
+        <fieldset>
+            <legend><spring:message code="application.link"/></legend>
+            <a href='${application.link}'>${application.link}</a>
+        </fieldset>
+    </jstl:if>
 
-<fieldset><legend><spring:message code="application.status"/></legend>
-<jstl:if test="${application.status == 'ACCEPTED' }">
-		<spring:message code="application.accepted"/>
-</jstl:if>
-			
-<jstl:if test="${application.status == 'SUBMITTED' }">
-	<spring:message code="application.submitted"/>
-</jstl:if>
-			
-<jstl:if test="${application.status == 'PENDING' }">
-	<spring:message code="application.pending"/>
-</jstl:if>
+    <fieldset>
+        <legend><spring:message code="application.status"/></legend>
+        <jstl:if test="${application.status == 'ACCEPTED' }">
+            <spring:message code="application.accepted"/>
+        </jstl:if>
 
-<jstl:if test="${application.status == 'REJECTED' }">
-	<spring:message code="application.rejected"/></jstl:if>
-</fieldset>
-			
-<jstl:if test="${application.status == 'REJECTED' }">
-	<acme:showtext fieldset="true" code='application.rejectComment'
-	value="${application.rejectComment}"/>
-</jstl:if>
+        <jstl:if test="${application.status == 'SUBMITTED' }">
+            <spring:message code="application.submitted"/>
+        </jstl:if>
 
-<fieldset><legend><spring:message code="application.problem"/></legend>
-	<a href="problem/show.do?problemID=${application.problem.id}"><spring:message code="application.problem"/></a>
-</fieldset>
-		
+        <jstl:if test="${application.status == 'PENDING' }">
+            <spring:message code="application.pending"/>
+        </jstl:if>
+
+        <jstl:if test="${application.status == 'REJECTED' }">
+            <spring:message code="application.rejected"/></jstl:if>
+    </fieldset>
+
+    <jstl:if test="${application.status == 'REJECTED' }">
+        <acme:showtext fieldset="true" code='application.rejectComment'
+                       value="${application.rejectComment}"/>
+    </jstl:if>
+
+    <fieldset>
+        <legend><spring:message code="application.problem"/></legend>
+        <a href="problem/show.do?problemID=${application.problem.id}"><spring:message code="application.problem"/></a>
+    </fieldset>
+
+    <input type="button" name="cancel"
+           value="<spring:message code="position.goBack" />"
+           onclick="javascript: window.history.back();"/>
+
 </security:authorize>

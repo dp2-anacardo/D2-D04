@@ -14,6 +14,18 @@
     <spring:message code="company.name" var="commercialName"/>
     <display:column property="commercialName" title="${commercialName}"
                     sortable="false"/>
+    <spring:message code="company.auditScore" var="auditScore"/>
+    <display:column  title="auditScore">
+        <jstl:choose>
+            <jstl:when test="${company.auditScore == 0.0}">
+                nil
+            </jstl:when>
+            <jstl:otherwise>
+                ${company.auditScore}
+            </jstl:otherwise>
+        </jstl:choose>
+
+    </display:column>
 </display:table>
 
 <input type="button" name="cancel"

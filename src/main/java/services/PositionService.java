@@ -139,14 +139,6 @@ public class PositionService {
 		return res;
 	}
 
-	public Collection<Position> getPositionsByCompany(final Company company) {
-		Collection<Position> positions;
-
-		positions = this.positionRepository.getPositionsByCompany(company.getId());
-
-		return positions;
-	}
-
 	public Collection<Position> getPositionsByCompanyAll(final Company company) {
 		Collection<Position> positions;
 

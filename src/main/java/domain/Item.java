@@ -5,14 +5,11 @@ import datatype.Url;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.SafeHtml;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.Valid;
-import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
-import java.util.Date;
 
 @Entity
 @Access(AccessType.PROPERTY)

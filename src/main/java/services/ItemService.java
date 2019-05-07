@@ -4,7 +4,6 @@ import datatype.Url;
 import domain.Actor;
 import domain.Item;
 import domain.Provider;
-import domain.Rookie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -27,8 +26,6 @@ public class ItemService {
     //Services
     @Autowired
     private ActorService actorService;
-    @Autowired
-    private ProviderService providerService;
 
     @Autowired
     private Validator validator;

@@ -32,6 +32,7 @@
 					<jstl:if test="${rebranding==true}">
 						<li><a href="message/admin/rebranding.do"><spring:message code="master.page.administrator.rebranding" /></a></li>
 					</jstl:if>
+					<li><a href="company/administrator/computeAS.do"><spring:message code="master.page.administrator.computeAS" /></a></li>
 				</ul>
 			</li>
 			<li><a class="fNiv" href="configuration/administrator/show.do"><spring:message code="master.page.configuration" /></a></li>
