@@ -170,14 +170,8 @@ public class ItemController extends AbstractController {
         Item item;
 
         try {
-            final Actor principal = this.actorService.getActorLogged();
-            if (principal instanceof Provider) {
-                item = this.itemService.findOne(itemID);
-                Assert.isTrue(this.itemService.findAllByProvider(principal.getId()).contains(item));
-            } else {
-                //TODO Caso Rookie ?
-            }
             item = this.itemService.findOne(itemID);
+            Assert.notNull(item);
         } catch (final Exception e) {
             result = new ModelAndView("redirect:/");
             return result;
