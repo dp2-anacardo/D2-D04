@@ -112,7 +112,7 @@
     </jstl:forEach>
     <br />
 
-
+    <b><spring:message code="administrator.avgSalaryPositionsWithHighestAS" /></b> ${avgSalaryPositionsWithHighestAS} <br />
 
 
 

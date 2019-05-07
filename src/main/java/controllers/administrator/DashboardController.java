@@ -92,6 +92,9 @@ public class DashboardController extends AbstractController {
         /* 4.4.3 */
         List<String> companiesHighestAS = this.administratorService.getCompaniesHighestAS();
 
+        /* 4.4.4 */
+        Double avgSalaryPositionsWithHighestAS = this.administratorService.getAvgSalaryPositionsWithHighestAS();
+
         /* 11.A */
         final Double avgNumOfItems = this.administratorService.getNumberOfItemsPerProvider().get(0);
         final Double minNumOfItems = this.administratorService.getNumberOfItemsPerProvider().get(1);
@@ -195,6 +198,7 @@ public class DashboardController extends AbstractController {
 
         result.addObject("companiesHighestAS",companiesHighestAS);
 
+        result.addObject("avgSalaryPositionsWithHighestAS",avgSalaryPositionsWithHighestAS);
         return result;
     }
 }
