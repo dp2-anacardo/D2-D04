@@ -423,6 +423,11 @@ public class AdministratorService {
         return result;
     }
 
+    //4.4.4
+    public Double getAvgSalaryPositionsWithHighestAS(){
+        return this.administratorRepository.getAvgSalaryPositionsWithHighestAS();
+    }
+
     //11.a
     public List<Double> getNumberOfItemsPerProvider(){
 
