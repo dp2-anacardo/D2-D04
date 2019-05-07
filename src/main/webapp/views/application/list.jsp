@@ -8,6 +8,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@taglib prefix="display" uri="http://displaytag.sf.net" %>
+<%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 <security:authorize access="hasRole('ROOKIE')">
     <display:table name="applications" id="row" requestURI="${requestURI}" pagesize="5" class="displaytag">
@@ -79,6 +80,8 @@
                 <spring:message code="application.show"/></a>
         </display:column>
     </display:table>
+
+    <acme:cancel code="position.goBack" url="/"/>
 </security:authorize>
 
 <security:authorize access="hasRole('COMPANY')">
@@ -158,7 +161,6 @@
 
     </display:table>
 
-    <input type="button" name="cancel"
-           value="<spring:message code="position.goBack" />"
-           onclick="javascript: window.history.back();"/>
+    <acme:cancel code="position.goBack" url="position/company/list.do"/>
+
 </security:authorize>

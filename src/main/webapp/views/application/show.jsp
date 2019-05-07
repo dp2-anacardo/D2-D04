@@ -50,8 +50,6 @@
         <a href="problem/show.do?problemID=${application.problem.id}"><spring:message code="application.problem"/></a>
     </fieldset>
 
-    <input type="button" name="cancel"
-           value="<spring:message code="position.goBack" />"
-           onclick="javascript: window.history.back();"/>
+    <acme:cancel code="position.goBack" url="application/rookie/list.do"/>
 
 </security:authorize>

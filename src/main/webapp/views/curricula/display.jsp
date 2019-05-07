@@ -152,9 +152,7 @@
         <acme:cancel url="miscData/rookie/create.do?curriculaId=${curricula.id}" code="curricula.misc.create"/>
     </jstl:if>
 
-    <input type="button" name="cancel"
-           value="<spring:message code="position.goBack" />"
-           onclick="javascript: window.history.back();"/>
+    <acme:cancel code="position.goBack" url="/curricula/rookie/list.do"/>
 </security:authorize>
 
 <security:authorize access="hasRole('COMPANY')">
