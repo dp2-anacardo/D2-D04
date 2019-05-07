@@ -126,6 +126,18 @@
 		</property>
 	</bean>
 
+	<bean id="userAccount10" class="security.UserAccount">
+		<property name="username" value="auditor3" />
+		<property name="password" value="fc2073dbe4f65dfd71e46602f8e6a5f3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="AUDITOR" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
 
 	<!-- Other domain beans come here -->
 
@@ -754,7 +766,33 @@
 		</property>
 	</bean>
 
-	<!-- Provider's CreditCard -->
+	<bean id="auditor3" class="domain.Auditor">
+		<property name="userAccount" ref="userAccount10"/>
+		<property name="name" value="auditor3" />
+		<property name="surname" value="auditor3"/>
+		<property name="vatNumber" value="685357255"/>
+		<property name="creditCard" ref="creditCardAuditor3"/>
+		<property name="photo" value="https://github.com/dp2-anacardo/DP2-D02"/>
+		<property name="email" value="auditor3@gmail.com"/>
+		<property name="phoneNumber" value="+34 600102055"/>
+		<property name="address" value="Avenida Reina Leticia"/>
+		<property name="isSpammer" value="false"/>
+		<property name="isBanned" value="false"/>
+		<property name="socialProfiles">
+			<list>
+			</list>
+		</property>
+		<property name="messagesReceived">
+			<list>
+			</list>
+		</property>
+		<property name="messagesSent">
+			<list>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Auditor's CreditCard -->
 
 	<bean id="creditCardAuditor1" class ="datatype.CreditCard">
 		<property name = "holder" value = "Auditor1"/>
@@ -772,6 +810,14 @@
 		<property name = "cvv" value = "888"/>
 	</bean>
 
+	<bean id="creditCardAuditor3" class ="datatype.CreditCard">
+		<property name = "holder" value = "Auditor3"/>
+		<property name = "brandName" value = "VISA"/>
+		<property name = "number" value = "4553025819615246"/>
+		<property name = "expirationYear" value="01/05/2044"/>
+		<property name = "cvv" value = "753"/>
+	</bean>
+
 	<!-- Audits -->
 
 	<bean id="audit1" class ="domain.Audit">
@@ -780,6 +826,14 @@
 		<property name = "score" value = "7"/>
 		<property name = "isFinal" value="true"/>
 		<property name="auditor" ref="auditor2"/>
+	</bean>
+
+	<bean id="audit2" class ="domain.Audit">
+		<property name = "moment" value = "01/02/2020"/>
+		<property name = "text" value = "test"/>
+		<property name = "score" value = "7"/>
+		<property name = "isFinal" value="false"/>
+		<property name="auditor" ref="auditor3"/>
 	</bean>
 
 	<!-- Messages -->
@@ -854,6 +908,7 @@
 		<property name = "audits">
 			<list>
 				<ref bean = "audit1"/>
+				<ref bean="audit2"/>
 			</list>
 		</property>
 	</bean>
