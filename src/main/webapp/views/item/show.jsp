@@ -69,3 +69,4 @@
     <acme:cancel url="item/provider/list.do" code="item.goBack"/>
 </security:authorize>
 
+<acme:cancel url="/" code="item.goBack"/>
