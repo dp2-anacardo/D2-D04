@@ -93,6 +93,7 @@
         <security:intercept-url pattern="/item/provider/update.do" access="hasRole('PROVIDER')"/>
         <security:intercept-url pattern="/item/provider/delete.do" access="hasRole('PROVIDER')"/>
         <security:intercept-url pattern="/item/listNotLogged.do" access="permitAll"/>
+        <security:intercept-url pattern="/item/listAllNotLogged.do" access="permitAll"/>
         <security:intercept-url pattern="/item/show.do" access="permitAll"/>
         <security:intercept-url pattern="/provider/show.do" access="permitAll"/>
 

@@ -30,4 +30,4 @@
 </display:table>
 
 
-<acme:cancel url="/provider/listNotLogged.do" code="item.goBack"/>
+<acme:cancel url="/" code="item.goBack"/>
