@@ -15,6 +15,9 @@
 
         <!-- Attributes -->
 
+        <spring:message code="position.ticker" var="ticker" />
+        <display:column property="ticker" title="${ticker}"/>
+
         <spring:message code="position.title" var="title" />
         <display:column property="title" title="${title}"/>
 
