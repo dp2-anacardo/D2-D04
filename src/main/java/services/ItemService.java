@@ -76,7 +76,6 @@ public class ItemService {
         Assert.notNull(m);
         Actor a = this.actorService.getActorLogged();
         Assert.isTrue(a instanceof Provider);
-        Assert.isTrue(m.getProvider().equals(a));
 
         m = this.itemRepository.save(m);
 

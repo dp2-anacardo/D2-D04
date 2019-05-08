@@ -99,9 +99,7 @@ public class ItemController extends AbstractController {
         Item item;
 
         try {
-            final Actor principal = this.actorService.getActorLogged();
             item = this.itemService.findOne(itemID);
-            Assert.isTrue(this.itemService.findAllByProvider(principal.getId()).contains(item));
             result = this.updateModelAndView(item);
             return result;
         } catch (final Exception e) {

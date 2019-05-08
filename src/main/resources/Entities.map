@@ -1,11 +1,5 @@
 #./src/main/resources/Entities.map
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-#Tue May 07 15:13:10 CEST 2019
-=======
-#Wed May 08 13:22:57 CEST 2019
->>>>>>> miguel
+#Wed May 08 15:59:35 CEST 2019
 application4=837
 personalDataRookie2Copy3=805
 application3=836
@@ -78,81 +72,3 @@ auditor3=814
 curricula2Rookie1=796
 auditor2=813
 auditor1=812
-<<<<<<< HEAD
-=======
-#Mon May 06 23:51:11 CEST 2019
-=======
-#Tue May 07 15:57:45 CEST 2019
->>>>>>> jesus
-problem6=788
-application4=800
-problem5=787
-application3=799
-problem4=786
-application2=798
-message3=793
-problem3=785
-positionDataRookie1Copy=760
-application1=802
-message2=791
-problem2=784
-problem1=783
-message1=745
-item4=776
-educationalDataRookie1=754
-item3=775
-configuration1=789
-item2=774
-item1=773
-curriculaRookie2Copy=765
-curricula1Rookie1Copy=756
-personalData1Rookie1Copy=758
-finderRookie2=750
-curriculaRookie2Copy3=769
-finderRookie1=749
-curriculaRookie2Copy2=767
-personalDataRookie2Copy3=770
-personalDataRookie2Copy2=768
-curricula1Rookie1=751
-socialProfileRookie1=748
-curricula2Rookie1=761
-personalData1Rookie1=753
-rookie2=792
-rookie1=801
-personalData2Rookie1=762
-miscellaneousDataRookie1=752
-audit1=779
-positionDataRookie1=755
-userAccount9=742
-socialProfileCompany1=747
-company2=746
-userAccount8=741
-provider2=772
-company1=744
-userAccount7=740
-provider1=771
-userAccount6=739
-userAccount5=738
-userAccount4=737
-userAccount3=736
-userAccount2=735
-userAccount1=734
-personalDataRookie2=764
-auditor2=778
-auditor1=777
-personalDataRookie2Copy=766
-curriculaRookie2=763
-sponsorship4=797
-admin1=790
-sponsorship3=796
-sponsorship2=795
-sponsorship1=794
-position3=782
-socialProfileAdmin1=743
-position2=781
-educationalDataRookie1Copy=759
-position1=780
-miscellaneousDataRookie1Copy=757
->>>>>>> d6c9f12f6aa6464adc602aa797f559638769f84f
-=======
->>>>>>> miguel
