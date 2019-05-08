@@ -67,7 +67,7 @@ public class AuditController extends AbstractController {
             Assert.notNull(positionId);
             position = this.positionService.findOne(positionId);
             Assert.notNull(position);
-            audits = this.auditService.getAuditsFinalByPosition(positionId);
+            audits = this.auditService.getAuditsByPosition(positionId);
         }catch(Throwable oops){
             result = new ModelAndView("redirect:/position/listNotLogged.do");
             return result;
@@ -87,14 +87,9 @@ public class AuditController extends AbstractController {
         Audit audit;
         Auditor auditor = auditorService.findOne(actorService.getActorLogged().getId());
 
-        try{
             Assert.notNull(auditId);
             audit = this.auditService.findOne(auditId);
             Assert.isTrue(audit.getAuditor().equals(auditor));
-        } catch (Throwable oops){
-            result = new ModelAndView("redirect:/");
-            return result;
-        }
 
         result = new ModelAndView("audit/auditor/show");
         result.addObject("audit", audit);
@@ -114,7 +109,6 @@ public class AuditController extends AbstractController {
             Assert.notNull(positionId);
             position = this.positionService.findOne(positionId);
             Assert.isTrue(position.getIsFinal());
-            Assert.isTrue(!position.getIsCancelled());
             Assert.isTrue(!auditors.contains(auditor));
             Assert.notNull(position);
             audit = this.auditService.create();
@@ -203,29 +197,12 @@ public class AuditController extends AbstractController {
 
 
     // Delete ------------------------------------------------------
-    @RequestMapping(value = "auditor/update", method = RequestMethod.POST, params = "delete")
-    public ModelAndView delete(@ModelAttribute("audit") Audit audit) {
-        ModelAndView result;
-
-        try {
-             this.auditService.delete(audit);
-             result = new ModelAndView("redirect:/audit/auditor/list.do");
-        } catch (final Throwable oops) {
-             result = new ModelAndView("audit/auditor/update");
-             result.addObject("audit", audit);
-             return result;
-        }
-        return result;
-    }
-
     @RequestMapping(value="auditor/delete", method = RequestMethod.GET)
     public ModelAndView delete(@RequestParam int auditId){
         ModelAndView result;
 
         try{
             Audit audit = this.auditService.findOne(auditId);
-            Collection<Audit> audits = this.auditService.getAuditsByAuditor();
-            Assert.isTrue(audits.contains(audit));
             this.auditService.delete(audit);
             result = new ModelAndView("redirect:/audit/auditor/list.do");
         }catch (Throwable oops){
