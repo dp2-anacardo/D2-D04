@@ -84,8 +84,7 @@ public class RookieForm {
 		this.photo = photo;
 	}
 
-	@NotBlank
-	@Email
+
 	@SafeHtml(whitelistType = WhiteListType.NONE)
 	public String getEmail() {
 		return this.email;

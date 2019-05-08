@@ -53,7 +53,7 @@ public class Actor extends DomainEntity {
     private Collection<SocialProfile> socialProfiles;
 
 
-    @NotBlank
+
     @SafeHtml(whitelistType = WhiteListType.NONE)
     public String getName() {
         return this.name;
@@ -65,8 +65,7 @@ public class Actor extends DomainEntity {
         return this.photo;
     }
 
-    @NotBlank
-    @Email
+
     @SafeHtml(whitelistType = WhiteListType.NONE)
     public String getEmail() {
         return this.email;

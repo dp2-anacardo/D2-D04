@@ -53,10 +53,12 @@ public class RegisterAdministratorController extends AbstractController {
 		if (this.actorService.existUsername(administratorForm.getUsername()) == false) {
 			binding.rejectValue("username", "error.username");
 			result = this.createEditModelAndView(administratorForm);
-		} else if (this.administratorService.checkPass(administratorForm.getPassword(), administratorForm.getConfirmPass()) == false) {
-			binding.rejectValue("password", "error.password");
-			result = this.createEditModelAndView(administratorForm);
-		} else if (binding.hasErrors())
+		}
+//		else if (this.administratorService.checkPass(administratorForm.getPassword(), administratorForm.getConfirmPass()) == false) {
+//			binding.rejectValue("password", "error.password");
+//			result = this.createEditModelAndView(administratorForm);
+//		}
+		else if (binding.hasErrors())
 			result = this.createEditModelAndView(administratorForm);
 		else
 			try {
