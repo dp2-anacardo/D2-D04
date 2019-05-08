@@ -122,7 +122,7 @@ public class FinderController extends AbstractController {
 
         finder.setMaxDeadline(null);
         finder.setDeadline(null);
-        finder.setMinSalary(0);
+        finder.setMinSalary(null);
         finder.setKeyWord(null);
 
         this.finderService.save(finder);
