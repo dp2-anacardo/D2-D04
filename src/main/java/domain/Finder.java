@@ -17,7 +17,7 @@ public class Finder extends DomainEntity {
 	private String					keyWord;
 	private Date					deadline;
 	private Date					maxDeadline;
-	private int						minSalary;
+	private Integer					minSalary;
 	private Date					lastUpdate;
 
 	//Relationships
@@ -57,11 +57,11 @@ public class Finder extends DomainEntity {
 		this.maxDeadline = maxDeadline;
 	}
 
-	public int getMinSalary() {
+	public Integer getMinSalary() {
 		return this.minSalary;
 	}
 
-	public void setMinSalary(final int minSalary) {
+	public void setMinSalary(final Integer minSalary) {
 		this.minSalary = minSalary;
 	}
 
