@@ -69,4 +69,11 @@
     <acme:cancel url="item/provider/list.do" code="item.goBack"/>
 </security:authorize>
 
-<acme:cancel url="/" code="item.goBack"/>
+<security:authorize access="isAnonymous()">
+    <acme:cancel url="/" code="item.goBack"/>
+</security:authorize>
+
+<security:authorize access="hasAnyRole('ROOKIE', 'ADMIN', 'COMPANY', 'AUDITOR')">
+    <acme:cancel url="/" code="item.goBack"/>
+</security:authorize>
+
