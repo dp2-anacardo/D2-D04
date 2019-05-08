@@ -75,7 +75,7 @@
                     href="educationalData/rookie/delete.do?educationalDataId=${row.id}">
                 <spring:message code="curricula.delete"/>
             </a>
-        </display:column>
+        </display:column> 
 
     </display:table>
 
