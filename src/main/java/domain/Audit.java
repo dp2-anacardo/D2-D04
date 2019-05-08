@@ -32,7 +32,6 @@ public class Audit extends DomainEntity{
         this.moment = moment;
     }
 
-    @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
     public String getText() {
         return text;
     }
