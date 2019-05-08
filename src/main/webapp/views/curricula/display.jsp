@@ -72,10 +72,10 @@
         <spring:message code="curricula.delete" var="curriculaDelete"/>
         <display:column title="${curriculaDelete}">
             <a
-                    href="educationalData/rookie/delete.do?educationalDataId=${row.id}">
+                    href="curricula/rookie/list.do">
                 <spring:message code="curricula.delete"/>
             </a>
-        </display:column> 
+        </display:column>
 
     </display:table>
 
