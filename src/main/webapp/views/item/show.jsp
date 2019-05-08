@@ -69,4 +69,6 @@
     <acme:cancel url="item/provider/list.do" code="item.goBack"/>
 </security:authorize>
 
-<acme:cancel url="/" code="item.goBack"/>
+<input type="button" name="cancel"
+       value="<spring:message code="item.goBack" />"
+       onclick="javascript: window.history.back();"/>
