@@ -36,6 +36,10 @@ public class AdministratorService {
     @Autowired
     private CompanyService companyService;
     @Autowired
+    private ProviderService providerService;
+    @Autowired
+    private AuditorService auditorService;
+    @Autowired
     private MessageService messageService;
     @Autowired
     private Validator validator;
@@ -196,6 +200,9 @@ public class AdministratorService {
 
         Collection<Rookie> rookies;
         Collection<Company> companies;
+        Collection<Provider> providers;
+        Collection<Auditor> auditors;
+
 
         // Make sure that the principal is an Admin
         final Actor principal = this.actorService.getActorLogged();
@@ -241,6 +248,48 @@ public class AdministratorService {
                 company.setIsSpammer(false);
 
             this.companyService.save(company);
+        }
+
+        providers = this.providerService.findAll();
+        for (final Provider provider : providers) {
+            Integer spam = 0;
+            Double ratio = 0.0;
+            Collection<Message> sentMessages = this.messageService.findAllSentByActor(provider.getId());
+            if (sentMessages.size() > 0) {
+                for (Message m : sentMessages) {
+                    if (checkSpam(m))
+                        spam++;
+                }
+                ratio = (spam * 1.0) / sentMessages.size();
+                if (ratio >= 0.1)
+                    provider.setIsSpammer(true);
+                else
+                    provider.setIsSpammer(false);
+            } else
+                provider.setIsSpammer(false);
+
+            this.providerService.save(provider);
+        }
+
+        auditors = this.auditorService.findAll();
+        for (final Auditor auditor : auditors) {
+            Integer spam = 0;
+            Double ratio = 0.0;
+            Collection<Message> sentMessages = this.messageService.findAllSentByActor(auditor.getId());
+            if (sentMessages.size() > 0) {
+                for (Message m : sentMessages) {
+                    if (checkSpam(m))
+                        spam++;
+                }
+                ratio = (spam * 1.0) / sentMessages.size();
+                if (ratio >= 0.1)
+                    auditor.setIsSpammer(true);
+                else
+                    auditor.setIsSpammer(false);
+            } else
+                auditor.setIsSpammer(false);
+
+            this.auditorService.save(auditor);
         }
     }
 
