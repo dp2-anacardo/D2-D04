@@ -126,6 +126,9 @@ public interface AdministratorRepository extends JpaRepository<Administrator, In
     @Query("select c.commercialName from Company c order by c.auditScore desc")
     List<String> getCompaniesHighestAS();
 
+    // Query 4.4.4
+    @Query("select avg(p.salary) from Position p join p.audits a where a.isFinal= true and (select avg(a.score) from Position y join y.audits u where p = y and u.isFinal = true)  = (select max(1.0*(select avg(b.score) from Position e join e.audits b where e = f and b.isFinal = true))from Position f)")
+    Double getAvgSalaryPositionsWithHighestAS();
 
     //Query 11.a
 

@@ -48,9 +48,9 @@
     <b><spring:message code="administrator.maxSalaryOffered" /></b> ${MaxSalaryOffered} <br />
     <b><spring:message code="administrator.stddevSalaryOffered" /></b> ${StddevSalaryOffered} <br />
 
-    <b><spring:message code="administrator.bestPositionSalaryOffered" /></b> ${BestPositionSalaryOffered} <br />
+    <b><spring:message code="administrator.bestPositionSalaryOffered" /></b> ${BestPositionSalaryOffered.ticker} <br />
 
-    <b><spring:message code="administrator.worstPositionSalaryOffered" /></b> ${WorstPositionSalaryOffered} <br />
+    <b><spring:message code="administrator.worstPositionSalaryOffered" /></b> ${WorstPositionSalaryOffered.ticker} <br />
 
     <b><spring:message code="administrator.avgNumOfCurricula" /></b> ${AvgNumOfCurricula} <br />
     <b><spring:message code="administrator.minNumOfCurricula" /></b> ${MinNumOfCurricula} <br />
@@ -112,7 +112,7 @@
     </jstl:forEach>
     <br />
 
-
+    <b><spring:message code="administrator.avgSalaryPositionsWithHighestAS" /></b> ${avgSalaryPositionsWithHighestAS} <br />
 
 
 

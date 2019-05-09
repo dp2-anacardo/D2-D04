@@ -3,7 +3,6 @@ package controllers.auditor;
 
 import controllers.AbstractController;
 import domain.Actor;
-import domain.Administrator;
 import domain.Auditor;
 import org.hibernate.TypeMismatchException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import services.ActorService;
-import services.AdministratorService;
 import services.AuditorService;
 
 import javax.validation.Valid;

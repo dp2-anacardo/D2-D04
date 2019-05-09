@@ -80,6 +80,25 @@ public class ItemController extends AbstractController {
         return result;
     }
 
+    // List Not Logged --------------------------------------------------
+     @RequestMapping(value = "/listAllNotLogged", method = RequestMethod.GET)
+     public ModelAndView listAllNotLogged(){
+        ModelAndView result;
+        Collection<Item> items;
+        try{
+            items = this.itemService.findAll();
+            Assert.notNull(items);
+
+            result = new ModelAndView("item/listAllNotLogged");
+            result.addObject("items", items);
+            result.addObject("RequestURI", "item/listAllNotLogged");
+        } catch (Throwable oops){
+            result = new ModelAndView("redirect:/");
+        }
+
+        return result;
+     }
+
     // Create -----------------------------------------------------------
     @RequestMapping(value = "provider/create", method = RequestMethod.GET)
     public ModelAndView create() {
@@ -170,14 +189,8 @@ public class ItemController extends AbstractController {
         Item item;
 
         try {
-            final Actor principal = this.actorService.getActorLogged();
-            if (principal instanceof Provider) {
-                item = this.itemService.findOne(itemID);
-                Assert.isTrue(this.itemService.findAllByProvider(principal.getId()).contains(item));
-            } else {
-                //TODO Caso Rookie ?
-            }
             item = this.itemService.findOne(itemID);
+            Assert.notNull(item);
         } catch (final Exception e) {
             result = new ModelAndView("redirect:/");
             return result;

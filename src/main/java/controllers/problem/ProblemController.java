@@ -76,13 +76,8 @@ public class ProblemController extends AbstractController {
 
         try {
             final Actor principal = this.actorService.getActorLogged();
-            if (principal instanceof Company) {
-                problem = this.problemService.findOne(problemID);
-                Assert.isTrue(this.problemService.findAllByCompany(principal.getId()).contains(problem));
-            } else {
-                //TODO Caso Rookie ?
-            }
             problem = this.problemService.findOne(problemID);
+            Assert.isTrue(this.problemService.findAllByCompany(principal.getId()).contains(problem));
         } catch (final Exception e) {
             result = new ModelAndView("redirect:/");
             return result;
@@ -150,12 +145,6 @@ public class ProblemController extends AbstractController {
 
         try {
             final Actor principal = this.actorService.getActorLogged();
-            if (principal instanceof Company) {
-                problem = this.problemService.findOne(problemID);
-                Assert.isTrue(this.problemService.findAllByCompany(principal.getId()).contains(problem));
-            } else {
-                //TODO Caso Rookie ?
-            }
             problem = this.problemService.findOne(problemID);
         } catch (final Exception e) {
             result = new ModelAndView("redirect:/");

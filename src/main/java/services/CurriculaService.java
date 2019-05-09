@@ -66,14 +66,6 @@ public class CurriculaService {
 		return curricula;
 	}
 
-	public Curricula save2(Curricula curricula){
-		Assert.notNull(curricula);
-
-		curricula = this.curriculaRepository.save(curricula);
-
-		return curricula;
-	}
-
 	public void delete(final Curricula curricula) {
 		Assert.notNull(curricula);
 		final Actor a = this.actorService.getActorLogged();

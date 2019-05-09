@@ -2,7 +2,6 @@ package services;
 
 import domain.Actor;
 import domain.Administrator;
-import domain.Configuration;
 import domain.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

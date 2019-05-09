@@ -28,6 +28,4 @@
     </display:column>
 </display:table>
 
-<input type="button" name="cancel"
-       value="<spring:message code="position.goBack" />"
-       onclick="javascript: window.history.back();" />
+<acme:cancel code="position.goBack" url="position/listNotLogged.do"/>

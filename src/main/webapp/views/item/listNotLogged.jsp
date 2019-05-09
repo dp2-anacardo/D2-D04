@@ -18,14 +18,16 @@
     <spring:message code="item.description" var="title"/>
     <display:column property="description" title="${title}"/>
 
-    <display:column> <a href="item/show.do?itemID=${row.id}">
-        <spring:message code="item.show" /></a> </display:column>
+    <spring:message code="item.show" var="showHeader"/>
+    <display:column title="${showHeader}"> <a href="item/show.do?itemID=${row.id}">
+        <spring:message code="item.show"/></a> </display:column>
 
-    <display:column> <a href="provider/show.do?providerID=${row.provider.id}">
-        <spring:message code="item.provider" /></a> </display:column>
+    <spring:message code="item.provider" var="providerHeader"/>
+    <display:column title="${providerHeader}"> <a href="provider/show.do?providerID=${row.provider.id}">
+        <spring:message code="item.provider"/></a> </display:column>
 
 
 </display:table>
 
 
-<acme:cancel url="/" code="item.goBack"/>
+<acme:cancel url="/provider/listNotLogged.do" code="item.goBack"/>

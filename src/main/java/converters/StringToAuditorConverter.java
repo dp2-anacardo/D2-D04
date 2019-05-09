@@ -1,11 +1,9 @@
 package converters;
 
-import domain.Administrator;
 import domain.Auditor;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
-import repositories.AdministratorRepository;
 import repositories.AuditorRepository;
 
 public class StringToAuditorConverter implements Converter<String, Auditor> {

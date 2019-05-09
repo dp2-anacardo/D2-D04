@@ -15,7 +15,8 @@
     <spring:message code="provider.make" var="title"/>
     <display:column property="make" title="${title}"/>
 
-    <display:column> <a href="item/listNotLogged.do?providerId=${row.id}">
+    <spring:message code="provider.items" var="itemsHeader"/>
+    <display:column title="${itemsHeader}"> <a href="item/listNotLogged.do?providerId=${row.id}">
         <spring:message code="provider.items" /></a> </display:column>
 </display:table>
 

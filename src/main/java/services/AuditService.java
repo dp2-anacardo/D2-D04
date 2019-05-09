@@ -83,8 +83,11 @@ public class AuditService {
     public Audit saveCreate(Audit audit, int positionId){
         Assert.notNull(audit);
         final Actor actor = this.actorService.getActorLogged();
-        Assert.isTrue(actor instanceof Auditor);
+        Auditor auditor = this.auditorService.findOne(actor.getId());
         final Audit result;
+        Collection<Auditor> auditors = this.positionService.getAuditorsByPosition(positionId);
+        Assert.isTrue(!auditors.contains(auditor));
+        Assert.isTrue(!audit.getText().equals(""));
 
         result = this.auditRepository.save(audit);
         Position position = this.positionService.findOne(positionId);
@@ -100,6 +103,7 @@ public class AuditService {
         final Audit result;
 
         Assert.isTrue(audit.getAuditor() == actor);
+        Assert.isTrue(!audit.getText().equals(""));
         result = this.auditRepository.save(audit);
 
         return result;
@@ -143,14 +147,6 @@ public class AuditService {
         Collection<Audit> result;
 
         result = this.auditRepository.getAuditsFinalByPosition(positionId);
-
-        return result;
-    }
-
-    public Collection<Audit> getAuditsByPositionWithAuditorId(int auditorId){
-        Collection<Audit> result;
-
-        result = this.auditRepository.getAuditsByPositionWithAuditorId(auditorId);
 
         return result;
     }

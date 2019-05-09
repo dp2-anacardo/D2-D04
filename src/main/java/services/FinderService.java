@@ -91,10 +91,6 @@ public class FinderService {
 
     //Another methods
 
-    public Collection<Position> findAllFinal() {
-        return this.finderRepository.findAllFinal();
-    }
-
     public void delete(final Finder f) {
         Assert.notNull(f);
         this.finderRepository.delete(f);
@@ -143,7 +139,7 @@ public class FinderService {
             pro2 = (List<Position>) this.finderRepository.getPositionsByDeadline(finder.getDeadline());
         if (finder.getMaxDeadline() != null)
             pro3 = (List<Position>) this.finderRepository.getPositionsUntilDeadline(new Date(), finder.getMaxDeadline());
-        if (finder.getMinSalary() != 0)
+        if (finder.getMinSalary() != null)
             pro4 = (List<Position>) this.finderRepository.getPositionsByMinSalary(finder.getMinSalary());
         if (!(pro1 == null && pro2 == null && pro3 == null && pro4 == null)) {
             if (pro1 == null)

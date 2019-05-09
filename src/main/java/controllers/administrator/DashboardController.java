@@ -1,8 +1,8 @@
 package controllers.administrator;
 
-import java.util.List;
-
+import controllers.AbstractController;
 import domain.Company;
+import domain.Position;
 import domain.Provider;
 import domain.Rookie;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
-import controllers.AbstractController;
-import domain.Position;
 import services.AdministratorService;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("administrator")
@@ -91,6 +90,9 @@ public class DashboardController extends AbstractController {
 
         /* 4.4.3 */
         List<String> companiesHighestAS = this.administratorService.getCompaniesHighestAS();
+
+        /* 4.4.4 */
+        Double avgSalaryPositionsWithHighestAS = this.administratorService.getAvgSalaryPositionsWithHighestAS();
 
         /* 11.A */
         final Double avgNumOfItems = this.administratorService.getNumberOfItemsPerProvider().get(0);
@@ -195,6 +197,7 @@ public class DashboardController extends AbstractController {
 
         result.addObject("companiesHighestAS",companiesHighestAS);
 
+        result.addObject("avgSalaryPositionsWithHighestAS",avgSalaryPositionsWithHighestAS);
         return result;
     }
 }
