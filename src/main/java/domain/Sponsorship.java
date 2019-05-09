@@ -24,9 +24,7 @@ public class Sponsorship extends DomainEntity {
 	private Position		position;
 
 
-	@NotBlank
-	@URL
-	@SafeHtml(whitelistType = WhiteListType.NONE)
+
 	public String getBanner() {
 		return this.banner;
 	}

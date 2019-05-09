@@ -53,9 +53,8 @@ public class AdministratorForm {
 
 	}
 
-	@Size(min = 5, max = 32)
-	@NotNull
-	@NotBlank
+
+
 	@SafeHtml(whitelistType = WhiteListType.NONE)
 	public String getConfirmPass() {
 		return this.confirmPass;
@@ -129,8 +128,8 @@ public class AdministratorForm {
 		this.version = version;
 	}
 
-	@Size(min = 5, max = 32)
-	@NotBlank
+
+
 	@SafeHtml(whitelistType = WhiteListType.NONE)
 	public String getPassword() {
 		return this.password;

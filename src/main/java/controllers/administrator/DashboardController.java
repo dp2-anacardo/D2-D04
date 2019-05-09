@@ -166,7 +166,7 @@ public class DashboardController extends AbstractController {
 
         result.addObject("RatioOfEmptyFinders", ratioOfEmptyFinders);
 
-        result.addObject("AvgNumOfItems", avgNumOfItems);
+        result.addObject("AvgNumOfItems", -avgNumOfItems);
         result.addObject("MinNumOfItems", minNumOfItems);
         result.addObject("MaxNumOfItems", maxNumOfItems);
         result.addObject("StddevNumOfItems", stddevNumOfItems);

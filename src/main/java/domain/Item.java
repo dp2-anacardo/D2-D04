@@ -25,8 +25,7 @@ public class Item extends DomainEntity {
 	private Collection<Url>	pictures;
 
 	//Getters and setters ---------------------------------------------------------------------------
-	@NotBlank
-	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
+
 	public String getName() {
 		return name;
 	}
@@ -35,8 +34,6 @@ public class Item extends DomainEntity {
 		this.name = name;
 	}
 
-	@NotBlank
-	@SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
 	public String getDescription() {
 		return description;
 	}

@@ -14,9 +14,12 @@
 <security:authorize access="hasRole('PROVIDER')">
 	<display:table name="sponsorship" id="row"
 		requestURI="sponsorship/provider/show.do" class="displaytag">
-		<spring:message code="sponsorship.position" var="paradeHeader" />
+		<spring:message code="position.title" var="paradeHeader" />
 		<display:column property="position.title" title="${paradeHeader}"
 			sortable="false" />
+		<spring:message code="position.ticker" var="tickerHeader" />
+		<display:column property="position.ticker" title="${tickerHeader}"
+						sortable="false" />
 	</display:table>
 
 	<display:table name="sponsorship" id="row"

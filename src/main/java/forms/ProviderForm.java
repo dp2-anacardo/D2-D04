@@ -68,7 +68,7 @@ public class ProviderForm {
 		this.confirmPass = confirmPass;
 	}
 
-	@NotBlank
+
 	@SafeHtml(whitelistType = WhiteListType.NONE)
 	public String getName() {
 		return this.name;

@@ -16,7 +16,7 @@
                    pagesize="5" class="displaytag">
 
         <spring:message code="sponsorship.position" var="position"/>
-        <display:column property="position.title" title="${position}"/>
+        <display:column property="position.ticker" title="${position}"/>
 
         <spring:message code="sponsorship.targetURL" var="targetURL"/>
         <display:column title="${targetURL}">
