@@ -111,7 +111,10 @@ public class AuditService {
 
     public void delete(final Audit audit) {
         final Actor actor = this.actorService.getActorLogged();
+        Auditor auditor = auditorService.findOne(actor.getId());
         Assert.isTrue(actor instanceof Auditor);
+        Assert.isTrue(audit.getAuditor().equals(auditor));
+        Assert.isTrue(!audit.getIsFinal());
         Assert.notNull(audit);
 
         Position p = this.getPositionByAudit(audit.getId());
