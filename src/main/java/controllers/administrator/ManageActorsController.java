@@ -54,7 +54,7 @@ public class ManageActorsController extends AbstractController {
                 actorList.remove(a);
 
         result.addObject("actors", actorList);
-        result.addObject("requestURI", "administrator/actorList");
+        result.addObject("requestURI", "administrator/actorList.do");
 
         return result;
     }
