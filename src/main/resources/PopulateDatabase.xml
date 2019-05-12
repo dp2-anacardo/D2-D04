@@ -1190,7 +1190,7 @@
 		<property name="systemName" value="Acme Rookies"/>
 		<property name="banner" value="https://i.imgur.com/7b8lu4b.png"/>
 		<property name="welcomeMessageEs" value="¡Bienvenidos a Acme Rookies! ¡Somos el mercado de trabajo favorito de los profesionales de las TICs!"/>
-		<property name="welcomeMessageEn" value="Welcome to Acme Rookies! We’re IT rookie’s favourite job marketplace!"/>
+		<property name="welcomeMessageEn" value="Welcome to Acme Rookies! We're IT rookie's favourite job marketplace!"/>
 		<property name="countryCode" value="34"/>
 		<property name="defaultVAT" value="21.0"/>
 		<property name="flatRate" value="10.0"/>

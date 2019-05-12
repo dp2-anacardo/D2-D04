@@ -9,7 +9,7 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-<form:form action="personalData/rookie/edit.do" modelAttribute="personalD">
+<form:form id="myform" action="personalData/rookie/edit.do" modelAttribute="personalD">
 
     <security:authorize
             access="hasAnyRole('ROOKIE')">
@@ -29,9 +29,36 @@
         
 
         <acme:textbox code="curricula.personal.linkedInProfile" path="linkedInProfile" />
-        
 
-        <acme:submit name="save" code="curricula.save"/>
+        <script type="text/javascript">
+            function phoneValidation(){
+                var phoneNumber = document.getElementById("phoneNumber").value;
+                var regexPN = /^(\d\d\d\d+)$/;
+                var regex1 = /^((\+[1-9][0-9]{0,2}) \(([1-9][0-9]{0,2})\) (\d\d\d\d+))$/;
+                var regex2 = /^(\+[1-9][0-9]{0,2}) (\d\d\d\d+)$/;
+
+                if (regexPN.test(phoneNumber)) {
+                    return document.getElementById("myform").submit();
+                } else if(regex1.test(phoneNumber)) {
+                    return document.getElementById("myform").submit();
+                }else if(regex2.test(phoneNumber)){
+                    return document.getElementById("myform").submit();
+                }else{
+                    var confirm = window.confirm('<spring:message code = "actor.confirm"/>');
+                    if(!confirm){
+                        return 0;
+                    }else{
+                        return document.getElementById("myform").submit();
+                    }
+                }
+            }
+        </script>
+
+
+        <input type="button" name="save"
+               value="<spring:message code="curricula.save"/>"
+               onclick="phoneValidation();"
+        />&nbsp;
 
         <acme:cancel url="curricula/rookie/list.do" code="curricula.cancel"/>
 

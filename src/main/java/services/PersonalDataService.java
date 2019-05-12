@@ -28,6 +28,8 @@ public class PersonalDataService {
     private RookieService rookieService;
     @Autowired
     private Validator validator;
+    @Autowired
+    private ConfigurationService configurationService;
 
     public PersonalData reconstruct(PersonalData personalData, BindingResult binding){
         PersonalData result;
@@ -71,6 +73,10 @@ public class PersonalDataService {
         Actor a = this.actorService.getActorLogged();
         Rookie h = this.rookieService.findOne(a.getId());
         Assert.notNull(h);
+        char[] c = p.getPhoneNumber().toCharArray();
+        if(c[0]!='+'){
+            p.setPhoneNumber("+" + this.configurationService.findAll().get(0).getCountryCode()+ " " + p.getPhoneNumber());
+        }
         p = this.personalDataRepository.save(p);
         return p;
 
