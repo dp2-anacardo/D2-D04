@@ -4,6 +4,7 @@ package controllers.position;
 import controllers.AbstractController;
 import domain.*;
 import forms.SearchForm;
+import org.springframework.beans.TypeMismatchException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -11,10 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import services.*;
 
@@ -42,6 +40,7 @@ public class PositionController extends AbstractController {
 
 	@Autowired
 	private SponsorshipService sponsorshipService;
+
 
 
 	@RequestMapping(value = "/listNotLogged", method = RequestMethod.GET)
@@ -200,7 +199,6 @@ public class PositionController extends AbstractController {
 		else
 			try {
 				final Collection<Problem> problems = this.problemService.getProblemsFinalByCompany(c);
-				;
 				result = this.createEditModelAndView(position);
 				result.addObject("problems", problems);
 			} catch (final Throwable oops) {
@@ -212,9 +210,10 @@ public class PositionController extends AbstractController {
 	@RequestMapping(value = "/company/delete", method = RequestMethod.GET)
 	public ModelAndView delete(@RequestParam final int positionId) {
 		ModelAndView result;
-		final Position p = this.positionService.findOne(positionId);
-		final Company c = this.companyService.findOne(this.actorService.getActorLogged().getId());
 		try {
+			final Position p = this.positionService.findOne(positionId);
+			final Company c = this.companyService.findOne(this.actorService.getActorLogged().getId());
+			Assert.notNull(p);
 			Assert.notNull(c);
 			Assert.isTrue(p.getIsFinal() == false);
 			Assert.isTrue(p.getCompany().equals(c));
@@ -229,16 +228,34 @@ public class PositionController extends AbstractController {
 	@RequestMapping(value = "/show", method = RequestMethod.GET)
 	public ModelAndView show(@RequestParam final int positionId) {
 		ModelAndView result;
-		final Position p = this.positionService.findOne(positionId);
 
-		result = new ModelAndView("position/show");
-		result.addObject("position", p);
+		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		try {
+			final Position p = this.positionService.findOne(positionId);
+			Assert.notNull(p);
+			if((authentication instanceof AnonymousAuthenticationToken) || !(this.actorService.getActorLogged() instanceof Company)) {
+				Assert.isTrue(p.getIsCancelled() == false);
+				Assert.isTrue(p.getIsFinal());
+				result = new ModelAndView("position/show");
+				result.addObject("position", p);
 
-		Sponsorship banner = this.sponsorshipService.showSponsorship(positionId);
+			} else if(p.getCompany().getId() == this.actorService.getActorLogged().getId()){
+				result = new ModelAndView("position/show");
+				result.addObject("position", p);
+			} else {
+				Assert.isTrue(p.getIsCancelled() == false);
+				Assert.isTrue(p.getIsFinal());
+				result = new ModelAndView("position/show");
+				result.addObject("position", p);
+			}
 
-		if(banner != null)
-			result.addObject("sponsorshipBanner", banner.getBanner());
+			Sponsorship banner = this.sponsorshipService.showSponsorship(positionId);
 
+			if (banner != null)
+				result.addObject("sponsorshipBanner", banner.getBanner());
+		} catch (Throwable oops){
+			result = new ModelAndView("redirect:/");
+		}
 		return result;
 	}
 

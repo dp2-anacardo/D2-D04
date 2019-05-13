@@ -12,6 +12,7 @@ package controllers;
 
 import domain.Configuration;
 import org.apache.commons.lang.exception.ExceptionUtils;
+import org.springframework.beans.TypeMismatchException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +32,11 @@ public class AbstractController {
 	@Autowired
 	MessageService messageService;
 
+
+	@ExceptionHandler(TypeMismatchException.class)
+	public ModelAndView handleMismatchException(final TypeMismatchException oops) {
+		return new ModelAndView("redirect:/");
+	}
 
 	// Panic handler ----------------------------------------------------------
 	@ModelAttribute
