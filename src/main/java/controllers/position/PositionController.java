@@ -1,7 +1,6 @@
 
 package controllers.position;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import controllers.AbstractController;
 import domain.*;
 import forms.SearchForm;

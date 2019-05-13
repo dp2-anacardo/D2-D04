@@ -34,6 +34,7 @@ public class MessageController extends AbstractController {
 
     @ExceptionHandler(TypeMismatchException.class)
     public ModelAndView handleMismatchException(final TypeMismatchException oops) {
+        System.out.println("Toma y daca.");
         return new ModelAndView("redirect:/");
     }
 
