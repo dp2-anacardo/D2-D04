@@ -689,28 +689,28 @@
 	<bean id="sponsorship1" class="domain.Sponsorship">
 		<property name="provider" ref="provider1"/>
 		<property name="position" ref="position1"/>
-		<property name="banner" value="https://www.sponsorship1.com"/>
+		<property name="banner" value="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Cloud_banner.jpg/1197px-Cloud_banner.jpg"/>
 		<property name="creditCard" ref="creditCardProvider1"/>
 	</bean>
 
 	<bean id="sponsorship2" class="domain.Sponsorship">
 		<property name="provider" ref="provider1"/>
 		<property name="position" ref="position1"/>
-		<property name="banner" value="https://www.sponsorship2.com"/>
+		<property name="banner" value="http://educayoruba.com/wp-content/uploads/2017/01/Pricing-header-banner.jpg"/>
 		<property name="creditCard" ref="creditCardProvider1"/>
 	</bean>
 
 	<bean id="sponsorship3" class="domain.Sponsorship">
 		<property name="provider" ref="provider1"/>
 		<property name="position" ref="position1"/>
-		<property name="banner" value="https://www.sponsorship3.com"/>
+		<property name="banner" value="https://image.freepik.com/vector-gratis/tecnologia-diseno-banner-efectos-luz_1017-17497.jpg"/>
 		<property name="creditCard" ref="creditCardProvider2"/>
 	</bean>
 
 	<bean id="sponsorship4" class="domain.Sponsorship">
 		<property name="provider" ref="provider2"/>
-		<property name="position" ref="position2"/>
-		<property name="banner" value="https://www.sponsorship4.com"/>
+		<property name="position" ref="position1"/>
+		<property name="banner" value="https://sta.uwi.edu/accreditation/sites/default/files/accreditation/accreditation-Banner.jpeg"/>
 		<property name="creditCard" ref="creditCardProvider2"/>
 	</bean>
 
