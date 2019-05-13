@@ -15,7 +15,7 @@
     <display:column property="commercialName" title="${commercialName}"
                     sortable="false"/>
     <spring:message code="company.auditScore" var="auditScore"/>
-    <display:column  title="auditScore">
+    <display:column  title="${auditScore}">
         <jstl:choose>
             <jstl:when test="${company.auditScore == 0.0}">
                 nil

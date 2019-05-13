@@ -40,15 +40,23 @@
 <display:table name="position" id="row" requestURI="position/show.do"
                class="displaytag">
     <spring:message code="position.skill" var="skill"/>
-    <display:column property="skill" title="${skill}"
-                    sortable="false"/>
+    <display:column title="${skill}"
+                    sortable="false">
+        <jstl:forEach var="text" items="${row.skill}" varStatus="loop">
+            ${text}${!loop.last ? ',' : ''}&nbsp
+        </jstl:forEach>
+    </display:column>
 </display:table>
 
 <display:table name="position" id="row" requestURI="position/show.do"
                class="displaytag">
     <spring:message code="position.technology" var="technology"/>
-    <display:column property="technology" title="${technology}"
-                    sortable="false"/>
+    <display:column title="${technology}"
+                    sortable="false">
+        <jstl:forEach var="text" items="${row.technology}" varStatus="loop">
+            ${text}${!loop.last ? ',' : ''}&nbsp
+        </jstl:forEach>
+    </display:column>
 </display:table>
 
 <display:table name="position" id="row" requestURI="position/show.do"
