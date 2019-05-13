@@ -1,10 +1,14 @@
 
 package controllers.position;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import controllers.AbstractController;
 import domain.*;
 import forms.SearchForm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
@@ -17,6 +21,7 @@ import services.*;
 
 import javax.validation.Valid;
 import javax.validation.ValidationException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -45,6 +50,25 @@ public class PositionController extends AbstractController {
 		ModelAndView result;
 		final List<Position> positionsAvailables = this.positionService.getPositionsAvilables();
 		result = new ModelAndView("position/listNotLogged");
+
+		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+		if (!(authentication instanceof AnonymousAuthenticationToken)) {
+			final Actor actor = this.actorService.getActorLogged();
+			if(actor instanceof Auditor){
+				final ArrayList<Boolean> created = new ArrayList<Boolean>();
+				for(Position p : positionsAvailables) {
+					Boolean res = false;
+					for (Audit a : p.getAudits())
+						if (a.getAuditor().equals((Auditor) actor)){
+							res = true;
+							break;
+						}
+					created.add(res);
+				}
+				result.addObject("created", created);
+			}
+		}
 		result.addObject("positions", positionsAvailables);
 		result.addObject("RequestURI", "position/listNotLogged.do");
 

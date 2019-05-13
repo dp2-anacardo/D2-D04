@@ -943,8 +943,6 @@
 		</property>
 		<property name = "applications">
 			<list>
-				<ref bean ="application3"/>
-				<ref bean="application4"/>
 			</list>
 		</property>
 	</bean>
@@ -976,6 +974,43 @@
 			</list>
 		</property>
 		<property name = "applications">
+			<list>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="position4" class ="domain.Position">
+		<property name = "title" value = "Acceptance Test"/>
+		<property name = "description" value = "We need a test"/>
+		<property name = "deadline" value = "31/05/2021"/>
+		<property name = "profile" value ="Excellent"/>
+		<property name = "skill">
+			<list>
+				<value>JUnit</value>
+			</list>
+		</property>
+		<property name = "technology">
+			<list>
+				<value>Java</value>
+			</list>
+		</property>
+		<property name = "salary" value = "2500"/>
+		<property name = "ticker" value = "BBVA-7658"/>
+		<property name = "isFinal" value = "true"/>
+		<property name = "isCancelled" value = "false"/>
+		<property name = "company" ref="company1"/>
+		<property name = "problems">
+			<list>
+				<ref bean = "problem1"/>
+				<ref bean = "problem2"/>
+			</list>
+		</property>
+		<property name = "applications">
+			<list>
+				<ref bean = "application3"/>
+			</list>
+		</property>
+		<property name = "audits">
 			<list>
 			</list>
 		</property>
