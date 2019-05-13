@@ -41,6 +41,8 @@ public class MessageService {
 
         final Message result = new Message();
         final Calendar calendar = new GregorianCalendar();
+        final long time = calendar.getTimeInMillis() - 500;
+        calendar.setTimeInMillis(time);
         final Collection<String> tags = new ArrayList<String>();
 
         result.setTags(tags);
@@ -205,11 +207,6 @@ public class MessageService {
 
         result = this.create();
 
-        final Calendar calendar = new GregorianCalendar();
-        final long time = calendar.getTimeInMillis() - 500;
-        calendar.setTimeInMillis(time);
-
-        result.setMoment(calendar.getTime());
         result.setSubject(message.getSubject());
         result.setBody(message.getBody());
         result.setTags(message.getTags());
