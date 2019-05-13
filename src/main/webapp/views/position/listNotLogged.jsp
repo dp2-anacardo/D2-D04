@@ -9,10 +9,12 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net" %>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
+<jstl:set var="count" value="0" scope="page" />
+
 <display:table name="positions" id="row" requestURI="${requestURI}"
                pagesize="5" class="displaytag">
 
-    <spring:message code="position.ticker" var="ticker" />
+    <spring:message code="position.ticker" var="ticker"/>
     <display:column property="ticker" title="${ticker}"/>
 
     <spring:message code="position.title" var="title"/>
@@ -43,8 +45,13 @@
 
     <security:authorize access="hasRole('AUDITOR')">
         <spring:message code="audit.create" var="auditCreate"/>
-        <display:column title="${auditCreate}"> <a href="audit/auditor/create.do?positionId=${row.id}">
-            <spring:message code="audit.create"/></a> </display:column>
+        <display:column title="${auditCreate}">
+            <jstl:if test="${created[count] eq false}">
+                <a href="audit/auditor/create.do?positionId=${row.id}">
+                    <spring:message code="audit.create"/></a>
+            </jstl:if>
+        </display:column>
+        <jstl:set var="count" value="${count + 1}" scope="page"/>
     </security:authorize>
 
 </display:table>
