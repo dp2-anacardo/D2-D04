@@ -44,6 +44,9 @@ public class ApplicationService {
 	private MessageService	 		messageService;
 
 	@Autowired
+	private SponsorshipService	 		sponsorshipService;
+
+	@Autowired
 	private Validator				validator;
 
 
@@ -133,7 +136,10 @@ public class ApplicationService {
 		msg.getTags().add("NOTIFICATION");
  		this.messageService.save(msg);
 
-
+		final Position position = this.getPositionByApplication(application.getId());
+		final Collection<Sponsorship> sponsorships = this.sponsorshipService.findAllByPosition(position.getId());
+		for(Sponsorship s : sponsorships)
+			this.sponsorshipService.deleteForced(s);
 
 	}
 

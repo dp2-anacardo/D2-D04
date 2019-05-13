@@ -176,6 +176,9 @@ public class PositionController extends AbstractController {
 			Assert.isTrue(position.getIsFinal());
 			Assert.isTrue(position.getCompany().equals(c));
 			position.setIsCancelled(true);
+			final Collection<Sponsorship> sponsorships = this.sponsorshipService.findAllByPosition(positionId);
+			for(Sponsorship s : sponsorships)
+				this.sponsorshipService.deleteForced(s);
 			this.positionService.save(position);
 			result = new ModelAndView("redirect:list.do");
 		} catch (final ValidationException e) {
@@ -238,7 +241,6 @@ public class PositionController extends AbstractController {
 				Assert.isTrue(p.getIsFinal());
 				result = new ModelAndView("position/show");
 				result.addObject("position", p);
-
 			} else if(p.getCompany().getId() == this.actorService.getActorLogged().getId()){
 				result = new ModelAndView("position/show");
 				result.addObject("position", p);
@@ -253,6 +255,7 @@ public class PositionController extends AbstractController {
 
 			if (banner != null)
 				result.addObject("sponsorshipBanner", banner.getBanner());
+
 		} catch (Throwable oops){
 			result = new ModelAndView("redirect:/");
 		}
