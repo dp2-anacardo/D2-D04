@@ -38,10 +38,10 @@ public class ApplicationService {
 	private PositionService			positionService;
 
 	@Autowired
-	private CurriculaService curriculaService;
+	private CurriculaService 		curriculaService;
 
 	@Autowired
-	private MessageService messageService;
+	private MessageService	 		messageService;
 
 	@Autowired
 	private Validator				validator;

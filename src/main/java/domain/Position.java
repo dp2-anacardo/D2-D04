@@ -13,11 +13,13 @@ import java.util.Date;
 @Entity
 @Access(AccessType.PROPERTY)
 @Table(indexes = {
-		@Index(columnList = "isFinal, isCancelled")
+		@Index(columnList = "isFinal, isCancelled, description, title, ticker, isFinal, isCancelled, salary")
 })
 public class Position extends DomainEntity {
 
+
 	//Properties -----------------------------------------------------------------------------------
+
 	private String				title;
 	private String				description;
 	private Date				deadline;
@@ -28,7 +30,6 @@ public class Position extends DomainEntity {
 	private String				ticker;
 	private boolean				isFinal;
 	private boolean				isCancelled;
-
 
 	//Getters and setters ---------------------------------------------------------------------------
 
