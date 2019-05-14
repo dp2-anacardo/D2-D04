@@ -38,6 +38,10 @@
 
         <jstl:if test="${application.status == 'REJECTED' }">
             <spring:message code="application.rejected"/></jstl:if>
+
+        <jstl:if test="${application.status == 'CANCELLED' }">
+            <spring:message code="application.cancelled"/>
+        </jstl:if>
     </fieldset>
 
     <jstl:if test="${application.status == 'REJECTED' }">

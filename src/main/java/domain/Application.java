@@ -62,7 +62,7 @@ public class Application extends DomainEntity {
 	}
 
 	@NotBlank
-	@Pattern(regexp = "^ACCEPTED|PENDING|REJECTED|SUBMITTED$")
+	@Pattern(regexp = "^ACCEPTED|PENDING|REJECTED|SUBMITTED|CANCELLED$")
 	@SafeHtml(whitelistType = WhiteListType.NONE)
 	public String getStatus() {
 		return this.status;

@@ -56,6 +56,10 @@
             <jstl:if test="${row.status == 'REJECTED' }">
                 <spring:message code="application.rejected"/>
             </jstl:if>
+
+            <jstl:if test="${row.status == 'CANCELLED' }">
+                <spring:message code="application.cancelled"/>
+            </jstl:if>
         </display:column>
 
         <spring:message code="application.rejectComment" var="rejectComment"/>
@@ -119,6 +123,10 @@
 
             <jstl:if test="${row.status == 'REJECTED' }">
                 <spring:message code="application.rejected"/>
+            </jstl:if>
+
+            <jstl:if test="${row.status == 'CANCELLED' }">
+                <spring:message code="application.cancelled"/>
             </jstl:if>
         </display:column>
 

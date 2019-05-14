@@ -41,6 +41,9 @@ public class PositionController extends AbstractController {
 	@Autowired
 	private SponsorshipService sponsorshipService;
 
+	@Autowired
+	private ApplicationService applicationService;
+
 
 
 	@RequestMapping(value = "/listNotLogged", method = RequestMethod.GET)
@@ -176,9 +179,18 @@ public class PositionController extends AbstractController {
 			Assert.isTrue(position.getIsFinal());
 			Assert.isTrue(position.getCompany().equals(c));
 			position.setIsCancelled(true);
+
 			final Collection<Sponsorship> sponsorships = this.sponsorshipService.findAllByPosition(positionId);
 			for(Sponsorship s : sponsorships)
 				this.sponsorshipService.deleteForced(s);
+
+			final Collection<Application> applications = this.applicationService.getAllApplicationsByPosition(positionId);
+			for(Application a : applications)
+				if(!a.getStatus().equals("REJECTED")) {
+					a.setStatus("CANCELLED");
+					this.applicationService.saveCompany(a);
+				}
+
 			this.positionService.save(position);
 			result = new ModelAndView("redirect:list.do");
 		} catch (final ValidationException e) {
