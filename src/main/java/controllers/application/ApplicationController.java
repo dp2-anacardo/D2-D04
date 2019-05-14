@@ -182,6 +182,8 @@ public class ApplicationController extends AbstractController {
 	public ModelAndView create(@RequestParam int positionId){
 		ModelAndView result;
 		try{
+			Position position = this.positionService.findOne(positionId);
+			Assert.isTrue(!position.getIsCancelled());
 			Actor a = this.actorService.getActorLogged();
 			Rookie h = this.rookieService.findOne(a.getId());
 			Application application = this.applicationService.create();
@@ -211,6 +213,8 @@ public class ApplicationController extends AbstractController {
 	public ModelAndView update(@RequestParam int applicationId){
 		ModelAndView result;
 		try{
+			Position position = this.applicationService.getPositionByApplication(applicationId);
+			Assert.isTrue(!position.getIsCancelled());
 			Application a = this.applicationService.findOne(applicationId);
 			Actor ac = this.actorService.getActorLogged();
 			Rookie h = this.rookieService.findOne(ac.getId());

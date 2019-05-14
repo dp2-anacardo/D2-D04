@@ -127,6 +127,8 @@ public class ApplicationService {
 		Assert.isTrue(userAccount.getAuthorities().iterator().next().getAuthority().equals("COMPANY"));
 		Assert.isTrue(application.getStatus().equals("SUBMITTED"));
 		Assert.isTrue(applications.contains(application));
+		Position position = this.getPositionByApplication(application.getId());
+		Assert.isTrue(!position.getIsCancelled());
 		application.setStatus("ACCEPTED");
 
 		Message msg = this.messageService.create();
@@ -136,7 +138,6 @@ public class ApplicationService {
 		msg.getTags().add("NOTIFICATION");
  		this.messageService.save(msg);
 
-		final Position position = this.getPositionByApplication(application.getId());
 		final Collection<Sponsorship> sponsorships = this.sponsorshipService.findAllByPosition(position.getId());
 		for(Sponsorship s : sponsorships)
 			this.sponsorshipService.deleteForced(s);
@@ -154,6 +155,8 @@ public class ApplicationService {
 		Assert.isTrue(application.getStatus().equals("SUBMITTED"));
 		Assert.isTrue(applications.contains(application));
 		Assert.isTrue(!application.getRejectComment().equals(""));
+		Position position = this.getPositionByApplication(application.getId());
+		Assert.isTrue(!position.getIsCancelled());
 		application.setStatus("REJECTED");
 
 		Message msg = this.messageService.create();
