@@ -13,6 +13,11 @@
 <security:authorize access="hasRole('ROOKIE')">
     <display:table name="applications" id="row" requestURI="${requestURI}" pagesize="5" class="displaytag">
 
+        <spring:message code="position.ticker" var="tickerHeader"/>
+        <display:column title="${tickerHeader}">
+                <jstl:out value="${appPosition[row.id].ticker}"></jstl:out>
+        </display:column>
+
         <spring:message code="application.submitMoment" var="submitMoment"/>
         <display:column title="${submitMoment}">
             <jstl:if test="${row.status != 'PENDING' }">

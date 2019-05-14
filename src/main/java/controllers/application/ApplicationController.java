@@ -17,7 +17,9 @@ import security.LoginService;
 import services.*;
 
 import javax.validation.ValidationException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 
 @Controller
 @RequestMapping("application")
@@ -51,8 +53,13 @@ public class ApplicationController extends AbstractController {
 		final Rookie rookie = this.rookieService.findOne(user.getId());
 		applications = this.applicationService.getApplicationsByRookie(rookie);
 
+		final HashMap<Integer, Position> appPosition = new HashMap<Integer, Position>();
+		for(Application a : applications)
+			appPosition.put(a.getId(),this.applicationService.getPositionByApplication(a.getId()));
+
 		result = new ModelAndView("application/rookie/list");
 		result.addObject("applications", applications);
+		result.addObject("appPosition", appPosition);
 		result.addObject("requestURI", "application/rookie/list.do");
 		return result;
 	}
