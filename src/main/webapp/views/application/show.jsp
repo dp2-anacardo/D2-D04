@@ -12,6 +12,9 @@
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 <security:authorize access="hasRole('ROOKIE')">
+
+    <acme:showtext fieldset="true" code="position.ticker" value="${position.ticker}"/>
+
     <jstl:if test="${application.status != 'PENDING'}">
         <acme:showtext fieldset="true" code="application.submitMoment" value="${application.submitMoment}"/>
         <acme:showtext fieldset="true" code="application.explanation" value="${application.explanation}"/>

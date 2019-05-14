@@ -98,8 +98,10 @@ public class ApplicationController extends AbstractController {
 			rookie = this.rookieService.findOne(actor.getId());
 			application = this.applicationService.findOne(applicationId);
 			Assert.isTrue(application.getRookie().equals(rookie));
+			final Position position = this.applicationService.getPositionByApplication(applicationId);
 			result = new ModelAndView("application/rookie/show");
 			result.addObject("application", application);
+			result.addObject("position", position);
 		} catch (Throwable oops) {
 			result = new ModelAndView("redirect:/application/rookie/list.do");
 		}
