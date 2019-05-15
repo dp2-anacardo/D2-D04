@@ -60,26 +60,27 @@ public class ConfigurationController extends AbstractController {
         ModelAndView result;
         Configuration config;
 
-        final Actor user = this.actorService.getActorLogged();
-        final Administrator admin = this.administratorService.findOne(user.getId());
-        Assert.notNull(admin);
+        try {
+            final Actor user = this.actorService.getActorLogged();
+            final Administrator admin = this.administratorService.findOne(user.getId());
+            Assert.notNull(admin);
 
-        config = this.configurationService.reconstructAddWord(configF, binding);
+            config = this.configurationService.reconstructAddWord(configF, binding);
 
-        if (binding.hasErrors()) {
+            if (binding.hasErrors()) {
 
-            config = this.configurationService.findAll().get(0);
+                config = this.configurationService.findAll().get(0);
 
-            configF.setSpamWords(config.getSpamWords());
+                configF.setSpamWords(config.getSpamWords());
 
-            result = this.editModelAndView(configF, null);
-        } else
-            try {
+                result = this.editModelAndView(configF, null);
+            } else {
                 this.configurationService.save(config);
                 result = new ModelAndView("redirect:/configuration/administrator/edit.do");
-            } catch (final Throwable oops) {
-                result = this.editModelAndView(configF, "configuration.edit.error"); //"Administrator.commit.error"
             }
+        } catch (final Throwable oops) {
+            result = new ModelAndView("redirect:/");
+        }
         return result;
     }
 
@@ -102,19 +103,20 @@ public class ConfigurationController extends AbstractController {
         ModelAndView result;
         Configuration config;
 
-        config = this.configurationService.reconstructEdit(configF, binding);
+        try {
+            config = this.configurationService.reconstructEdit(configF, binding);
 
-        configF.setSpamWords(config.getSpamWords());
+            configF.setSpamWords(config.getSpamWords());
 
-        if (binding.hasErrors())
-            result = this.editModelAndView(configF, null);
-        else
-            try {
+            if (binding.hasErrors())
+                result = this.editModelAndView(configF, null);
+            else {
                 this.configurationService.save(config);
                 result = new ModelAndView("redirect:/configuration/administrator/show.do");
-            } catch (final Throwable oops) {
-                result = this.editModelAndView(configF, "configuration.edit.error"); //"Administrator.commit.error"
             }
+        } catch (final Throwable oops) {
+            result = new ModelAndView("redirect:/");
+        }
         return result;
     }
     // SHOW/DISPLAY
