@@ -27,8 +27,12 @@
         <acme:textbox code="audit.text" path="text"/>
         <br>
 
-        <acme:textbox code="audit.score" path="score"/>
-        <br>
+        <form:label path="score" >
+            <spring:message code="audit.score" />*
+        </form:label>
+        <form:input type="number" step="0.5" path="score" id="score"/>
+        <form:errors cssClass="error" path="score" />
+        <br />
 
         <spring:message code="audit.isFinal"/>
         <form:select path="isFinal" multiple="false">
