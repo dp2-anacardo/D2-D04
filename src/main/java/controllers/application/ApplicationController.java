@@ -136,6 +136,8 @@ public class ApplicationController extends AbstractController {
 
 		try {
 			Assert.notNull(applicationId);
+			Position position = this.applicationService.getPositionByApplication(applicationId);
+			Assert.isTrue(!position.getIsCancelled());
 			application = this.applicationService.findOne(applicationId);
 			result = this.rejectModelAndView(application);
 			return result;
@@ -192,6 +194,10 @@ public class ApplicationController extends AbstractController {
 		ModelAndView result;
 		try{
 			Position position = this.positionService.findOne(positionId);
+			Rookie rookie = rookieService.findOne(actorService.getActorLogged().getId());
+			Collection<Application> applications = applicationService.getApplicationsByRookie(rookie);
+			Collection<Application> applicationsPosition = applicationService.getAllApplicationsByPosition(positionId);
+			Assert.isTrue(!applicationsPosition.contains(applications));
 			Assert.isTrue(!position.getIsCancelled());
 			Actor a = this.actorService.getActorLogged();
 			Rookie h = this.rookieService.findOne(a.getId());
