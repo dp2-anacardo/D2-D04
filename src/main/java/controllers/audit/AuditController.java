@@ -132,12 +132,12 @@ public class AuditController extends AbstractController {
     public ModelAndView createSave(@ModelAttribute("audit") Audit audit, @RequestParam int positionId, BindingResult binding){
         ModelAndView result;
 
-        if(StringUtils.isEmpty(audit.getText())) {
+      /*  if(StringUtils.isEmpty(audit.getText())) {
             binding.rejectValue("text", "error.text");
             result = new ModelAndView("audit/auditor/create");
             result.addObject("audit",audit);
             result.addObject("positionId", positionId);
-        }
+        }*/
 
         try {
             audit = this.auditService.reconstruct(audit, binding);
