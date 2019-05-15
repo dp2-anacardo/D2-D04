@@ -21,7 +21,6 @@
         <form:hidden path="id"/>
 
         <!-- Single areas -->
-        <jstl:out value="${messageCode}"/>
 
         <acme:textboxbs code="configuration.edit.maxResults" path="maxResults"/>
         <acme:textboxbs code="configuration.edit.maxTime" path="maxTime"/>
