@@ -96,16 +96,17 @@ public class FinderController extends AbstractController {
     public ModelAndView save(@ModelAttribute("finder") Finder finder, final BindingResult binding) {
         ModelAndView result;
 
-        finder = this.finderService.reconstruct(finder, binding);
-        if (binding.hasErrors())
-            result = this.createEditModelAndView(finder);
-        else
-            try {
+        try {
+            finder = this.finderService.reconstruct(finder, binding);
+            if (binding.hasErrors())
+                result = this.createEditModelAndView(finder);
+            else {
                 this.finderService.save(finder);
                 result = new ModelAndView("redirect:/finder/rookie/list.do");
-            } catch (final Throwable oops) {
-                result = this.createEditModelAndView(finder, oops.getMessage()/* "finder.update.error" */);
             }
+        } catch (final Throwable oops) {
+            result = new ModelAndView("redirect:/");
+        }
         return result;
     }
 
