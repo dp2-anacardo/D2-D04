@@ -2,6 +2,7 @@
 package domain;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.Range;
 import org.hibernate.validator.constraints.SafeHtml;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -92,6 +93,7 @@ public class Position extends DomainEntity {
 		this.technology = technology;
 	}
 
+	@Range(min = 0)
 	public int getSalary() {
 		return this.salary;
 	}
