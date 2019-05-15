@@ -19,7 +19,7 @@ public class Audit extends DomainEntity{
 
     private Date moment;
     private String text;
-    private int score;
+    private Double score;
     private boolean isFinal;
     private Auditor auditor;
 
@@ -44,11 +44,12 @@ public class Audit extends DomainEntity{
     }
 
     @Range(min=0, max=10)
-    public int getScore() {
+    @NotNull
+    public Double getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(Double score) {
         this.score = score;
     }
 
