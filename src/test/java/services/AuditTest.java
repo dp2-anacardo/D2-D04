@@ -33,20 +33,20 @@ public class AuditTest extends AbstractTest {
     public void createAuditDriver() {
         final Object testingData[][] = {
                 {
-                    "auditor1", "textTest", 8, "position1", null
+                    "auditor1", "textTest", 8.0, "position1", null
                 }, {
-                "auditor1", "", 8, "position1", IllegalArgumentException.class
+                "auditor1", "", 8.0, "position1", ValidationException.class
                 }, {
-                "auditor2", "textTest", 8, "position1", IllegalArgumentException.class
+                "auditor2", "textTest", 8.0, "position1", IllegalArgumentException.class
                 }, {
-                "auditor1", "textTest", 20, "position1", ValidationException.class
+                "auditor1", "textTest", 20.0, "position1", ValidationException.class
         }
         };
         for (int i = 0; i < testingData.length; i++)
-            this.createAuditTemplate((String) testingData[i][0], (String) testingData[i][1], (Integer) testingData[i][2], (String) testingData[i][3], (Class<?>) testingData[i][4]);
+            this.createAuditTemplate((String) testingData[i][0], (String) testingData[i][1], (Double) testingData[i][2], (String) testingData[i][3], (Class<?>) testingData[i][4]);
     }
 
-    private void createAuditTemplate(final String username, final String text, final Integer score, final String position, final Class<?> expected) {
+    private void createAuditTemplate(final String username, final String text, final Double score, final String position, final Class<?> expected) {
         Class<?> caught;
         caught = null;
 
@@ -80,24 +80,24 @@ public class AuditTest extends AbstractTest {
     public void updateAuditDriver() {
         final Object testingData[][] = {
                 {
-                    "auditor3", "audit2", "test", 5, false, null
+                    "auditor3", "audit2", "test", 5.0, false, null
                 }, {
-                "auditor3", "audit2", "test", 5, true, null
+                "auditor3", "audit2", "test", 5.0, true, null
         }, {
-                "auditor3", "audit2", "", 5, false, IllegalArgumentException.class
+                "auditor3", "audit2", "", 5.0, false, ValidationException.class
         }, {
-                "auditor3", "audit2", "", 5, true, IllegalArgumentException.class
+                "auditor3", "audit2", "", 5.0, true, ValidationException.class
         }, {
-                "auditor3", "audit1", "test", 5, false, IllegalArgumentException.class
+                "auditor3", "audit1", "test", 5.0, false, IllegalArgumentException.class
         }, {
-                "auditor3", "audit1", "test", 5, true, IllegalArgumentException.class
+                "auditor3", "audit1", "test", 5.0, true, IllegalArgumentException.class
         }
         };
         for (int i = 0; i < testingData.length; i++)
-            this.updateAuditTemplate((String) testingData[i][0], (String) testingData[i][1], (String) testingData[i][2], (Integer) testingData[i][3], (Boolean) testingData[i][4], (Class<?>) testingData[i][5]);
+            this.updateAuditTemplate((String) testingData[i][0], (String) testingData[i][1], (String) testingData[i][2], (Double) testingData[i][3], (Boolean) testingData[i][4], (Class<?>) testingData[i][5]);
     }
 
-    private void updateAuditTemplate(final String username, final String audit, final String text, Integer score, final Boolean isFinal, final Class<?> expected) {
+    private void updateAuditTemplate(final String username, final String audit, final String text, Double score, final Boolean isFinal, final Class<?> expected) {
         Class<?> caught;
         caught = null;
 

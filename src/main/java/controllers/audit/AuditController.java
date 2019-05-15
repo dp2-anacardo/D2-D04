@@ -5,15 +5,14 @@ import controllers.AbstractController;
 import domain.Audit;
 import domain.Auditor;
 import domain.Position;
+import org.springframework.beans.TypeMismatchException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import services.ActorService;
 import services.AuditService;
@@ -22,6 +21,7 @@ import services.PositionService;
 
 import javax.validation.ValidationException;
 import java.util.Collection;
+
 
 @Controller
 @RequestMapping("/audit")
@@ -38,6 +38,11 @@ public class AuditController extends AbstractController {
 
     @Autowired
     private PositionService positionService;
+
+    @ExceptionHandler(BindException.class)
+    public ModelAndView handleMismatchException(final BindException oops) {
+        return new ModelAndView("redirect:/");
+    }
 
     // List -------------------------------------------------------------
     // Un auditor puede listar todas sus audits ya sea final o no
@@ -147,7 +152,7 @@ public class AuditController extends AbstractController {
             result = new ModelAndView("audit/auditor/create");
             result.addObject("audit", audit);
             result.addObject("positionId", positionId);
-        }catch (Throwable oops){
+        }catch (Exception oops){
             result = new ModelAndView("audit/auditor/create");
             result.addObject("audit",audit);
             result.addObject("positionId", positionId);
